@@ -43,8 +43,8 @@ import { CheckTabValidService } from './services/check-tab-valid.service';
     ],
     standalone: true,
 })
-export class MainComponent implements OnInit, AfterContentChecked {
-    @ViewChild(MatTabGroup) tabGroup: MatTabGroup;
+export class MainComponent {
+/*    @ViewChild(MatTabGroup) tabGroup: MatTabGroup;
     tabs: Array<{ name: string; route: string }> = [
         { name: 'صفحه اصلی', route: '/main/home' },
     ];
@@ -464,7 +464,7 @@ export class MainComponent implements OnInit, AfterContentChecked {
             default:
                 this.selectedTabIndex = 0;
         }
-    }
+    }*/
 }
 
 interface Tab {

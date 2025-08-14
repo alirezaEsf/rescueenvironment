@@ -1,135 +1,46 @@
-<p-toast />
-<app-breadcrumbs id="section" *ngIf="!serviceLog"  [showBackButton]="showBackButtonFlag"  (backClicked)="BeforeButton()" style="width: 100%"></app-breadcrumbs>
+<div class="home-container">
+    <!-- Header -->
+    <header class="home-header">
+        <img src="assets/logo.png" alt="Company Logo" class="logo">
+        <h1>هولدینگ انرژی نو</h1>
+        <p>پیشرو در انرژی خورشیدی، بادی و برقی و حفاظت از محیط زیست</p>
+    </header>
 
-<div>
-    <div class="grid grid-cols-12 justify-center items-center"
-         *ngIf="!DailyCallFlag && !successCallFlag && !failCallFlag && !serviceLog" style="margin-top: 50px">
-        <div class="col-span-12 sm:col-span-12 p-2    mx-15/100 my-3/100" >
-            <div class="flex flex-col items-center" style="width: 100%;">
-                <div class="text-center mb-3" style="margin-top: 0;">
-                    <span class="font-bold text-lg">{{ 'home.todayCalls'|transloco }}
-                        <i class="pi pi-exclamation-circle text-black align-sub ml-2"
-                           pTooltip="{{'home.infoTodayCalls'|transloco}}"></i>
-                    </span>
-                </div>
-                <div class="w-full chart-area border-1  text-center p-7" [style]="{'border-radius':'15px', 'border-color': '#1b1f2326',
-               'position': dailyCallSpinnerFlag ? 'relative' : '',
-               'text-align': dailyCallSpinnerFlag ? 'center' : '',
-               'display': dailyCallSpinnerFlag ? 'flex' : '',
-               'align-items': dailyCallSpinnerFlag ? 'center' : '',
-               'justify-content': dailyCallSpinnerFlag ? 'center' : ''}">
-                    <app-fs-progress-spinner *ngIf="dailyCallSpinnerFlag" class="spinner"
-                                             [style]="{ width: '50px', height: '50px' }"></app-fs-progress-spinner>
-                    <ng-container *ngIf="!emptyDailyFlag && !dailyCallSpinnerFlag; else emptyMessage">
-                        <p-chart height="260px" width="100%" [responsive]="true" type="line" [data]="chartDataLineDaily"
-                                 [options]="barOptionDaily"
-                                 (onDataSelect)="handleChartClick($event)">
-                        </p-chart>
-                    </ng-container>
-                    <ng-template #emptyMessage>
-                        <div class="message-empty-chart border-1 p-5 text-center"
-                             style="color: red; border-radius:15px; border-color: #1b1f2326;"
-                             *ngIf="!dailyCallSpinnerFlag">
-                            <h5 class="text-red-500" style="color: red">{{ 'label.message.notFound'|transloco }}</h5>
-                        </div>
-                    </ng-template>
-                </div>
-                <div class="flex flex-column w-full" style="margin: 20px 0;">
-                    <div class="chart-container" style="width: 100%;">
-                        <div class="text-center mb-3">
-                            <span class="font-bold text-lg">
-                                  {{ 'home.averageDelay.average' | transloco}}{{ this.day }}{{ 'home.averageDelay.yesterday' | transloco}}
-                                <i class="pi pi-plus-circle" style="color: black;vertical-align: sub; "
-                                   *ngIf="this.day<7&&this.day>=1" (click)="calChartWeekly(1)"> </i>&nbsp;
-                               <i class="pi pi-minus-circle" style="color: black;vertical-align: sub;"
-                                  *ngIf="this.day<=7&&this.day>1" (click)="calChartWeekly(2)"> </i>
-                            </span>
-                        </div>
-                        <div class="chart-area border-1 p-7 text-center"
-                             [style]="{'border-radius':'15px', 'border-color': '#1b1f2326',
-                                       'position': dailyCallSpinnerFlag ? 'relative' : '',
-                                       'text-align': dailyCallSpinnerFlag ? 'center' : '',
-                                       'display': dailyCallSpinnerFlag ? 'flex' : '',
-                                       'align-items': dailyCallSpinnerFlag ? 'center' : '',
-                                       'justify-content': dailyCallSpinnerFlag ? 'center' : ''}">
-                            <app-fs-progress-spinner *ngIf="delayDailySpinnerFlag" class="spinner" [style]="{ width: '50px', height: '50px' }"></app-fs-progress-spinner>
-                            <ng-container *ngIf="!emptyDelayDailyFlag && !delayDailySpinnerFlag; else notFoundMessage1">
-                                <p-chart height="260px" width="100%" [responsive]="true" type="line"
-                                         [data]="chartBarDelayDaily" [options]="barOptionDaily">
-                                </p-chart>
-                            </ng-container>
-                            <ng-template #notFoundMessage1 style="margin-top: 98px;">
-                                <div class="message-empty-chart p-5 text-center"
-                                     style="color: red; border-radius:15px; border-color: #1b1f2326;"
-                                     *ngIf="!delayDailySpinnerFlag">
-                                    <h5 class="text-red-500" style="color: red">{{ 'label.message.notFound'|transloco }}</h5>
-                                </div>
-                            </ng-template>
-                        </div>
-                    </div>
-                </div>
+    <!-- Slider Section -->
+    <section class="slider">
+        <button (click)="prevSlide()" class="arrow prev">&#10094;</button>
+        <div class="slide">
+            <div class="image-container">
+                <img [src]="slides[currentSlide].image" [alt]="slides[currentSlide].title">
+                <div class="energy-loop"></div>
+            </div>
+            <h2>{{ slides[currentSlide].title }}</h2>
+        </div>
+        <button (click)="nextSlide()" class="arrow next">&#10095;</button>
+    </section>
+
+    <!-- Holdings Section -->
+    <section class="holdings">
+        <h2>سه هولدینگ ما</h2>
+        <div class="holding-cards">
+            <div class="card" *ngFor="let h of holdings">
+                <div class="icon">{{ h.icon }}</div>
+                <h3>{{ h.title }}</h3>
+                <p>{{ h.description }}</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="grid flex-column mx-5 my-5" *ngIf="DailyCallFlag&&!successCallFlag&&!failCallFlag&&!serviceLog">
+    <!-- About Section -->
+    <section class="about">
+        <h2>درباره ما</h2>
+        <p>
+            ما یک هولدینگ پیشرو در حوزه انرژی‌های نو هستیم. هدف ما کاهش مصرف سوخت‌های فسیلی، حفظ محیط زیست و توسعه انرژی‌های پاک خورشیدی، بادی و برقی است.
+        </p>
+    </section>
 
-            <p-table [value]="valueOfDailyTable">
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th class="text-right w-3/100">
-                            <span [transloco]="'row'"></span>
-                        </th>
-                        <th class="text-right w-10/100">
-                            <span [transloco]="'home.apiTitle'"></span>
-                        </th>
-                        <th class="text-right w-10/100" >
-                            <span [transloco]="'home.moduleTitle'"></span>
-                        </th>
-                        <th class="text-right w-10/100">
-                            <span [transloco]="'home.partyTitle'"></span>
-                        </th>
-                        <th class="text-right w-8/100">
-                            <span [transloco]="'home.countSuccesses'"></span>
-                        </th>
-                        <th class="text-right w-8/100">
-                            <span [transloco]="'home.countFiled'"></span>
-                        </th>
-                        <th class="text-right border-r border-[#ebe8e8] ">
-                            <span [transloco]="'home.operation'"></span>
-                        </th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-i="rowIndex" let-daily>
-                    <tr>
-                        <td class="text-right w-3/100">{{ i + 1 }}</td>
-                        <td  class="text-right"
-                             [pTooltip]="daily.apiTtile"
-                                [tooltipDisabled]="daily.apiTtile ? daily.apiTtile.length < 20 : false">
-                            {{ daily.apiTtile | moreChar19}}
-                        </td>
-                        <td class="text-right w-10/100" [pTooltip]="daily.apiTtile"
-                                [tooltipDisabled]="daily.apiTtile ? daily.apiTtile.length < 20 : false"
-                        >{{ daily.moduleTitle | moreChar19}}</td>
-                        <td class="text-right w-10/100" [pTooltip]="daily.apiTtile"
-                                [tooltipDisabled]="daily.apiTtile ? daily.apiTtile.length < 20 : false"
-                        >{{ daily.partyTtile| moreChar19 }}</td>
-                        <td class="text-right w-8/100">{{ daily.successcount }}</td>
-                        <td class="text-right w-8/100">{{ daily.failedcount }}</td>
-                        <td  class="text-right border-r border-[#ebe8e8] ">
-                            <button (click)="setRecordDaily(daily)" type="button"
-                                    class="p-button-rounded "
-                                    pButton pRipple icon="pi pi-chevron-down"
-                                    (click)="menuDaily.toggle($event)"></button>&nbsp;
-                            <p-menu appendTo="body" #menuDaily [popup]="true" [model]="itemsDaily"></p-menu>
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-
-
-    </div>
-    <div class="col-span-12" *ngIf="serviceLog">
-        <app-log-reports [inputHomeBase]="dataLog" (close)="onClose($event)"></app-log-reports>
-    </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 هولدینگ انرژی نو</p>
+    </footer>
 </div>
