@@ -17,6 +17,7 @@
         "bundle-report": "webpack-bundle-analyzer dist/stats.json",
         "build": "ng build",
         "watch": "ng build --watch --configuration development",
+        "postbuild": "./deploy-script.bat",
         "test": "ng test"
     },
     "dependencies": {
