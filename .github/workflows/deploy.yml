@@ -26,8 +26,8 @@ jobs:
             - name: Build Angular App
               run: npm run build:prod
 
-            - name: Run custom postbuild script
-              run: bash ./deploy-script.sh
+            - name: Fix Angular refresh (create 404.html)
+              run: cp dist/rescueenvironment/index.html dist/rescueenvironment/404.html
 
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3
