@@ -19,7 +19,7 @@
                     "options": {
                         "index": "src/index.html",
                         "main": "src/main.ts",
-                        "baseHref": "/rescueenvironment/",
+                        "baseHref": "/",
                         "deployUrl": "/rescueenvironment/",
                         "outputPath": "dist/rescueenvironment",
                         "polyfills": [
@@ -79,7 +79,7 @@
                     },
                     "configurations": {
                         "production": {
-                            "baseHref": "/rescueenvironment/",
+                            "baseHref": "/",
                             "deployUrl": "/rescueenvironment/",
                             "fileReplacements": [
                                 {
