@@ -19,8 +19,8 @@
                     "options": {
                         "index": "src/index.html",
                         "main": "src/main.ts",
-                        "baseHref": "/",
-                        "deployUrl": "/",
+                        "baseHref": "/rescueenvironment/",
+                        "deployUrl": "/rescueenvironment/",
                         "outputPath": "dist/rescueenvironment",
                         "polyfills": [
                             "zone.js"
