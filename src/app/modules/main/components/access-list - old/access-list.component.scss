@@ -1,0 +1,49 @@
+:host {
+    width: 100%;
+}
+
+::ng-deep {
+    .p-tooltip {
+        width: 150px;
+        min-width: 150px;
+        font-size: 14px;
+        max-width: 250px;
+
+    }
+}
+
+.row {
+    width: 8%;
+}
+
+.ruleId {
+    width: 15%;
+}
+
+.partyName {
+    width: 15%
+}
+
+.moduleTitle {
+    width: 15%
+}
+
+.clientName {
+    width: 20%;
+}
+
+.callCount {
+    width: 10%;
+}
+
+.apiCount {
+    width: 17%;
+}
+
+.operation {
+    width: 21%;
+}
+hr {
+     margin: 12px 0!important;
+     border-bottom-width: 1px!important;
+ }

@@ -11,7 +11,7 @@ describe('GateWayLoginComponent', () => {
       imports: [GateWayLoginComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(GateWayLoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

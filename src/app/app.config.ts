@@ -15,7 +15,7 @@ import { appRoutes } from 'app/app.routes';
 import { provideAuth } from 'app/core/auth/auth.provider';
 import { provideIcons } from 'app/core/icons/icons.provider';
 import { mockApiServices } from 'app/mock-api';
-import { firstValueFrom } from 'rxjs';
+import { catchError, defaultIfEmpty, firstValueFrom, lastValueFrom, of } from 'rxjs';
 import { TranslocoHttpLoader } from './core/transloco/transloco.http-loader';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
@@ -90,13 +90,32 @@ export const appConfig: ApplicationConfig = {
         }),
         {
             // Preload the default language before the app starts to prevent empty/jumping content
-            provide: APP_INITIALIZER,
+         /*   provide: APP_INITIALIZER,
             useFactory: () => {
                 const translocoService = inject(TranslocoService);
                 const defaultLang = translocoService.getDefaultLang();
                 translocoService.setActiveLang(defaultLang);
 
                 return () => firstValueFrom(translocoService.load(defaultLang));
+            },
+            multi: true,*/
+            //کد بالا در صورت بروز خطا در ترجمه خطا را هندل نمیکرد
+            provide: APP_INITIALIZER,
+            useFactory: () => {
+                const translocoService = inject(TranslocoService);
+                const defaultLang = translocoService.getDefaultLang();
+                translocoService.setActiveLang(defaultLang);
+
+                // استفاده از lastValueFrom به جای firstValueFrom
+                return () => lastValueFrom(
+                    translocoService.load(defaultLang).pipe(
+                        catchError((err) => {
+                            console.error('خطا در بارگیری ترجمه:', err);
+                            return of({}); // مقدار پیشفرض
+                        }),
+                        defaultIfEmpty({}) // جلوگیری از EmptyError
+                    )
+                );
             },
             multi: true,
         },

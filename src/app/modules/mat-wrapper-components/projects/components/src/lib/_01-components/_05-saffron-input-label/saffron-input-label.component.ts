@@ -16,7 +16,6 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SaffronInputErrorComponent,
   ],
 })
 export class SaffronInputLabelComponent {

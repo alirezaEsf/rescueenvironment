@@ -55,6 +55,8 @@ import {
     Subscription,
     takeUntil,
 } from 'rxjs';
+import {Dialog} from "primeng/dialog";
+import {ReleaseNoteComponent} from "../../../../app/modules/main/components/release-note/release-note.component";
 
 @Component({
     selector: 'fuse-vertical-navigation',
@@ -73,6 +75,8 @@ import {
         FuseVerticalNavigationDividerItemComponent,
         FuseVerticalNavigationGroupItemComponent,
         FuseVerticalNavigationSpacerItemComponent,
+        Dialog,
+        ReleaseNoteComponent,
     ],
 })
 export class FuseVerticalNavigationComponent
@@ -368,6 +372,11 @@ export class FuseVerticalNavigationComponent
                     this.closeAside();
                 }
             });
+        this.history =  'آخرین تغییرات : '+'1404/03/04'
+        this.appVersion =  'شماره نسخه : '+'v1.0.10'
+       this.typeVersion =  'نوع نسخه : '+' QC'
+        // this.typeVersion =  'نوع نسخه : '+'UAT'
+      //  this.typeVersion =  'نوع نسخه : '+'Production'
     }
 
     /**
@@ -593,6 +602,10 @@ export class FuseVerticalNavigationComponent
     // -----------------------------------------------------------------------------------------------------
     // @ Private methods
     // -----------------------------------------------------------------------------------------------------
+    appVersion: string;
+    history: string;
+    typeVersion: string;
+    releaseFlag: boolean;
 
     /**
      * Enable the animations

@@ -1,9 +1,12 @@
 export const environment = {
-    serviceBaseUrl :'http://192.168.160.50:8080/bof/wallet/api',
-    bffBaseUrl :'http://192.168.160.40:8085/sep/api/',
+    /*serviceBaseUrl :'http://192.168.160.80:8086/',
+    bffBaseUrl :'http://192.168.160.80:8086/',*/
+    serviceBaseUrl :'http://192.168.160.40:8086/',
+   // bffBaseUrl :'http://192.168.160.40:8086/',
     version: '1.0.0',
     defaultLanguage: 'fa',
     supportedLanguages: ['fa-IR', 'en-US'],
-    production: true,
+    production: false,
+    apiBaseUrl: '',
     hmr       : true
 };

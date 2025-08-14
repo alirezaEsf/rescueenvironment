@@ -1,0 +1,199 @@
+<!--
+<div class="grid flex-column" id="section">
+    <p-panel header="{{headerLimit}}">
+        <div class="grid grid-cols-12">
+            <div class="col-4">
+                <label class="normal-label">
+                    <span class="red-color-text">* </span>
+                    <span>نوع محدودیت :</span></label><br>
+                <p-dropdown
+                    [options]="limitTypeOptions"
+                    [(ngModel)]="limitType"
+                    optionValue="code"
+                    optionLabel="name"
+                    (keydown.enter)="onKeydown($event)">
+                </p-dropdown>
+            </div>
+            <div class="col-4">
+                <label class="normal-label"> <span>انتخاب تکرار در ساعات مشخص :</span></label><br>
+                <p-toggleswitch [(ngModel)]="repeatedly" (onChange)="onChangRepeatedly()"
+                                (keydown.enter)="onKeydown($event)" />
+            </div>
+            <div class="col-4"></div>
+            <div class="col-4">
+                <label class="normal-label">
+                    <span class="red-color-text">* </span>
+                    <span>تاریخ شروع :</span></label><br>
+                &lt;!&ndash;<p-persian-calendar class="app-persian-calendar-style" [yearRange]="'1399:1410'"
+                                    [disabled]="repeatedlyDisabledFlag" [(ngModel)]="fromDate"
+                                    (keydown.enter)="onKeydown($event)"
+                ></p-persian-calendar>&ndash;&gt;
+            </div>
+            <div class="col-2-5">
+                <label class="normal-label"> <span>ساعت شروع :</span></label><br>
+                &lt;!&ndash;<p-persian-calendar [timeOnly]="true" [showOnFocus]="true" [showSeconds]="true"
+                                    [(ngModel)]="fromTime" icon="pi pi-clock" [showMilliSeconds]="true"
+                                    (keydown.enter)="onKeydown($event)"
+                                    class="app-persian-calendar-style"
+                                    [showTime]="true" [showIcon]="true">
+                </p-persian-calendar>&ndash;&gt;
+            </div>
+            <div class="col-4"></div>
+            <div class="col-4">
+                <label class="normal-label"> <span>تاریخ پایان :</span></label><br>
+                &lt;!&ndash;<p-persian-calendar class="app-persian-calendar-style" [yearRange]="'1399:1410'"
+                                    [disabled]="repeatedlyDisabledFlag" [(ngModel)]="toDate"
+                                    (keydown.enter)="onKeydown($event)"></p-persian-calendar>&ndash;&gt;
+            </div>
+            <div class="col-2-5">
+                <label class="normal-label"> <span>ساعت پایان :</span></label><br>
+                &lt;!&ndash;<p-persian-calendar [timeOnly]="true" [showOnFocus]="true" [showSeconds]="true"
+                                    icon="pi pi-clock" [(ngModel)]="toTime" [showTime]="true"
+                                    class="app-persian-calendar-style" [showMilliSeconds]="true"
+                                    [showIcon]="true" (keydown.enter)="onKeydown($event)">
+                </p-persian-calendar>&nbsp;&ndash;&gt;
+
+            </div>
+            <div class="col-1">
+                &lt;!&ndash;
+                            <label class="normal-label"> <span ></span></label><br>
+                &ndash;&gt;
+                <button pButton style="background-image: url('assets/icons/timeRestart5.png');
+             width: 26px; height: 26px; margin-top:23px; border-radius: 4px"
+                        (click)="resetTime()"></button>&nbsp;
+            </div>
+            <div class="col-span-2"></div>
+
+
+            <div class="col-4">
+                <label class="normal-label"> <span>وضعیت :</span></label><br>
+                <p-toggleswitch [(ngModel)]="status" (keydown.enter)="onKeydown($event)" />
+            </div>
+            <div class="col-4" hidden>
+                <label class="normal-label"> <span>limitId :</span></label><br>
+                <input disabled [(ngModel)]="limitId" pInputText>
+            </div>
+            <div class="col-12" dir="ltr" style="margin-top: 15px">
+                <button pButton label="{{'button.cancel' | transloco}}"
+                         severity="danger"  icon="pi pi-times"
+                        (click)="onCancel()"></button>&nbsp;
+                <button pButton severity="success" label="{{'ثبت اطلاعات' | transloco}}" icon="pi pi-save"
+                        (click)="onRegister()" severity="success"></button>
+            </div>
+        </div>
+    </p-panel>
+</div>
+-->
+
+
+<div class="grid grid-cols-12 gap-4 mx-5 my-10" id="section">
+    <div class="col-span-4">
+        <label class="normal-label">
+            <span class="text-red-600">*</span>
+            <span>نوع محدودیت :</span>
+        </label>
+        <p-dropdown
+            class="normal-dropdown"
+            [options]="limitTypeOptions"
+            [(ngModel)]="limitType"
+            optionValue="code"
+            optionLabel="name"
+            (keydown.enter)="onKeydown($event)">
+        </p-dropdown>
+    </div>
+
+    <div class="col-span-4">
+        <label class="normal-label">انتخاب تکرار در ساعات مشخص :</label>
+        <p-toggleswitch
+            [(ngModel)]="repeatedly"
+            (onChange)="onChangRepeatedly()"
+            (keydown.enter)="onKeydown($event)" />
+    </div>
+
+    <div class="col-span-4"></div>
+
+    <div class="col-span-4">
+        <label class="normal-label">
+            <span class="text-red-600">*</span>
+            <span>تاریخ شروع :</span>
+        </label>
+      <p-persian-calendar class="app-persian-calendar-style" [yearRange]="'1399:1410'"
+                                        [disabled]="repeatedlyDisabledFlag" [(ngModel)]="fromDate"
+                                        (keydown.enter)="onKeydown($event)"
+    ></p-persian-calendar>
+    </div>
+
+    <div class="col-span-2">
+        <label class="normal-label">ساعت شروع :</label>
+        <p-persian-calendar [timeOnly]="true" [showOnFocus]="true" [showSeconds]="true"
+                            [(ngModel)]="fromTime" icon="pi pi-clock" [showMilliSeconds]="true"
+                            (keydown.enter)="onKeydown($event)"
+                            class="app-persian-calendar-time-style"
+                            [showTime]="true" [showIcon]="true">
+        </p-persian-calendar>
+    </div>
+
+    <div class="col-span-4"></div>
+
+    <div class="col-span-4">
+        <label class="normal-label">تاریخ پایان :</label>
+        <p-persian-calendar class="app-persian-calendar-style" [yearRange]="'1399:1410'"
+                            [disabled]="repeatedlyDisabledFlag" [(ngModel)]="toDate"
+                            (keydown.enter)="onKeydown($event)"></p-persian-calendar>
+    </div>
+
+    <div class="col-span-2">
+        <label class="normal-label">ساعت پایان :</label>
+        <p-persian-calendar [timeOnly]="true" [showOnFocus]="true" [showSeconds]="true"
+                            icon="pi pi-clock" [(ngModel)]="toTime" [showTime]="true"
+                            class="app-persian-calendar-time-style" [showMilliSeconds]="true"
+                            [showIcon]="true" (keydown.enter)="onKeydown($event)">
+        </p-persian-calendar>
+    </div>
+
+    <div class="col-span-1 flex items-center justify-center pt-5">
+        <button pButton
+                class="w-[44px] h-[44px] mb-6 rounded-2xl bg-no-repeat bg-center"
+                style="background-image: url('assets/icons/timeRestart5.png');"
+                (click)="resetTime()"></button>
+    </div>
+
+    <div class="col-span-2"></div>
+
+    <div class="col-span-4">
+        <label class="normal-label">وضعیت :</label>
+        <p-toggleswitch [(ngModel)]="status" (keydown.enter)="onKeydown($event)" />
+    </div>
+
+    <div class="col-span-4 hidden">
+        <label class="normal-label">limitId :</label>
+        <input disabled [(ngModel)]="limitId" pInputText  class="normal-input"/>
+    </div>
+
+<!--    <div class="col-span-12 flex justify-start mt-4" dir="ltr">
+        <button pButton
+                label="{{'button.cancel' | transloco}}"
+                class="p-button-danger mr-2"
+                icon="pi pi-times"
+                (click)="onCancel()">
+        </button>
+        <button pButton
+                severity="success"
+                label="{{'ثبت اطلاعات' | transloco}}"
+                icon="pi pi-save"
+                (click)="onRegister()">
+        </button>
+    </div>-->
+
+</div>
+<div class="w-full mt-4 text-left p-4">
+    <button
+        pButton severity="success"
+        label="{{'button.save' | transloco}}"
+        icon="pi pi-save" class="normal-button"
+        (click)="onRegister()"></button> &nbsp;
+    <button pButton label="{{'button.cancel' | transloco}}"
+            severity="danger" icon="pi pi-times" class="normal-button"
+            [outlined]="true" (click)="onCancel()"></button>
+</div>
+

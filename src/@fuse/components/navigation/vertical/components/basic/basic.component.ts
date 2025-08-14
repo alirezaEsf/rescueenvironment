@@ -34,7 +34,6 @@ import { TranslocoDirective, TranslocoPipe } from '@ngneat/transloco';
         MatTooltipModule,
         NgTemplateOutlet,
         MatIconModule,
-        TranslocoPipe,
         TranslocoDirective,
     ],
 })

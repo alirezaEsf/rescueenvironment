@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SaffronTableComponent } from './saffron-table.component';
 
 describe('SaffronTableComponent', () => {
-  let component: SaffronTableComponent;
-  let fixture: ComponentFixture<SaffronTableComponent>;
+  let component: SaffronTableComponent<any>;
+  let fixture: ComponentFixture<SaffronTableComponent<any>>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

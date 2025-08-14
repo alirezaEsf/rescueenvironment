@@ -1,0 +1,718 @@
+<!--  <p-panel header="اطلاعات اولیه سرویس">
+      <div class="grid grid-cols-12">
+          <div class="col-span-12 md:col-span-6 lg:col-span-4">
+              <label class="normal-label">
+<span class="red-color-text">* </span>
+<span >عنوان سرویس :</span></label>
+              <input class="normal-input"  [(ngModel)]="title" (keydown.enter)="onKeydown($event)" pInputText >
+          </div>
+
+          <div class="col-span-12 md:col-span-6 lg:col-8">
+              <label class="normal-label">
+<span class="red-color-text">* </span>
+<span >نام سرویس :</span></label>
+              <input class="normal-input" (keydown.enter)="onKeydown($event)"
+                     dir="ltr"
+                     placeholder="You can use {segment} to define the pattern"
+                     [(ngModel)]="name" pInputText>
+              <div class="flex align-items-center gap-2 mt-1 ">
+                  <small class=" ml-3 " dir="ltr" style="color: red;">
+                      &#47;customerpersonalinfo&#47;year&#47;&#123;segment&#125;&#47;fetch
+                  </small>
+                  <button pButton icon="pi pi-question-circle" class="p-button-warning p-button-sm" (click)="helpFlag=true"></button>
+              </div>
+          </div>
+
+          <div class="col-span-12 md:col-span-6 lg:col-span-4">
+              <label class="normal-label"><span >نحوه اجرا :</span></label>
+              <input class="normal-input"  [(ngModel)]="runningType" (keydown.enter)="onKeydown($event)"
+                     dir="ltr" pKeyFilter="int" pInputText >
+          </div>
+
+          <div class="col-span-12 md:col-span-6 lg:col-8">
+              <label class="normal-label">
+<span class="red-color-text">* </span>
+<span >مسیر :</span></label>
+              <input class="normal-input"  dir="ltr"
+                     (keydown.enter)="onKeydown($event)" [(ngModel)]="url" pInputText>
+          </div>
+
+          <div class="col-span-12 md:col-span-6 lg:col-span-4">
+              <label class="normal-label">
+<span class="red-color-text">* </span>
+<span >نوع متد :</span></label>
+              <p-dropdown
+                          [options]="typeOptions"
+                          [(ngModel)]="type"
+                          optionValue="code"
+                          optionLabel="name"
+                          (onChange)="onChangeMethodeHttp($event)"
+                          (keydown.enter)="onKeydown($event)" >
+              </p-dropdown>
+          </div>
+
+          <div class="col-span-12 md:col-span-6 lg:col-span-4">
+              <label class="normal-label">
+<span class="red-color-text">* </span>
+<span >بستر ارتباطی :</span></label>
+              <p-dropdown
+                          [options]="protocolOptions"
+                          [(ngModel)]="protocol"
+                          optionValue="code"
+                          optionLabel="name"
+                          (keydown.enter)="onKeydown($event)" >
+              </p-dropdown>
+          </div>
+
+          <div class="col-span-12 md:col-span-6 lg:col-span-4">
+              <label class="normal-label"><span >تایم اوت :</span>
+                  <span class="text-gray-400 text-sm">(میلی ثانیه)</span>
+              </label>
+              <input class="normal-input"  [(ngModel)]="timeout" pKeyFilter="int"
+                     dir="ltr" (keydown.enter)="onKeydown($event)" pInputText >
+          </div>
+
+          &lt;!&ndash; چک‌باکس‌ها با چینش درست &ndash;&gt;
+          <div class="col-span-12 md:col-span-6 lg:col-span-4">
+              <div class="flex align-items-center gap-2">
+                  <p-checkbox [(ngModel)]="hasUrlParams" [binary]="true" inputId="hasUrlParams" disabled></p-checkbox>
+                 <label class="normal-label" for="hasUrlParams"><span >سرویس دارای (Url Params) می باشد</span></label>
+              </div>
+          </div>
+
+          <div class="col-span-12 md:col-span-6 lg:col-span-4">
+              <div class="flex align-items-center gap-2">
+                  <p-checkbox [(ngModel)]="hasSequence" [binary]="true" inputId="hasSequence" disabled></p-checkbox>
+                 <label class="normal-label" for="hasSequence"><span >سرویس دارای جریان پردازشی (Sequence) می باشد</span></label>
+              </div>
+          </div>
+
+          <div class="col-span-12 md:col-span-6 lg:col-span-4">
+              <div class="flex align-items-center gap-2">
+                  <p-checkbox [(ngModel)]="checkedBody" [disabled]="disabledBody" [binary]="true" inputId="checkedBody"></p-checkbox>
+                 <label class="normal-label" for="checkedBody"><span >سرویس دارای بدنه (Body) می باشد</span></label>
+              </div>
+          </div>
+
+          <div class="col-span-12 md:col-span-6 lg:col-span-4">
+              <div class="flex align-items-center gap-2">
+                  <p-checkbox [(ngModel)]="checkedStaticBody" (onChange)="changeStaticBody()" [binary]="true" inputId="checkedStaticBody"></p-checkbox>
+                 <label class="normal-label" for="checkedStaticBody"><span >سرویس دارای بدنه ثابت (StaticBody) می باشد</span></label>
+              </div>
+
+
+          </div>
+          <div class="col-span-12 md:col-span-6 lg:col-span-4">
+              <div class="flex align-items-center gap-2">
+              <p-checkbox [(ngModel)]="checkedEncodingUrl" (onChange)="changeEncodingUrl()" [binary]="true"  inputId="checkedEncodingUrl"></p-checkbox>
+             <label class="normal-label" for="checkedEncodingUrl"><span >سرویس دارای (EncodingUrl) می باشد</span></label>
+              <div class="col-auto">
+                  <button pButton icon="pi pi-window-maximize" [disabled]="EncodingUrlDialogFlag"
+                          label="ثبت نود" class="p-button-sm" (click)="onEncodingUrl()"></button>
+              </div>
+          </div>
+          </div>
+          <div class="col-span-12 md:col-span-12 lg:col-span-12">
+          <textarea [(ngModel)]="staticBody" [disabled]="!checkedStaticBody"
+                    (keydown.enter)="onKeydown($event)"
+                    dir="ltr" class="input-w-88-5"></textarea>
+              <div class="mt-2">
+                  <button pButton icon="pi pi-question-circle" class="p-button-warning p-button-sm"
+                          (click)="openHelpDialogTextarea()"></button>
+              </div>
+          </div>
+          <div class="col-span-12 md:col-span-6 lg:col-span-4">
+              <label class="normal-label">
+<span class="red-color-text">* </span>
+<span >شناسه :</span></label>
+              <div class="p-inputgroup" dir="ltr">
+                  <span class="p-inputgroup-addon">AG-</span>
+                  <input class="normal-input"  type="text" pInputText placeholder="4df7p3r4g8" maxlength="10"  [(ngModel)]="shenase">
+              </div>
+          </div>
+          <div class="col-span-12 md:col-span-6 lg:col-8">
+              <label class="normal-label"><span >توضیحات :</span></label>
+
+              <input class="normal-input"  [(ngModel)]="description" (keydown.enter)="onKeydown($event)"
+                     pInputText>
+          </div>
+      </div>
+  </p-panel>-->
+<div class=" p-0 m-0 w-full" id="section">
+    <p-panel header="{{'registerApi.header.registerApiInfo'|transloco}}" class="w-full">
+        <div class="grid grid-cols-12 content-page">
+            <!-- عنوان سرویس -->
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="normal-label">
+                    <span class="text-red-500">* </span>
+                    <span>{{ 'registerApi.input.apiTitle' |transloco }} :</span>
+                </label>
+                <input [(ngModel)]="title" (keydown.enter)="onKeydown($event)" pInputText class="normal-input" />
+            </div>
+
+            <!-- نام سرویس -->
+            <div class="col-span-8">
+                <label class="normal-label">
+                    <span class="text-red-500">*</span>
+                    <span>{{ 'registerApi.input.apiName'|transloco }} :</span>
+                </label>
+                <input [(ngModel)]="name" (keydown.enter)="onKeydown($event)" dir="ltr"
+                       placeholder="You can use {segment} to define the pattern" pInputText class="xx-ggg-8-input" />
+                <div class="flex items-center gap-2 mt-2">
+                    <small class="text-red-500 text-xs ml-3" dir="ltr">
+                        &#47;customerpersonalinfo&#47;year&#47;&#123;segment&#125;&#47;fetch
+                    </small>
+                    <button pButton icon="pi pi-question-circle" class="button-help rounded-2xl" severity="warn"
+                            (click)="helpFlag=true"></button>
+                </div>
+            </div>
+
+            <!-- نحوه اجرا -->
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="normal-label">{{ 'registerApi.input.howToRun'|transloco }}:</label>
+                <input [(ngModel)]="runningType" (keydown.enter)="onKeydown($event)" dir="ltr" pKeyFilter="int"
+                       pInputText class="normal-input" />
+            </div>
+
+            <!-- مسیر -->
+            <div class="col-span-12 md:col-span-6 lg:col-span-8">
+                <label class="normal-label">
+                    <span class="text-red-500">*</span>
+                    {{ 'registerApi.input.path'|transloco }}:
+                </label>
+                <input [(ngModel)]="url" (keydown.enter)="onKeydown($event)" dir="ltr" pInputText
+                       class="xx-ggg-8-input" />
+            </div>
+
+            <!-- نوع متد -->
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="normal-label">
+                    <span class="text-red-500">* </span> {{ 'registerApi.dropdown.typeMethode'|transloco }}:
+                </label>
+                <p-dropdown
+                    class="normal-dropdown"
+                    [options]="typeOptions"
+                    [(ngModel)]="type" optionValue="code"
+                    optionLabel="name" (onChange)="onChangeMethodeHttp($event)"
+                    (keydown.enter)="onKeydown($event)"
+                ></p-dropdown>
+            </div>
+
+            <!-- بستر ارتباطی -->
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="normal-label">
+                    <span class="text-red-500">* </span> {{ 'registerApi.dropdown.protocol'|transloco }}:
+                </label>
+                <p-dropdown [options]="protocolOptions" class="normal-dropdown"
+                            [(ngModel)]="protocol" optionValue="code"
+                            optionLabel="name" (keydown.enter)="onKeydown($event)"
+                ></p-dropdown>
+            </div>
+
+            <!-- تایم اوت -->
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="normal-label">
+                    {{ 'registerApi.input.timeout'|transloco }}:
+                    <span class="text-gray-400 text-xs">({{ 'registerApi.label.milliSeconde'|transloco }})</span>
+                </label>
+                <input [(ngModel)]="timeout" pKeyFilter="int" dir="ltr" (keydown.enter)="onKeydown($event)" pInputText
+                       class="normal-input" />
+            </div>
+
+            <!-- چک‌باکس‌ها -->
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <div class="flex items-center gap-2">
+                    <p-checkbox [(ngModel)]="hasUrlParams" [binary]="true" inputId="hasUrlParams" disabled></p-checkbox>
+                    <label class="normal-label" for="hasUrlParams">{{ 'registerApi.label.urlParams'|transloco }}</label>
+                </div>
+            </div>
+
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <div class="flex items-center gap-2">
+                    <p-checkbox [(ngModel)]="hasSequence" [binary]="true" inputId="hasSequence" disabled></p-checkbox>
+                    <label class="normal-label" for="hasSequence">{{ 'registerApi.label.sequence'|transloco }}</label>
+                </div>
+            </div>
+
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <div class="flex items-center gap-2">
+                    <p-checkbox [(ngModel)]="checkedBody" [disabled]="disabledBody" [binary]="true"
+                                inputId="checkedBody"></p-checkbox>
+                    <label class="normal-label" for="checkedBody">{{ 'registerApi.label.body'|transloco }}</label>
+                </div>
+            </div>
+
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <div class="flex items-center gap-2">
+                    <p-checkbox [(ngModel)]="checkedKarmozd" [binary]="true" (onChange)="changeKarmozd()"
+                                inputId="checkedKarmozd"></p-checkbox>
+                    <label class="normal-label" for="checkedKarmozd" class="normal-label">
+                        <span translate>{{ 'registerApi.input.checkedKarmozd'|transloco }}</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- ورودی مسیر فیلد کارمزد -->
+            <div class="col-span-12">
+                <input [(ngModel)]="feeFieldPath" [disabled]="!checkedKarmozd"
+                       (keydown.enter)="onKeydown($event)"
+                       dir="ltr"
+                       class="xxx-ggg-12-input px-3 py-2"
+                       placeholder="{{'registerApi.input.feeFieldPath'|transloco}}"
+                       pInputText>
+            </div>
+
+            <!-- چک‌باکس بدنه ثابت -->
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <div class="flex items-center gap-2">
+                    <p-checkbox [(ngModel)]="checkedStaticBody" (onChange)="changeStaticBody()" [binary]="true"
+                                inputId="checkedStaticBody"></p-checkbox>
+                    <label class="normal-label" for="checkedStaticBody">
+                        <span translate>{{ 'registerApi.label.apiStaticBody'|transloco }}</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <div class="flex items-center gap-2">
+                    <p-checkbox [(ngModel)]="checkedEncodingUrl" (onChange)="changeEncodingUrl()" [binary]="true"
+                                inputId="checkedEncodingUrl"></p-checkbox>
+                    <label class="normal-label"
+                           for="checkedEncodingUrl">{{ 'registerApi.label.encodingUrl'|transloco }}</label>
+                    <button pButton icon="pi pi-window-maximize" [disabled]="EncodingUrlDialogFlag"
+                            label="{{'registerApi.button.saveNode'|transloco}}" class="p-button-sm normal-button "
+                            (click)="onEncodingUrl()"></button>
+                </div>
+            </div>
+
+            <!-- بدنه ثابت -->
+            <div class="col-span-12">
+                <textarea pTextarea [(ngModel)]="staticBody" [disabled]="!checkedStaticBody"
+                          (keydown.enter)="onKeydown($event)"  rows="10"
+                          dir="ltr" class="normal-textarea"></textarea>
+                <div class="mt-2">
+                    <button pButton icon="pi pi-question-circle" class="button-help rounded-2xl" severity="warn"
+                            (click)="openHelpDialogTextarea()"></button>
+                </div>
+            </div>
+
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="normal-label">
+                    <span class="text-red-500">*</span> {{ 'registerApi.input.shenase'|transloco }}:
+                </label>
+                <p-inputgroup class="normal-input-group">
+                    <input type="text"
+                           pInputText
+                           placeholder="4df7p3r4g8"
+                           maxlength="10"
+                           disabled
+                           [(ngModel)]="shenase"
+                           class="px-3 py-2 text-left rounded-l-none " />
+
+                    <p-inputgroup-addon class="normal-inputgroup-addon">
+                        - AG
+                    </p-inputgroup-addon>
+                </p-inputgroup>
+
+            </div>
+            <!-- توضیحات -->
+            <div class="col-span-12 md:col-span-6 lg:col-span-8">
+                <label class="normal-label">{{ 'registerApi.input.description'|transloco }}:</label>
+                <input [(ngModel)]="description" (keydown.enter)="onKeydown($event)" pInputText
+                       class="xx-ggg-8-input" />
+            </div>
+        </div>
+    </p-panel>
+
+
+    <p-panel header="{{'registerApi.header.determiningConditionsCallingApi'|transloco}}" class="w-full">
+        <div class="grid grid-cols-12 gap-4 mx-5 my-10">
+            <div class="col-span-12 md:col-span-6 lg:col-span-4 flex flex-col space-y-1">
+                <label class="normal-label" for="retryCount">{{ 'registerApi.input.numberRetries'|transloco }}:</label>
+                <input
+                    id="retryCount"
+                    [(ngModel)]="retryCount"
+                    (input)="onInputChange($event)"
+                    dir="ltr"
+                    pInputText
+                    class="normal-input"
+                    [min]="0"
+                />
+            </div>
+
+            <div class="col-span-12 md:col-span-6 lg:col-span-4 flex flex-col space-y-1">
+                <label class="normal-label"> {{ 'registerApi.input.amountTimeIntervalBetweenEachAttempt'|transloco }}
+                    :</label>
+                <input
+                    [(ngModel)]="delayRetryCount"
+                    pKeyFilter="int"
+                    dir="ltr"
+                    (keydown.enter)="onKeydown($event)"
+                    pInputText
+                    class="normal-input"
+                />
+            </div>
+
+            <div class="col-span-12 md:col-span-6 lg:col-span-4 flex flex-col space-y-1">
+                <label class="normal-label"> {{ 'registerApi.input.retrySpecificErrorCode'|transloco }}:</label>
+                <p-dropdown
+                    [options]="statusCodeOptions"
+                    [(ngModel)]="retryForHttpStatusCode"
+                    optionValue="code"
+                    optionLabel="name"
+                    class="normal-dropdown"
+                    (keydown.enter)="onKeydown($event)">
+                </p-dropdown>
+            </div>
+
+            <div class="col-span-12 md:col-span-6 lg:col-span-4 flex flex-col space-y-1" dir="rtl">
+                <label class="normal-label" for="limitForPeriod">{{ 'registerApi.input.limitRefreshPeriod'|transloco }}
+                    :</label>
+                <p-inputNumber class="normal-input-number"
+                               [(ngModel)]="limitForPeriod"
+                               mode="decimal"
+                               (keydown.enter)="onKeydown($event)"
+                               [showButtons]="true"
+                               id="limitForPeriod"
+                               [min]="0"
+                               [max]="100"
+
+                ></p-inputNumber>
+            </div>
+
+            <div class="col-span-12 md:col-span-6 lg:col-span-4 flex flex-col space-y-1" dir="rtl">
+                <label class="normal-label"
+                       for="limitRefreshPeriod">{{ 'registerApi.input.limitRefreshPeriod'|transloco }}:</label>
+                <p-inputNumber class="normal-input-number"
+                               [(ngModel)]="limitRefreshPeriod"
+                               mode="decimal"
+                               (keydown.enter)="onKeydown($event)"
+                               [showButtons]="true"
+                               id="limitRefreshPeriod"
+                               [min]="0"
+                               [max]="100"
+                               inputStyleClass="text-right px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                ></p-inputNumber>
+            </div>
+        </div>
+
+        <div class="my-6 border-t border-gray-300"></div>
+
+        <div class="grid grid-cols-12 gap-4 mx-5 my-10">
+            <div class="col-span-12 md:col-span-6 lg:col-span-4 flex flex-col space-y-1">
+                <label class="normal-label"> {{ 'registerApi.dropdown.reverseCondition' |transloco }}:</label>
+                <p-dropdown
+                    [options]="reverseConditionOptions"
+                    [(ngModel)]="reverseCondition"
+                    optionValue="code"
+                    optionLabel="name"
+                    class="normal-dropdown"
+                    (keydown.enter)="onKeydown($event)">
+                </p-dropdown>
+            </div>
+
+            <div class="col-span-12 md:col-span-6 lg:col-span-4 flex flex-col space-y-1">
+                <label class="normal-label"> {{ 'registerApi.input.cashingExpire' |transloco }}:</label>
+                <p-persian-calendar
+                    class="app-persian-calendar-style"
+                    [yearRange]="'1399:1410'"
+                    [(ngModel)]="cashing_expire"
+                    (keydown.enter)="onKeydown($event)">
+                </p-persian-calendar>
+            </div>
+        </div>
+    </p-panel>
+
+    <p-panel class="w-full"
+             header="{{'registerApi.header.apiCallLimit'|transloco}}"
+
+    >
+        <div class="grid grid-cols-12 gap-4 mx-5 my-10">
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="normal-label">
+                    {{ 'registerApi.input.apiCallMax'|transloco }}:
+                </label>
+                <input
+                    type="text"
+                    class="normal-input"
+                    [(ngModel)]="maxCall"
+                    pKeyFilter="int"
+                    dir="ltr"
+                    (keydown.enter)="onKeydown($event)"
+                    pInputText
+                />
+            </div>
+
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="normal-label">
+                    {{ 'registerApi.input.NumberApiCallsPerDay'|transloco }}:
+                </label>
+                <input
+                    type="text"
+                    class="normal-input"
+                    [(ngModel)]="dailyCount"
+                    pKeyFilter="int"
+                    dir="ltr"
+                    (keydown.enter)="onKeydown($event)"
+                    pInputText
+                />
+            </div>
+
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="normal-label">
+                    {{ 'registerApi.input.NumberApiCallsPerWeek'|transloco }}:
+                </label>
+                <input
+                    type="text"
+                    class="normal-input"
+                    [(ngModel)]="weeklyCount"
+                    pKeyFilter="int"
+                    dir="ltr"
+                    (keydown.enter)="onKeydown($event)"
+                    pInputText
+                />
+            </div>
+
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="normal-label">
+                    {{ 'registerApi.input.NumberApiCallsPerMonth' |transloco }}:
+                </label>
+                <input
+                    type="text"
+                    class="normal-input"
+                    [(ngModel)]="monthlyCount"
+                    pKeyFilter="int"
+                    dir="ltr"
+                    (keydown.enter)="onKeydown($event)"
+                    pInputText
+                />
+            </div>
+        </div>
+    </p-panel>
+
+
+    <p-panel header="{{'registerApi.header.determiningStateApiCall'|transloco}}" class="w-full">
+        <div class="grid grid-cols-12 gap-4 mx-5 my-10">
+            <div class="col-span-4">
+                <label class="normal-label">
+                    <span>{{ 'registerApi.input.cashingStatus'|transloco }} :</span>
+                    <span class="text-gray-400 text-base">({{ LblCashing_status }})</span>
+                </label>
+                <p-toggleswitch (onChange)="onChange($event)" [(ngModel)]="cashing_status"
+                                (keydown.enter)="onKeydown($event)" />
+            </div>
+            <div class="col-span-4">
+                <label class="normal-label">
+                    <span>{{ 'registerApi.input.logRequestStatus'|transloco }} :</span>
+                    <span class="text-gray-400 text-base">({{ LblLogRequestStatus }})</span>
+                </label>
+                <p-toggleswitch (onChange)="onChange($event)" [(ngModel)]="logRequestStatus"
+                                (keydown.enter)="onKeydown($event)" />
+            </div>
+            <div class="col-span-4">
+                <label class="normal-label">
+                    <span>{{ 'registerApi.input.logResponseStatus' |transloco }} :</span>
+                    <span class="text-gray-400 text-base">({{ LblLogResponseStatus }})</span>
+                </label>
+                <p-toggleswitch (onChange)="onChange($event)" [(ngModel)]="logResponseStatus"
+                                (keydown.enter)="onKeydown($event)" />
+            </div>
+            <div class="col-span-4">
+                <label class="normal-label">
+                    <span>{{ 'registerApi.input.reverseStatus' |transloco }} :</span>
+                    <span class="text-gray-400 text-base">({{ LblReverseStatus }})</span>
+                </label>
+                <p-toggleswitch (onChange)="onChange($event)" [(ngModel)]="reverseStatus"
+                                (keydown.enter)="onKeydown($event)" />
+            </div>
+            <div class="col-span-4">
+                <label class="normal-label">
+                    <span>{{ 'registerApi.input.cookeSendStatus'|transloco }} :</span>
+                    <span class="text-gray-400 text-base">({{ LblCookeSendStatus }})</span>
+                </label>
+                <p-toggleswitch (onChange)="onChange($event)" [(ngModel)]="cookeSendStatus"
+                                (keydown.enter)="onKeydown($event)" />
+            </div>
+            <div class="col-span-4">
+                <label class="normal-label">
+                    <span>{{ 'registerApi.input.hub'|transloco }} :</span>
+                    <span class="text-gray-400 text-base">({{ LblDataHubStatus }})</span>
+                </label>
+                <p-toggleswitch (onChange)="onChange($event)" [(ngModel)]="dataHubStatus"
+                                (keydown.enter)="onKeydown($event)" disabled />
+            </div>
+        </div>
+
+        <hr class="my-4 border-gray-300">
+
+      <!--  <div class="grid grid-cols-12  gap-4 mx-5 my-10">
+            <div class="col-span-4">
+                <label class="normal-label">
+                    <span>{{ 'registerApi.input.status'|transloco }} :</span>
+                    <span class="text-gray-400 text-base">({{ LblStatus }})</span>
+                </label>
+                <p-toggleswitch (onChange)="onChange($event)" [(ngModel)]="status"
+                                (keydown.enter)="onKeydown($event)" />
+            </div>
+            <div class="col-span-8"></div>
+        </div>-->
+    </p-panel>
+    <p-panel header="تعیین وضعیت پاسخ دهی سرویس">
+        <div class="grid grid-cols-12 gap-4 mx-5 my-10">
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <div class="flex align-items-center gap-2">
+                    <p-checkbox [(ngModel)]="moc_status" [binary]="true" inputId="moc_status"
+                                (onChange)="changeMoc_status()"></p-checkbox>
+                    <label for="moc_status"><span> پاسخ دهی سرویس به صورت mock</span></label>
+                </div>
+            </div>
+            <div class="col-span-12">
+                     <textarea [(ngModel)]="mockJsonResponse" [disabled]="!moc_status" rows="10"
+                               (keydown.enter)="onKeydown($event)" pInputTextarea
+                               dir="ltr" class="normal-textarea"></textarea>
+            </div>
+            <div class="col-span-12">
+            <hr>
+            </div>
+            <div class="col-span-4  gap-4 mx-5 my-10">
+                <label class="normal-label">
+                    <span>{{ 'registerApi.input.status'|transloco }} :</span>
+                    <span class="text-gray-400 text-base">({{ LblStatus }})</span>
+                </label>
+                <p-toggleswitch (onChange)="onChange($event)" [(ngModel)]="status"
+                                (keydown.enter)="onKeydown($event)" />
+            </div>
+            <div class="col-span-4" ></div>
+        </div>
+        <br>
+    </p-panel>
+
+</div>
+<div class="w-full mt-4 text-left p-4">
+    <button
+        pButton severity="success"
+        label="{{'button.save' | transloco}}"
+        icon="pi pi-save" class="normal-button"
+        (click)="onRegister()"></button> &nbsp;
+    <button pButton label="{{'button.cancel' | transloco}}"
+            severity="danger" icon="pi pi-times" class="normal-button"
+            [outlined]="true" (click)="onCancel()"></button>
+</div>
+
+<p-dialog [style]="{'width':'60%'}" [(visible)]="dialogEncodingUrlFlag"
+          [modal]="true" [draggable]="false"
+          [resizable]="true">
+    <p-panel header="{{'registerApi.dialog.header.registerEncodingUrl' | transloco}}">
+        <div class="grid grid-cols-12">
+            <div class="col-span-4">
+                <label class="normal-label">
+                    <span class="red-color-text">* </span>
+                    <span>{{ 'registerApi.dialog.input.encodingUrlName'|transloco }} :</span></label>
+                <!--برداشتن pKeyFilter-->
+                <!--<input [(ngModel)]="encodingUrlName" pInputText dir="ltr" pKeyFilter="alpha">-->
+                <input class="normal-input" [(ngModel)]="encodingUrlName" pInputText dir="ltr">
+            </div>
+            <div class="col-span-4">
+                <label class="normal-label">
+                    <span class="red-color-text">* </span>
+                    <span>{{ 'registerApi.dialog.input.encodingUrlValue'|transloco }} :</span></label>
+                <!--برداشتن pKeyFilter-->
+                <input class="normal-input" dir="ltr" [(ngModel)]="encodingUrlValue" pInputText
+                       [pKeyFilter]="cust_alphanumEn">
+
+                <!--    <input class="min-width-input" dir="ltr" [(ngModel)]="encodingUrlValue" pInputText >
+               -->
+            </div>
+            <div class="col-span-12">
+                <button pButton label="{{'button.add' | transloco}}" class="normal-button"
+                        icon="pi pi-plus" (click)="addEncodingUrl()"></button>
+            </div>
+        </div>
+        <p-table [value]="encodingUrlList" selectionMode="single"
+                 [paginator]="false" [rows]="rows" [showCurrentPageReport]="true"
+                 [(first)]="first"
+                 [currentPageReportTemplate]=paginationLabel
+                 [rowsPerPageOptions]="[5,10,25,50,100]">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="row">{{ 'registerApi.dialog.table.header.row'|transloco }}</th>
+                    <th>{{ 'registerApi.dialog.table.header.name'|transloco }}</th>
+                    <th>{{ 'registerApi.dialog.table.header.value'|transloco }}</th>
+
+                </tr>
+            </ng-template>
+            <ng-template let-i="rowIndex" pTemplate="body" let-api>
+                <tr [pSelectableRow]="api">
+                    <td class="row">{{ i + 1 }}</td>
+                    <td [pTooltip]="api.name"
+                        [tooltipDisabled]="api.name?
+                                    api.name.length < 20:false"
+                    >
+                        {{ api.name|moreChar19 }}
+                    </td>
+                    <td [pTooltip]="api.value"
+                        [tooltipDisabled]="api.value?
+                                    api.value.length < 20:false">
+                        {{ api.value|moreChar19 }}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-panel>
+    <div class="col-span-12" dir="ltr" style="margin-top: 15px">
+        <button type="button" pButton class="normal-button " icon="pi pi-times"
+                label="{{'button.close'|transloco}}" severity="danger"
+                (click)="dialogEncodingUrlFlag=false"></button>
+    </div>
+</p-dialog>
+<p-dialog [style]="{'width':'50%'}" [(visible)]="helpFlag"
+          [modal]="true" [draggable]="false" header="{{'editApi.dialog.button.helpUrlParams'|transloco}}"
+          [resizable]="true">
+    <div disabled class="red-color-text">
+        <span>
+            {{ 'registerApi.dialog.label.singelSegment'|transloco }}:
+        </span>
+
+        <span dir="ltr">
+                 &#47;customerpersonalinfo&#47;year&#47;&#123;segment&#125;&#47;fetch
+        </span>
+
+
+        <span>
+
+            {{ 'registerApi.dialog.label.severalSegment1'|transloco }}:
+        </span>
+
+        <span dir="ltr" style="direction: ltr">
+ &#47;customerpersonalinfo&#47;year&#47;&#123;segment&#125;&#47;&#123;segment1&#125;&#47;&#123;segment2&#125;&#47;fetch        </span>
+
+
+        <span>
+    {{ 'registerApi.dialog.label.severalSegment'|transloco }} :
+</span>
+        <span dir="ltr" style="direction: ltr">
+    http://localhost:8085/api/merchantsearch/merchantsearchbymerchantno/123456/0/0
+</span>
+    </div>
+
+    <div class="col-span-12" dir="ltr" style="margin-top: 15px">
+        <button type="button" pButton class="normal-button "
+                severity="danger" icon="pi pi-times"
+                label="{{'button.close'|transloco}}" (click)="helpFlag=false"></button>
+    </div>
+</p-dialog>
+<p-dialog [style]="{'width':'50%'}" [(visible)]="helpTextareaFlag"
+          [modal]="true" [draggable]="false" header="{{'registerApi.dialog.header.helpStaticBody'|transloco}}"
+          [resizable]="true">
+    <div disabled class="red-color-text">
+        <span>
+            {{ 'registerApi.dialog.label.helpStaticBody' |transloco }}
+        </span>
+    </div>
+
+    <div class="col-span-12" dir="ltr" style="margin-top: 15px">
+        <button type="button" pButton class="normal-button " icon="pi pi-times"
+                severity="danger"
+                label="{{'button.close'|transloco}}" (click)="helpTextareaFlag=false"></button>
+    </div>
+</p-dialog>

@@ -1,15 +1,27 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-
+/*declare var $ENV: Env;
+interface  Env {
+    SERVICEBASEURL: string;
+}*/
 export const environment = {
-    serviceBaseUrl : 'http://epoosheh.ir/xproxy/api/',
-    bffBaseUrl : 'http://192.168.160.40:8085/sep/api/',
+    // سرور اقای زرین qc
+ serviceBaseUrl: 'http://192.168.160.40:8086/',
+    //serviceBaseUrl: process.env['BASE_URL'] || 'http://192.168.160.40:8086/',
+   // serviceBaseUrl: $ENV.SERVICEBASEURL,
+    //سیستم اقای زرین
+   // serviceBaseUrl : 'http://192.168.160.80:8086/',
+    // uat نسخه جامپ
+    // serviceBaseUrl: 'http://172.24.161.106:7086/',
+    // pro نسخه اقای فلاح
+    //serviceBaseUrl: 'https://service-api.rqbank.ir/',
     version: '1.08.11',
     defaultLanguage: 'fa',
     supportedLanguages: ['fa-IR', 'en-US'],
     production: false,
-    hmr       : true
+    apiBaseUrl: '',
+    hmr: true
 };
 
 /*

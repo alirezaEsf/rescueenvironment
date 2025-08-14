@@ -1,0 +1,264 @@
+<p-toast />
+<app-breadcrumbs id="section" (backClicked)="BeforeButton()"></app-breadcrumbs>
+<div class="flex flex-col gap-4">
+
+    <div class="grid grid-cols-12 mt-1">
+        <div class="col-span-5 text-left mt-1">
+            <label class="text-gray-700 font-medium"> <span>لطفا فایل xml را انتخاب کنید</span></label>
+        </div>
+        <div class="col-span-7">
+            <p-fileupload mode="basic" name="demo[]" (onSelect)="uploadFile2($event)" [customUpload]="true"
+                          [showCancelButton]="false" [showUploadButton]="false" multiple="false"
+                          (uploadHandler)="myUploader($event, fileUploaderRef)"
+                          #fileUploaderRef accept=".xml"
+                          chooseLabel="آپلود فایل"></p-fileupload>
+        </div>
+    </div>
+
+    <p-panel header="بخش اول - نمایش و تایید اولیه مدیاتور" *ngIf="SecondFlag">
+        <div dir="ltr" class="p-4 bg-white rounded shadow">
+            <app-custom-horizontal-tree #myTree [value]="files" [(selection)]="selectedFile" (onNodeSelect)="onNodeSelect($event)"></app-custom-horizontal-tree>
+
+<!--            <p-tree [value]="files" layout="horizontal" selectionMode="single"-->
+<!--                    #myTree [(selection)]="selectedFile" (onNodeSelect)="onNodeSelect($event)"></p-tree>-->
+        </div>
+
+        <div class="mt-4">
+            <label class="text-red-500">توجه: با انتخاب هر node همان node به عنوان خروجی ملاک قرار میگیرد!</label>
+        </div>
+
+        <p-panel header="پیش نمایش json" class="border border-gray-200 rounded-lg shadow-sm">
+            <div class="grid grid-cols-12 gap-4">
+                <div class="col-span-2 pt-2">
+                    <div class="flex flex-col gap-2">
+                        <div>
+                            <button id="Accept" pButton label=" تایید خروجی "
+                                    class="w-full p-button-ok" [disabled]="acceptDisable"
+                                    (click)="confirmExit()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-10" dir="ltr">
+                    <div class="text-center" *ngIf="pathSelect">
+                        <label class="text-white bg-indigo-600 px-2 py-1 rounded">
+                            {{ pathSelect }}
+                        </label>
+                    </div>
+                    <div class="mt-4">
+                        <p-tree class="w-full" [value]="selectedTree" selectionMode="single"
+                                [(selection)]="selectedFileTree2" [contextMenu]="cm"></p-tree>
+                        <p-contextMenu #cm [model]="items" appendTo="body"></p-contextMenu>
+                        <p-toast></p-toast>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-12 gap-4 mt-8">
+                <div class="col-span-2">
+                    <div class="flex flex-col gap-2">
+                        <div dir="ltr">
+                            <button pButton class="w-full" label="پاکسازی لیست"
+                                    (click)="clearList()" severity="danger" icon="pi pi-trash"></button>
+                        </div>
+                        <div dir="ltr">
+                            <button pButton class="w-full" label="ادامه"
+                                    [disabled]="btnNextFlag" (click)="showSecond()"
+                                    class="p-button-Purple" icon="pi pi-arrow-circle-left"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-10 border border-gray-300 rounded" dir="ltr">
+                    <div class="grid grid-cols-12 gap-4 p-2">
+                        <div class="col-span-6">
+                            <div class="text-center">
+                                <label class="text-gray-700 font-medium"> لیست نود های تغییر یافته</label>
+                            </div>
+                            <div class="mt-2">
+                                <p-listbox
+                                    [(ngModel)]="itemList"
+                                    [options]="itemsListShow"
+                                    [listStyle]="{ 'max-height': '150px' }"
+                                    optionLabel="name">
+                                </p-listbox>
+                            </div>
+                        </div>
+                        <div class="col-span-6 h-64">
+                            <div class="text-center">
+                                <label class="text-gray-700 font-medium"> پیش نمایش تغییرات Json</label>
+                            </div>
+                            <div class="mt-2">
+                                <textarea disabled class="w-full p-2 border border-gray-300 rounded"
+                                          [(ngModel)]="objSelected" (change)="adjustPanelHeight()" rows="5" cols="200"
+                                          pTextarea></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </p-panel>
+    </p-panel>
+
+    <p-panel header="بخش دوم - انتصاب سرویس" *ngIf="!SecondFlag">
+        <div class="grid grid-cols-12 gap-4">
+            <div class="col-span-4">
+                <label class="text-gray-700 font-medium">
+                    <span class="text-red-500">* </span>
+                    <span>عنوان مدیاتور :</span></label>
+                <input [(ngModel)]="title" pInputText class="w-full mt-1">
+            </div>
+            <div class="col-span-8"></div>
+
+            <div class="col-span-12">
+                <label class="text-gray-700"><span>لطفا سرویس را انتخاب کنید</span></label>&nbsp;
+                <button [disabled]="showListFlag" pButton label="انتخاب"
+                        icon="pi pi-plus" (click)="showSelectApi()"></button>
+            </div>
+        </div>
+
+        <p-panel header="نمایش مشخصات سرویس" class="mt-4">
+            <div class="grid grid-cols-12 gap-4">
+                <div class="col-span-4">
+                    <label class="text-gray-700 font-medium"> <span>عنوان ماژول :</span></label>
+                    <div class="mt-1">
+                        <label class="text-gray-700 truncate" [pTooltip]="detModuleTitle"
+                               [tooltipDisabled]="detModuleTitle?detModuleTitle.length < 20:false">
+                            {{ detModuleTitle|threeDotDetailsPipe }}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-span-4">
+                    <label class="text-gray-700 font-medium"> <span>عنوان سرویس :</span></label>
+                    <div class="mt-1">
+                        <label class="text-gray-700 truncate" [pTooltip]="detApiTitle"
+                               [tooltipDisabled]="detApiTitle?detApiTitle.length < 20:false">
+                            {{ detApiTitle|threeDotDetailsPipe }}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-span-4">
+                    <label class="text-gray-700 font-medium"> <span>نام سرویس :</span></label>
+                    <div class="mt-1">
+                        <label class="text-gray-700 truncate" [pTooltip]="detApiName"
+                               [tooltipDisabled]="detApiName?detApiName.length < 20:false">
+                            {{ detApiName|threeDotDetailsPipe }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </p-panel>
+
+        <div class="flex justify-end gap-2 mt-4">
+            <button pButton label="بازگشت" icon="pi pi-arrow-circle-right"
+                    (click)="showBack()" class="p-button-warning"></button>
+            <button pButton label=" ثبت نهایی مدیاتور" severity="success"
+                    icon="pi pi-save" aria-label="1000951" (click)="registerFinal()"></button>
+        </div>
+    </p-panel>
+
+    <div class="col-span-12" dir="ltr" *ngIf="showListFlag">
+        <button (click)="BeforeButton()" class="p-button-warning"
+                icon="pi pi-arrow-right" matTooltip="بازگشت"></button>
+    </div>
+</div>
+
+<p-dialog [style]="{'width':'58%'}" [(visible)]="flagAddAndDeletedNode" [modal]="true" [draggable]="false"
+          [resizable]="true" appendTo="body">
+    <p-panel header="{{'پنجر افزودن کلید'|transloco}}">
+        <div class="flex flex-col gap-4">
+            <div class="grid grid-cols-12 gap-4">
+                <div class="col-span-12">
+                    <label class="text-gray-700 font-medium">
+                        <span class="text-red-500">* </span>
+                        <span>مسیر نود :</span></label>
+                    <input class="w-full" disabled dir="ltr" [(ngModel)]="tempPath" pInputText>
+                </div>
+                <div class="col-span-4">
+                    <label class="text-gray-700 font-medium">
+                        <span class="text-red-500">* </span>
+                        <span>کلید :</span></label>
+                    <input dir="ltr" [(ngModel)]="keyNode" pInputText class="w-full">
+                </div>
+                <div class="col-span-4">
+                    <label class="text-gray-700 font-medium"> <span>مقدار :</span></label>
+                    <input dir="ltr" [(ngModel)]="valueNode" pInputText class="w-full">
+                </div>
+                <div class="col-span-12 flex justify-end gap-2 mt-4">
+                    <button pButton label="{{'button.cancel' | transloco}}"
+                            severity="danger" icon="pi pi-times" [outlined]="true"
+                            (click)="onClose()"></button>
+                    <button pButton severity="success" label="ثبت اطلاعات"
+                            (click)="registerNode()" icon="pi pi-save"></button>
+                </div>
+            </div>
+        </div>
+    </p-panel>
+</p-dialog>
+
+<p-dialog [style]="{'width':'58%'}" [(visible)]="flagDialog" [modal]="true" [draggable]="false"
+          [resizable]="true" appendTo="body">
+    <p-panel header="{{'جستجوی سرویس '|transloco}}">
+        <div class="flex flex-col gap-4">
+            <div class="grid grid-cols-12 gap-4">
+                <div class="col-span-4">
+                    <label class="text-gray-700 font-medium"> <span>عنوان ماژول :</span></label>
+                    <input [(ngModel)]="moduleTitle" pInputText class="w-full" (keydown.enter)="onKeydown($event)">
+                </div>
+                <div class="col-span-8"></div>
+
+                <div class="col-span-4">
+                    <label class="text-gray-700 font-medium"> <span>عنوان سرویس :</span></label>
+                    <input [(ngModel)]="apiTitle" pInputText class="w-full" (keydown.enter)="onKeydown($event)">
+                </div>
+                <div class="col-span-4">
+                    <label class="text-gray-700 font-medium"> <span>نام سرویس :</span></label>
+                    <input [(ngModel)]="apiName" pInputText class="w-full" (keydown.enter)="onKeydown($event)">
+                </div>
+                <div class="col-span-4 flex items-end gap-2">
+                    <button pButton label="جستجو" class="btnSearch" icon="pi pi-search"
+                            (click)="searchApi()"></button>
+                    <button pButton label="{{'button.clear'|transloco}}" [outlined]="true" icon="pi pi-filter-slash"
+                            (click)="clearApi()"></button>
+                </div>
+            </div>
+        </div>
+
+        <p-table [value]="apiList" selectionMode="single"
+                 [paginator]="true" [rows]="rows" [showCurrentPageReport]="true" [(first)]="first"
+                 [currentPageReportTemplate]=paginationLabel
+                 [rowsPerPageOptions]="[5,10,25,50,100]" class="mt-4">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="row">table.header.row</th>
+                    <th>عنوان ماژول</th>
+                    <th>عنوان سرویس</th>
+                    <th>نام سرویس</th>
+                    <th>operation</th>
+                </tr>
+            </ng-template>
+            <ng-template let-i="rowIndex" pTemplate="body" let-api>
+                <tr [pSelectableRow]="api">
+                    <td class="row">{{ api.row }}</td>
+                    <td [pTooltip]="api.moduleTitle"
+                        [tooltipDisabled]="api.moduleTitle?api.moduleTitle.length < 20:false"
+                        class="truncate max-w-xs">
+                        {{ api.moduleTitle|moreChar19 }}
+                    </td>
+                    <td dir="ltr" [pTooltip]="api.apiTitle"
+                        [tooltipDisabled]="api.apiTitle?api.apiTitle.length < 20:false"
+                        class="truncate max-w-xs">
+                        {{ api.apiTitle|moreChar19 }}
+                    </td>
+                    <td dir="ltr" [pTooltip]="api.apiName"
+                        [tooltipDisabled]="api.apiName?api.apiName.length < 20:false"
+                        class="truncate max-w-xs">
+                        {{ api.apiName|moreChar19 }}
+                    </td>
+                    <td>
+                        <button pButton icon="pi pi-check" label="انتخاب سرویس" dir="ltr"
+                                (click)="selectApi(api)" class="p-button-sm"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-panel>
+</p-dialog>

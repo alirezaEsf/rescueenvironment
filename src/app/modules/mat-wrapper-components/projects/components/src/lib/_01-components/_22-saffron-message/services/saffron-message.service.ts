@@ -27,8 +27,12 @@ export class SaffronMessageService {
     this.showMessage({ ...SaffronWarnMessage, message });
   }
 
-  showError(message: string) {
-    this.showMessage({ ...SaffronErrorMessage, message });
+  showError(message: string | {detail:string,life: number}) {
+      if (typeof message === 'string') {
+          this.showMessage({ ...SaffronErrorMessage, message });
+      }else {
+          this.showMessage({ ...SaffronErrorMessage, message:message.detail });
+      }
   }
 
   showSecondary(message: string) {

@@ -42,9 +42,7 @@ export class NavigationMockApi {
         this._fuseMockApiService.onGet('api/common/navigation').reply(() => {
             // Fill compact navigation children using the default navigation
             this._compactNavigation.forEach((compactNavItem) => {
-                console.log(compactNavItem);
                 this._defaultNavigation.forEach((defaultNavItem) => {
-                    console.log(defaultNavItem);
                     if (defaultNavItem.id === compactNavItem.id) {
                         compactNavItem.children = cloneDeep(
                             defaultNavItem.children

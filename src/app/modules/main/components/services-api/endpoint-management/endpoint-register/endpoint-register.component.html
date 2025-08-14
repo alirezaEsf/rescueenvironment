@@ -1,0 +1,233 @@
+<div class="content-page" id="section">
+    <div class="grid grid-cols-12">
+        <div class="col-span-4">
+            <label class="normal-label">
+                <span class="red-color-text">* </span>
+                <span>آدرس مبدا :</span></label>
+              <!--  <span class="p-inputgroup-addon ">/api/</span>-->
+            <p-inputgroup class="normal-input-group">
+                <input type="text"
+                       [(ngModel)]="sourceUrl"
+                       class="px-3 py-2 text-left rounded-l-none "
+                       (keydown.enter)="onKeydown($event)"
+                       dir="ltr" pInputText
+                       placeholder="for example: wallet/personalwalletaccountstatement"/>
+
+                <p-inputgroup-addon class="normal-inputgroup-addon">
+                    /api/
+                </p-inputgroup-addon>
+            </p-inputgroup>
+        </div>
+        <div class="col-span-4">
+            <label class="normal-label">
+                <span class="red-color-text">* </span>
+                <span>آدرس Host :</span></label>
+            <p-inputgroup class="normal-input-group">
+                <input type="text"
+                       class="px-3 py-2 text-left rounded-l-none "
+                       [(ngModel)]="destinationHost" (keydown.enter)="onKeydown($event)" dir="ltr"
+                       pInputText placeholder="for example: www.google.com or 192.168.100.20"/>
+
+                <p-inputgroup-addon class="normal-inputgroup-addon">
+                    https://
+                </p-inputgroup-addon>
+            </p-inputgroup>
+        </div>
+        <div class="col-span-4"></div>
+        <div class="col-span-12">
+            <label class="normal-label"> <span>مسیر مقصد :</span></label>
+            <!--برداشتن pKeyFilter-->
+            <input [(ngModel)]="destinationUri" (keydown.enter)="onKeydown($event)" dir="ltr" class="xx-ggg-12-input"
+                   pInputText>
+            <!--  <input [(ngModel)]="destinationUri" (keydown.enter)="onKeydown($event)" dir="ltr"
+                     [pKeyFilter]="slashAlpha" pInputText>-->
+        </div>
+        <div class="col-span-4">
+            <label class="normal-label"> <span>پورت مقصد :</span></label>
+            <input [(ngModel)]="destinationPortNumber" (keydown.enter)="onKeydown($event)"
+                   pKeyFilter="int" pInputText maxlength="4" class="normal-input">
+        </div>
+        <div class="col-span-4">
+            <label class="normal-label">
+                <span>وضعیت :</span></label>
+            <p-toggleswitch [(ngModel)]="status" (keydown.enter)="onKeydown($event)" />
+        </div>
+        <div class="col-span-6"></div>
+        <!--  <p-panel header="لیست کلاینت های موجود متصل به اندپوینت">
+
+              <p-card>
+                  <p-table [value]="clientList" selectionMode="single"
+                           [paginator]="true" [rows]="rows" [showCurrentPageReport]="true" [(first)]="first"
+                           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                           [rowsPerPageOptions]="[5,10,25,50,100]">
+                      <ng-template pTemplate="header">
+                          <tr>
+                              <th pSortableColumn="row" class="row" >
+                                  row
+                                  <p-sortIcon field="row"></p-sortIcon>
+                              </th>
+                              <th pSortableColumn="name" class="name" >
+                                  نام
+                                  <p-sortIcon field="name"></p-sortIcon>
+                              </th>
+                              <th pSortableColumn="mobileNo" class="mobileNo" >
+                                  شماره موبایل
+                                  <p-sortIcon field="mobileNo"></p-sortIcon>
+                              </th>
+                              <th pSortableColumn="apikey" class="apikey" >
+                                  کلید کلاینت جدید
+                                  <p-sortIcon field="apikey"></p-sortIcon>
+                              </th>
+                              <th pSortableColumn="organizationCode" class="organizationCode" >
+                                  کد سازمان
+                                  <p-sortIcon field="organizationCode"></p-sortIcon>
+                              </th>
+                              <th pSortableColumn="allowedAccountno" class="allowedAccountno" >
+                                  شماره حساب های مجاز
+                                  <p-sortIcon field="allowedAccountno"></p-sortIcon>
+                              </th>
+                              <th pSortableColumn="status" class="status" >
+                                  وضعیت
+                                  <p-sortIcon field="status"></p-sortIcon>
+                              </th>
+                              <th style="text-align: right !important;border-right: 1px solid #ebe8e8;" >
+                                  operation
+                              </th>
+                          </tr>
+                      </ng-template>
+                      <ng-template let-i="rowIndex" pTemplate="body" let-client>
+                          <tr [pSelectableRow]="client">
+                              <td class="row">{{i + 1}}</td>
+                              <td class="name"
+                                  [pTooltip]="client.name"
+                                  [tooltipDisabled]="client.name?client.name.length < 20:false"
+                              >
+                                  {{client.name|moreChar19}}
+                              </td>
+                              <td class="mobileNo">{{client.mobileNo}}</td>
+                              <td class="apikey">{{client.apikey}}</td>
+                              <td class="organizationCode"
+                                  [pTooltip]="client.organizationCode"
+                                  [tooltipDisabled]="client.organizationCode?client.organizationCode.toString().length < 20:false"
+                              >
+                                  {{client.organizationCode|moreChar19}}
+                              </td>
+                              <td class="allowedAccountno"
+                                  [pTooltip]="client.allowedAccountno"
+                                  [tooltipDisabled]="client.allowedAccountno?client.allowedAccountno.toString().length < 20:false"
+                              >
+                                  {{client.allowedAccountno|moreChar19}}
+                              </td>
+                              <td class="status" [ngStyle]="{'text-align': 'center !important'}">
+                                  <div [ngStyle]="{ 'border-radius':' 2.5px','color':client.status == true ?
+                           '#258F30' :'#962515',
+                           'background-color': client.status == false ?'#F18B7D' : '#85DC8F',
+                           'width':'45px','margin':' 0 auto'}">
+                                      {{client.status|statusPipe}}</div>
+                              </td>
+                              <td class="text-right border-r border-[#ebe8e8]" >
+                                  <button style="width: 30px!important;height: 30px!important;margin-top: 2px!important;"
+                                          matTooltip="{{'حذف پیام' | transloco}}" (click)="deleteClient(client)"
+                                          pButton  severity="danger"  icon="pi pi-trash"></button>
+                              </td>
+                          </tr>
+                      </ng-template>
+                  </p-table>
+              </p-card>
+              &lt;!&ndash;<div class="col-8" dir="ltr">
+                  <button (click)="showClient()"
+                          style="width: 30px!important;height: 30px!important;
+                      margin-top:15px" pButton
+                          icon="pi pi-external-link"
+                          matTooltip="{{'انتخاب کلاینت' | transloco}}"></button>&nbsp;
+                  <button style="width: 30px!important;height: 30px!important;margin-top: 2px!important;"
+                          matTooltip="{{'حذف پیام' | transloco}}" (click)="deleteClient()"
+                          pButton  severity="danger"  icon="pi pi-trash"></button>
+              </div>&ndash;&gt;
+
+
+          </p-panel>-->
+        <div class="col-span-12" dir="ltr" style="margin-top: 15px">
+            <button pButton label="{{'button.cancel' | transloco}}" (click)="onCancel()"
+                    severity="danger" icon="pi pi-times" [outlined]="true"
+            ></button>&nbsp;
+            <button pButton severity="success" label="{{'ثبت اطلاعات' | transloco}}" icon="pi pi-save"
+                    (click)="onRegister()"></button>&nbsp;
+            <!-- <button pButton label="{{'اتصال کلاینت های متصل به اندپوینت' | transloco}}"
+                     [disabled]="clientBase" icon="pi pi-link " (click)="showClients()"></button>-->
+        </div>
+    </div>
+
+</div>
+<p-dialog [style]="{'width':'60%'}" [(visible)]="dialogClientFlag"
+          [modal]="true" [draggable]="false" appendTo="body"
+          [resizable]="true">
+    <p-panel header="{{'انتخاب کلاینت' | transloco}}">
+        <div class="grid grid-cols-12">
+            <div class="col-span-4">
+                <label class="normal-label"> <span>نام کلاینت :</span></label>
+                <input [(ngModel)]="clientName" (keydown.enter)="onKeydownSearch($event)"
+                       pInputText>
+            </div>
+            <div class="col-span-4">
+                <label class="normal-label"> <span>شماره موبایل :</span></label>
+                <input [(ngModel)]="mobile" (keydown.enter)="onKeydownSearch($event)"
+                       pInputText>
+            </div>
+            <div class="col-span-4" dir="ltr">
+                <button pButton label="{{'button.search' | transloco}}" style="width: 110px;margin: 6px"
+                        class="normal-button" icon="pi pi-search" (click)="clientSearch()"></button>&nbsp;&nbsp;
+                <button pButton label="{{'button.clear'|transloco}}" class="w-[110px] my-1 px-4 py-2 normal-button "
+                        [outlined]="true"
+                        icon="pi pi-filter-slash"
+                        style="margin: 6px" (click)="clear()"></button>
+            </div>
+
+            <div class="col-span-4"></div>
+            <div class="col-span-4"></div>
+            <div class="col-span-12">
+                <p-card>
+                    <p-table [value]="clientAttachList" selectionMode="single"
+                             [paginator]="true" [rows]="rows2" [showCurrentPageReport]="true" [(first)]="first2"
+                             [currentPageReportTemplate]=paginationLabel
+                             [rowsPerPageOptions]="[5,10,25,50,100]">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="row">table.header.row</th>
+                                <th>نام کلاینت</th>
+                                <th>کد سازمان</th>
+                                <th>شماره موبایل</th>
+                                <th>operation</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template let-i="rowIndex" pTemplate="body" let-client>
+                            <tr [pSelectableRow]="client">
+                                <td class="row">{{ i + 1 }}</td>
+                                <td
+                                    [pTooltip]="client.name"
+                                    [tooltipDisabled]="client.name?
+                                    client.name.length < 20:false"
+                                >
+                                    {{ client.name|moreChar19 }}
+                                </td>
+                                <td
+                                    [pTooltip]="client.organizationCode"
+                                    [tooltipDisabled]="client.organizationCode?
+                                    client.organizationCode.toString().length < 20:false"
+                                >
+                                    {{ client.organizationCode|moreChar19 }}
+                                </td>
+                                <td>{{ client.mobileNo }}</td>
+
+                                <td dir="ltr">
+                                    <button pButton label="انتخاب کلاینت" icon="pi pi-check"
+                                            (click)="selectedClient(client)"></button>&nbsp;
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </p-card>
+            </div>
+        </div>
+    </p-panel>
+</p-dialog>

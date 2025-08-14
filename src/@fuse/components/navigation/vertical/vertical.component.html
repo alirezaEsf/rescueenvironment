@@ -80,6 +80,27 @@
                 }
             }
         }
+        <div style="text-align: center;">
+            <div>
+                <div>
+                    <div>
+                <span style="font-size: 10px; display: block; margin-top: 6px;">
+                    {{appVersion}}
+                </span>
+                        <span style="font-size: 10px; display: block; margin-top: 6px;">
+                    {{history}}
+                </span>
+                        <span style="font-size: 10px; display: block; margin-top: 6px;">
+                    {{typeVersion}}
+                </span>
+                    </div>
+                </div>
+            </div>
+            <p-dialog [style]="{'width':'55%'}" [(visible)]="releaseFlag" [modal]="true" [draggable]="false"
+                      [resizable]="true">
+                <app-release-note></app-release-note>
+            </p-dialog>
+        </div>
 
         <!-- Content footer -->
         <div class="fuse-vertical-navigation-content-footer">

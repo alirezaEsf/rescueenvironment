@@ -1,0 +1,68 @@
+<div class="content-page" id="section">
+    <div class="grid grid-cols-12">
+        <div class="col-span-4">
+            <label class="normal-label">
+                <span class="red-color-text">* </span>
+                <span>آدرس مبدا :</span></label>
+            <p-inputgroup class="normal-input-group">
+                <input type="text"
+                       class="px-3 py-2 text-left rounded-l-none "
+                       [(ngModel)]="sourceUrl" (keydown.enter)="onKeydown($event)"
+                       dir="ltr" pInputText
+                       placeholder="for example: wallet/personalwalletaccountstatement"/>
+
+                <p-inputgroup-addon class="normal-inputgroup-addon">
+                    /api/
+                </p-inputgroup-addon>
+            </p-inputgroup>
+        </div>
+
+        <div class="col-span-4">
+            <label class="normal-label">
+                <span class="red-color-text">* </span>
+                <span>آدرس Host :</span></label>
+            <p-inputgroup class="normal-input-group">
+                <input type="text"
+                       class="px-3 py-2 text-left rounded-l-none "
+                       [(ngModel)]="destinationHost" (keydown.enter)="onKeydown($event)" dir="ltr"
+                       pInputText placeholder="for example: www.google.com or 192.168.100.20"/>
+
+                <p-inputgroup-addon class="normal-inputgroup-addon">
+                    https://
+                </p-inputgroup-addon>
+            </p-inputgroup>
+        </div>
+
+        <div class="col-span-12">
+            <label class="normal-label"> <span>مسیر مقصد :</span></label>
+            <input [(ngModel)]="destinationUri" (keydown.enter)="onKeydown($event)"
+                   dir="ltr" pInputText class="xx-ggg-12-input">
+
+        </div>
+        <div class="col-span-4">
+            <label class="normal-label"> <span>پورت مقصد :</span></label>
+            <input [(ngModel)]="destinationPortNumber" (keydown.enter)="onKeydown($event)"
+                   pKeyFilter="int" pInputText maxlength="4" class="normal-input">
+        </div>
+        <div class="col-span-4">
+            <label class="normal-label"> <span>وضعیت :</span></label>
+            <p-toggleswitch [(ngModel)]="status" (keydown.enter)="onKeydown($event)" />
+        </div>
+        <div class="col-span-6"></div>
+        <div class="col-span-4" hidden>
+            <label class="normal-label"> <span>ایدی :</span></label>
+            <input [(ngModel)]="endpointId" pInputText>
+        </div>
+        <div class="col-span-4"></div>
+        <div class="col-span-4"></div>
+        <div class="col-span-4"></div>
+        <div class="col-span-12" dir="ltr" style="margin-top: 15px">
+            <button pButton label="{{'button.cancel' | transloco}}" (click)="onClose()"
+                    severity="danger" icon="pi pi-times" [outlined]="true"
+            ></button>&nbsp;
+            <button pButton severity="success" label="{{'ثبت اطلاعات' | transloco}}"
+                    icon="pi pi-save" (click)="onUpdate()"
+            ></button>
+        </div>
+    </div>
+</div>

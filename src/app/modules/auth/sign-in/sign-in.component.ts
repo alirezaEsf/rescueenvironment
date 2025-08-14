@@ -55,8 +55,7 @@ import { XssControlService } from '../../../../shared/services/XssControlService
         MatProgressSpinnerModule,
         SaffronInputComponent,
         SaffronButtonComponent,
-        TranslocoDirective,
-        XssInputValidationDirective
+        TranslocoDirective
     ],
     providers: [XssControlService],
 })

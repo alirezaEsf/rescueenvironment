@@ -12,7 +12,7 @@ import { SaffronMessageService } from '../../_01-components/_22-saffron-message/
   templateUrl: './demo-message.component.html',
   styleUrls: ['./demo-message.component.scss'],
   standalone: true,
-  imports: [CommonModule, SaffronFieldsetDirective, SaffronButtonComponent, SaffronMessageComponent]
+  imports: [CommonModule, SaffronFieldsetDirective, SaffronButtonComponent]
 })
 export class DemoMessageComponent implements OnInit {
   readonly default: boolean[] = [true, false, false, false, false];

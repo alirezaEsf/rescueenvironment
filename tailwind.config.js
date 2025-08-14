@@ -60,6 +60,7 @@ const themes = {
     amber: {
         primary: colors.amber,
     },
+
 };
 
 /**
@@ -104,7 +105,7 @@ const config = {
                 0: '0 0 auto',
             },
             fontFamily: {
-                sans: `"Inter var", ${defaultTheme.fontFamily.sans.join(',')}`,
+                sans: `"iransans","Inter var", ${defaultTheme.fontFamily.sans.join(',')}`,
                 mono: `"IBM Plex Mono", ${defaultTheme.fontFamily.mono.join(',')}`,
             },
             opacity: {
@@ -168,6 +169,20 @@ const config = {
                 '1/4': '25%',
                 '2/4': '50%',
                 '3/4': '75%',
+                '3/100': '3%',
+                '5/100': '5%',
+                '8/100': '8%',
+                '10/100': '10%',
+                '15/100': '15%',
+                '20/100': '20%',
+                '30/100': '30%',
+                '35/100': '35%',
+                '40/100': '40%',
+                '45/100': '45%',
+                '60/100': '60%',
+                '70/100': '70%',
+                '80/100': '80%',
+                '90/100': '90%',
             },
             minHeight: ({ theme }) => ({
                 ...theme('spacing'),
@@ -284,10 +299,10 @@ const config = {
     plugins: [
         // Fuse - Tailwind plugins
         require(
-            path.resolve(__dirname, 'src/@fuse/tailwind/plugins/utilities')
+            path.resolve(__dirname, 'src/@fuse/tailwind/plugins/utilities'),
         ),
         require(
-            path.resolve(__dirname, 'src/@fuse/tailwind/plugins/icon-size')
+            path.resolve(__dirname, 'src/@fuse/tailwind/plugins/icon-size'),
         ),
         require(path.resolve(__dirname, 'src/@fuse/tailwind/plugins/theming'))({
             themes,
@@ -295,7 +310,9 @@ const config = {
 
         // Other third party and/or custom plugins
         require('@tailwindcss/typography')({ modifiers: ['sm', 'lg'] }),
-    ],
+
+    ]
+    ,
 };
 
 module.exports = config;

@@ -1,0 +1,1530 @@
+<p-toast />
+<app-breadcrumbs id="section"  *ngIf="!producedNodeFlag&&!requiredNodeFlag"></app-breadcrumbs>
+<div class="fle flex-col w-full px-5 gap-4 my-10 " *ngIf="!producedNodeFlag&&!requiredNodeFlag">
+    <div  class="w-full flex items-start gap-3">
+        <button pButton icon="pi pi-question-circle" class="button-help rounded-2xl" severity="warn"
+                (click)="helpFlag=true"></button>
+        <p-message severity="success">
+            <span>{{ 'sequence.text.thereIsActiveSequence'|transloco }}</span>
+            <span>
+                {{ titleApiDe }}
+                 </span>
+            <span>{{ 'sequence.text.doing'|transloco }}</span>
+        </p-message>
+    </div>
+    <div class="grid grid-cols-12" >
+
+     <!--   <div class="col-span-12 mb-1">
+            <button pButton icon="pi pi-question-circle" class="button-help rounded-2xl" severity="warn"
+                    (click)="helpFlag=true"></button>
+            <label class="red-color-text">
+               <span>
+                   - این جریان پردازشی برای سرویس
+               </span>
+                <span>
+                {{ titleApiDe }}
+                 </span>
+                <span>
+                    در حال انجام است!
+                </span>
+            </label>
+        </div>-->
+
+        <div class="col-span-6">
+            <label class="normal-label">
+                <span class="red-color-text">* </span>
+                <span>عنوان :</span></label>
+            <input pInputText [(ngModel)]="title" class="normal-input">
+        </div>
+        <div class="col-span-6"></div>
+        <br>
+        <div class="col-span-12 mt-3">
+        <p-fieldset class="w-full" legend="سرویس اول">
+
+            <div class=" grid grid-cols-12">
+                <div class="col-span-4">
+                    <label class="normal-label">
+                        <span class="red-color-text">* </span>
+                        <span>نام سازمان :</span></label>
+                    <p-dropdown
+                        class="normal-dropdown"
+                        [options]="partyListOptionsFirst"
+                        [(ngModel)]="partyIdFirst"
+                        optionValue="partyId"
+                        [filter]="true"
+                        filterBy="title"
+                        optionLabel="title"
+                        (onChange)="OnchangePartyFirst($event)">
+                    </p-dropdown>
+                </div>
+                <div class="col-span-4">
+                    <label class="normal-label">
+                        <span class="red-color-text">* </span>
+                        <span>ماژول :</span></label>
+                    <p-dropdown
+                        class="normal-dropdown"
+                        [options]="moduleListOptionsFirst"
+                        [(ngModel)]="moduleIdFirst"
+                        optionValue="moduleId"
+                        [filter]="true"
+                        filterBy="moduleTitle"
+                        optionLabel="moduleTitle"
+                        (onChange)="OnchangeModuleFirst($event)">
+                    </p-dropdown>
+                </div>
+                <div class="col-span-4">
+                    <br>
+                    <div class="flex flex-wrap gap-2 ">
+                        <button pButton class="normal-button w-15" [outlined]="true"
+                                icon="pi pi-filter-slash"
+                                (click)="clear(1)"></button>
+
+                        <button type="button" pButton (click)="setRecord(1);menu.toggle($event)"
+                                class="normal-button w-15"
+                                pRipple icon="pi pi-chevron-down"></button>
+
+                        <button pButton label="400" severity="warn" [icon]="icon400_valFirst"
+                                class="normal-button w-15"
+                                (click)="openMessage400(1)"></button>
+
+                        <button pButton label="500" severity="danger" [icon]="icon500_valFirst"
+                                class="normal-button w-15"
+                                (click)="openMessage500(1)"></button>
+
+                        <button pButton label="پیام سفارشی" [icon]="iconCus_valFirst"
+                                [disabled]="disableCusMessage" class="normal-button"
+                                (click)="openMessageCus(1)" [pTooltip]="tooltipCusBtn"
+                                [tooltipDisabled]="!disableCusMessage"></button>
+                    </div>
+                    <p-tieredMenu appendTo="body" #menu [popup]="true" [model]="itemsFirst">
+                    </p-tieredMenu>
+                </div>
+                <div class="col-span-4">
+                    <label class="normal-label">
+                        <span class="red-color-text">* </span>
+                        <span>نام سرویس :</span></label>
+                    <p-dropdown
+                        class="normal-dropdown"
+                        [options]="apiListOptionsFirst"
+                        [(ngModel)]="apiIdFirst"
+                        optionValue="apiId"
+                        [filter]="true"
+                        filterBy="title"
+                        optionLabel="title"
+                        (onChange)="OnchangeApiFirst($event)"
+                    >
+                    </p-dropdown>
+                </div>
+                <div class="col-span-4">
+                    <label class="normal-label">
+                        <span class="red-color-text">* </span>
+                        <span>اولویت اجرا :</span></label>
+                    <p-dropdown
+                        class="normal-dropdown"
+                        [options]="actionTypeOptionsFirst"
+                        [(ngModel)]="actionTypeFirst"
+                        optionValue="code"
+                        optionLabel="name"
+                        (onChange)="onChangeActionTypeFirst($event)"
+                    >
+                    </p-dropdown>
+                </div>
+                <div class="col-span-4" hidden>
+                    <label class="normal-label">
+                        <span class="red-color-text">* </span>
+                        <span>اجرای سرویس منتخب پس از :</span></label>
+                    <p-dropdown
+                        class="normal-dropdown"
+                        [options]="afterApiOptionsFirst"
+                        [(ngModel)]="afterApiFirst"
+                        optionValue="code"
+                        optionLabel="name"
+                        [disabled]="afterApiDisableFirst"
+                    >
+                    </p-dropdown>
+                </div>
+                <div class="col-span-4">
+
+                        <div class="col-span-12 mt-3 md:col-span-6 lg:col-span-4">
+                            <div class="flex items-center gap-2">
+                                <p-checkbox [disabled]="afterApiDisableFirst" [(ngModel)]="runAsyncFirst"
+                                            (onChange)="onchangeRunAsyncFirst($event)" [binary]="true" inputId="runAsyncFirst"
+                                           ></p-checkbox>
+                                <label class="normal-label" for="runAsyncFirst">{{ 'سرویس دارای اجرای (Async) می باشد'|transloco }}</label>
+                            </div>
+                        </div>
+
+                </div>
+
+
+                <div class="col-span-12 mt-6">
+                    <p-table [value]="matchListFirst" selectionMode="single">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="row">{{ 'sequence.table.header.rowFirst'|transloco }}</th>
+                                <th>نود مورد نیاز</th>
+                                <th>گروه بندی نود مورد نیاز</th>
+                                <th>مسیر نود مورد نیاز</th>
+                                <th>نود تولید شده</th>
+                                <th>گروه بندی نود تولید شده</th>
+                                <th>مسیر نود تولید شده</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template let-i="rowIndex" pTemplate="body" let-api>
+                            <tr [pSelectableRow]="api">
+                                <td class="row">{{ i + 1 }}</td>
+                                <td
+                                    [pTooltip]="api.nodeNameRequired"
+                                    [tooltipDisabled]="api.nodeNameRequired?
+                                    api.nodeNameRequired.length < 20:false"
+                                >
+                                    {{ api.nodeNameRequired|moreChar19 }}
+                                </td>
+                                <td>
+                                    {{ api.nodePlaceRrequired|detailType }}
+                                </td>
+                                <td [pTooltip]="api.nodePathRrequired"
+                                    [tooltipDisabled]="api.nodePathRrequired?
+                                    api.nodePathRrequired.length < 56:false">
+                                    {{ api.nodePathRrequired|morChar55 }}
+                                </td>
+                                <td
+                                    [pTooltip]="api.nodeNameProduced"
+                                    [tooltipDisabled]="api.nodeNameProduced?
+                                    api.nodeNameProduced.length < 20:false"
+                                >
+                                    {{ api.nodeNameProduced|moreChar19 }}
+                                </td>
+                                <td>
+                                    {{ api.nodePlaceProduced|detailType }}
+                                </td>
+                                <td [pTooltip]="api.nodePathProduced"
+                                    [tooltipDisabled]="api.nodePathProduced?
+                                    api.nodePathProduced.length < 56:false">
+                                    {{ api.nodePathProduced|morChar55 }}
+                                </td>
+
+                                <!-- <td class="text-right border-r border-[#ebe8e8]" >
+                                     <button (click)="setRecord(api)" type="button"
+                                             class="p-button-rounded  " pButton
+                                             pRipple icon="pi pi-chevron-down" (click)="menuFirstApi.toggle($event)"></button>&nbsp;
+                                     <p-tieredMenu appendTo="body" #menuFirstApi [popup]="true" [model]="itemsFirst">
+                                     </p-tieredMenu>
+                                 </td>-->
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </p-fieldset>
+        <br hidden>
+        <p-fieldset hidden class="w-full">
+            <ng-template pTemplate="header">
+            <span style="
+            background-color:#99e7d5;
+            padding: 5px;
+            border-radius: 4px;
+            color:#034f3d;">
+                سرویس دوم
+            </span>
+            </ng-template>
+            <div class=" grid">
+                <div class="col-span-4">
+                    <label class="normal-label"> <span>نام سازمان :</span></label>
+                    <p-dropdown
+                        [disabled]="secondPart"
+                        appendTo="body"
+                        [options]="partyListOptionsSecond"
+                        [(ngModel)]="partyIdSecond"
+                        optionValue="partyId"
+                        [filter]="true"
+                        filterBy="title"
+                        optionLabel="title"
+                        (onChange)="OnchangePartySecond($event)">
+                    </p-dropdown>
+                </div>
+                <div class="col-span-4">
+                    <label class="normal-label"> <span>ماژول :</span></label>
+                    <p-dropdown
+                        [disabled]="secondPart"
+                        appendTo="body"
+                        [options]="moduleListOptionsSecond"
+                        [(ngModel)]="moduleIdSecond"
+                        optionValue="moduleId"
+                        [filter]="true"
+                        filterBy="moduleTitle"
+                        optionLabel="moduleTitle"
+                        (onChange)="OnchangeModuleSecond($event)">
+                    </p-dropdown>
+                </div>
+                <div class="col-span-4">
+                    <!-- <br>
+                     <br>-->
+                    <br>
+                    <button pButton [outlined]="true" icon="pi pi-filter-slash"
+                            (click)=" clear(2)" style="width: 30px; margin-right: 5px"></button>&nbsp;
+                    <button type="button" pButton style="width: 30px" (click)="setRecord(2)"
+                            pRipple icon="pi pi-chevron-down" (click)="menu.toggle($event)"
+                            [disabled]="secondPart"></button>&nbsp;
+                    <button pButton label="400" class="p-button-warning" [icon]="icon400_valSecond"
+                            (click)="openMessage400(2)"></button>&nbsp;
+                    <button pButton label="500" severity="danger" [icon]="icon500_valSecond"
+                            (click)="openMessage500(2)"></button>
+
+                    <p-tieredMenu appendTo="body" #menu [popup]="true" [model]="itemsFirst">
+                    </p-tieredMenu>
+                </div>
+                <div class="col-span-4">
+                    <label class="normal-label"> <span>نام سرویس :</span></label><br>
+                    <p-dropdown
+                        [disabled]="secondPart"
+                        appendTo="body"
+                        [options]="apiListOptionsSecond"
+                        [(ngModel)]="apiIdSecond"
+                        optionValue="apiId"
+                        [filter]="true"
+                        filterBy="title"
+                        optionLabel="title"
+                        (onChange)="OnchangeApiSecond($event)"
+                    >
+                    </p-dropdown>
+                </div>
+                <div class="col-span-4">
+                    <label class="normal-label"> <span>اولویت اجرا :</span></label><br>
+                    <p-dropdown
+                        [disabled]="secondPart"
+                        appendTo="body"
+                        [options]="actionTypeOptionsSecond"
+                        [(ngModel)]="actionTypeSecond"
+                        optionValue="code"
+                        optionLabel="name"
+                        (onChange)="onChangeActionTypeSecond($event)"
+                    >
+                    </p-dropdown>
+                </div>
+                <div class="col-span-4">
+                    <label class="normal-label"> <span>اجرای سرویس منتخب پس از :</span></label><br>
+                    <p-dropdown
+                        appendTo="body"
+                        [options]="afterApiOptionsSecond"
+                        [(ngModel)]="afterApiSecond"
+                        optionValue="code"
+                        optionLabel="name"
+                        [disabled]="afterApiDisableSecond"
+                    >
+                    </p-dropdown>
+                </div>
+                <div class="col-span-4">
+                    <div class="grid grid-cols-12">
+                        <br>
+                        <div class="col-2-7" style="margin-right: 3px;margin-top: 5px">
+                            <label style="margin-bottom: 10px"><span
+                            >سرویس دارای اجرای (Async) می باشد :</span></label><br>
+                        </div>
+                        <div class="col-0-5">
+                            <p-checkbox [(ngModel)]="runAsyncSecond" [binary]="true"
+                                        [disabled]="afterApiDisableSecond" inputId="binary"
+                                        (onChange)="onchangeAsyncSecond()"></p-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <p-table [value]="matchListSecond" selectionMode="single"
+                    >
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="row">table.header.row</th>
+                                <th>نود مورد نیاز</th>
+                                <th>گروه بندی نود مورد نیاز</th>
+                                <th>مسیر نود مورد نیاز</th>
+                                <th>نود تولید شده</th>
+                                <th>گروه بندی نود تولید شده</th>
+                                <th>مسیر نود تولید شده</th>
+                                <!-- <th style="text-align: right !important;border-right: 1px solid #ebe8e8;" >
+                                     operation
+                                 </th>-->
+                            </tr>
+                        </ng-template>
+                        <ng-template let-i="rowIndex" pTemplate="body" let-api>
+                            <tr [pSelectableRow]="api">
+                                <td class="row">{{ i + 1 }}</td>
+                                <td
+                                    [pTooltip]="api.nodeNameRequired"
+                                    [tooltipDisabled]="api.nodeNameRequired?
+                                    api.nodeNameRequired.length < 20:false"
+                                >
+                                    {{ api.nodeNameRequired|moreChar19 }}
+                                </td>
+                                <td>
+                                    {{ api.nodePlaceRrequired|detailType }}
+                                </td>
+                                <td [pTooltip]="api.nodePathRrequired"
+                                    [tooltipDisabled]="api.nodePathRrequired?
+                                    api.nodePathRrequired.length < 56:false">
+                                    {{ api.nodePathRrequired|morChar55 }}
+                                </td>
+                                <td
+                                    [pTooltip]="api.nodeNameProduced"
+                                    [tooltipDisabled]="api.nodeNameProduced?
+                                    api.nodeNameProduced.length < 20:false"
+                                >
+                                    {{ api.nodeNameProduced|moreChar19 }}
+                                </td>
+                                <td>
+                                    {{ api.nodePlaceProduced|detailType }}
+                                </td>
+                                <td [pTooltip]="api.nodePathProduced"
+                                    [tooltipDisabled]="api.nodePathProduced?
+                                    api.nodePathProduced.length < 56:false">
+                                    {{ api.nodePathProduced|morChar55 }}
+                                </td>
+                                <!-- <td class="text-right border-r border-[#ebe8e8]" >
+                                     <button  [disabled]="secondPart" (click)="setRecordSecond(api)" type="button"
+                                             class="p-button-rounded  " pButton
+                                             pRipple icon="pi pi-chevron-down" (click)="menu.toggle($event)"></button>&nbsp;
+                                     <p-tieredMenu appendTo="body" #menu [popup]="true" [model]="itemsFirst">
+                                     </p-tieredMenu>
+                                 </td>-->
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </p-fieldset>
+        <br hidden>
+        <p-fieldset hidden class="w-full">
+            <ng-template pTemplate="header">
+            <span style="
+            background-color:#e7e699;
+            padding: 5px;
+            border-radius: 4px;
+            color:#4c4f03;">
+                سرویس سوم
+            </span>
+            </ng-template>
+            <div class=" grid">
+                <div class="col-span-4">
+                    <label class="normal-label"> <span>نام سازمان :</span></label><br>
+                    <p-dropdown
+                        [disabled]="thirdPart"
+                        appendTo="body"
+                        [options]="partyListOptionsThird"
+                        [(ngModel)]="partyIdThird"
+                        optionValue="partyId"
+                        [filter]="true"
+                        filterBy="title"
+                        optionLabel="title"
+                        (onChange)="OnchangePartyThird($event)">
+                    </p-dropdown>
+                </div>
+                <div class="col-span-4">
+                    <label class="normal-label"> <span>ماژول :</span></label><br>
+                    <p-dropdown
+                        [disabled]="thirdPart"
+                        appendTo="body"
+                        [options]="moduleListOptionsThird"
+                        [(ngModel)]="moduleIdThird"
+                        optionValue="moduleId"
+                        [filter]="true"
+                        filterBy="moduleTitle"
+                        optionLabel="moduleTitle"
+                        (onChange)="OnchangeModuleThird($event)">
+                    </p-dropdown>
+                </div>
+                <div class="col-span-4">
+                    <!-- <br>
+                     <br>-->
+                    <br>
+
+                    <button pButton [outlined]="true" icon="pi pi-filter-slash"
+                            (click)="clear(3)" style="width: 30px; margin-right: 5px"></button>&nbsp;
+                    <button type="button" pButton style="width: 30px" (click)="setRecord(3)"
+                            pRipple icon="pi pi-chevron-down" (click)="menu.toggle($event)"
+                            [disabled]="thirdPart"></button>&nbsp;
+                    <button pButton label="400" class="p-button-warning" [icon]="icon400_valThird"
+                            (click)="openMessage400(3)"></button>&nbsp;
+                    <button pButton label="500" severity="danger" [icon]="icon500_valThird"
+                            (click)="openMessage500(3)"></button>
+
+                    <p-tieredMenu appendTo="body" #menu [popup]="true" [model]="itemsFirst">
+                    </p-tieredMenu>
+                </div>
+                <div class="col-span-4">
+                    <label class="normal-label"> <span>نام سرویس :</span></label><br>
+                    <p-dropdown
+                        [disabled]="thirdPart"
+                        appendTo="body"
+                        [options]="apiListOptionsThird"
+                        [(ngModel)]="apiIdThird"
+                        optionValue="apiId"
+                        [filter]="true"
+                        filterBy="title"
+                        optionLabel="title"
+                        (onChange)="OnchangeApiThird($event)"
+                    >
+                    </p-dropdown>
+                </div>
+                <div class="col-span-4">
+                    <label class="normal-label"> <span>اولویت اجرا :</span></label><br>
+                    <p-dropdown
+                        [disabled]="thirdPart"
+                        appendTo="body"
+                        [options]="actionTypeOptionsThird"
+                        [(ngModel)]="actionTypeThird"
+                        optionValue="code"
+                        optionLabel="name"
+                        (onChange)="onChangeActionTypeThird($event)"
+                    >
+                    </p-dropdown>
+                </div>
+                <div class="col-span-4">
+                    <label class="normal-label"> <span>اجرای سرویس منتخب پس از :</span></label><br>
+                    <p-dropdown
+                        appendTo="body"
+                        [options]="afterApiOptionsThird"
+                        [(ngModel)]="afterApiThird"
+                        optionValue="code"
+                        optionLabel="name"
+                        [disabled]="afterApiDisableThird"
+                    >
+                    </p-dropdown>
+                </div>
+                <div class="col-span-4">
+                    <div class="grid grid-cols-12">
+                        <br>
+                        <div class="col-2-7" style="margin-right: 3px;margin-top: 5px">
+                            <label style="margin-bottom: 10px"><span
+                            >سرویس دارای اجرای (Async) می باشد :</span></label><br>
+                        </div>
+                        <div class="col-0-5">
+                            <p-checkbox [(ngModel)]="runAsyncThird" [binary]="true" [disabled]="afterApiDisableThird"
+                                        inputId="binary" (onChange)="onchangeAsyncThird()"></p-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <p-table [value]="matchListThird" selectionMode="single"
+                    >
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="row">table.header.row</th>
+                                <th>نود مورد نیاز</th>
+                                <th>گروه بندی نود مورد نیاز</th>
+                                <th>مسیر نود مورد نیاز</th>
+                                <th>نود تولید شده</th>
+                                <th>گروه بندی نود تولید شده</th>
+                                <th>مسیر نود تولید شده</th>
+
+
+                            </tr>
+                        </ng-template>
+                        <ng-template let-i="rowIndex" pTemplate="body" let-api>
+                            <tr [pSelectableRow]="api">
+                                <td class="row">{{ i + 1 }}</td>
+                                <td
+                                    [pTooltip]="api.nodeNameRequired"
+                                    [tooltipDisabled]="api.nodeNameRequired?
+                                    api.nodeNameRequired.length < 20:false"
+                                >
+                                    {{ api.nodeNameRequired|moreChar19 }}
+                                </td>
+                                <td>
+                                    {{ api.nodePlaceRrequired|detailType }}
+                                </td>
+                                <td [pTooltip]="api.nodePathRrequired"
+                                    [tooltipDisabled]="api.nodePathRrequired?
+                                    api.nodePathRrequired.length < 56:false">
+                                    {{ api.nodePathRrequired|morChar55 }}
+                                </td>
+                                <td
+                                    [pTooltip]="api.nodeNameProduced"
+                                    [tooltipDisabled]="api.nodeNameProduced?
+                                    api.nodeNameProduced.length < 20:false"
+                                >
+                                    {{ api.nodeNameProduced|moreChar19 }}
+                                </td>
+                                <td>
+                                    {{ api.nodePlaceProduced|detailType }}
+                                </td>
+                                <td [pTooltip]="api.nodePathProduced"
+                                    [tooltipDisabled]="api.nodePathProduced?
+                                    api.nodePathProduced.length < 56:false">
+                                    {{ api.nodePathProduced|morChar55 }}
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </p-fieldset>
+        </div>
+
+        <div class="col-span-12 mt-4 text-left p-4">
+            <button
+                pButton severity="success"
+                label="{{'button.save' | transloco}}"
+                icon="pi pi-save" class="normal-button"
+                (click)="onRegister()"></button> &nbsp;
+            <button pButton label="{{'button.cancel' | transloco}}"
+                    severity="danger" icon="pi pi-times" class="normal-button"
+                    [outlined]="true" (click)="onCancel()"></button>
+        </div>
+
+
+
+    </div>
+
+</div>
+<div class="col-span-12" *ngIf="producedNodeFlag">
+    <app-produced-node [producedNodeApi]="apiDto" (close)="onClose($event)"></app-produced-node>
+</div>
+<div class="col-span-12" *ngIf="requiredNodeFlag">
+    <app-required-node [requiredNodeApi]="apiDto" (close)="onClose($event)"></app-required-node>
+</div>
+    <p-dialog [style]="{'width':'60%'}" [(visible)]="dialogFirstMatchFlag"
+              [modal]="true" [draggable]="false" appendTo="body"
+              [resizable]="true">
+        <p-panel header="{{'اتصال نود های تولید شده و نود های مورد نیاز' | transloco}}">
+            <div class="grid grid-cols-12 " style="margin-top: 5px">
+                <div class="col-span-6 my-2 mx-1">
+                    <div class="grid grid-cols-12">
+                        <div class="col-span-7">
+                            <label class="normal-label">
+                            <span  dir="rtl">
+                                نود های تولید شده سرویس
+                                <span [pTooltip]="apiTitleProduced"
+                                      [tooltipDisabled]="apiTitleProduced?
+                                    apiTitleProduced.length < 14:false">
+                                    {{ apiTitleProduced|morChar13 }}
+                                </span>
+                            </span>
+                                :
+                            </label>
+                        </div>
+                        <div class="col-span-3" dir="ltr">
+                            <label class="normal-label">
+                           <span  dir="rtl">
+                                <span style="font-size: 10px;">قابل انتخاب</span>
+                                <span style="font-size: 10px;color:#37a1ff">
+                                    <span style="font-size: 10px;color:#37a1ff">(</span>
+                                    <span style="font-size: 10px;color:#37a1ff">{{ countProduced }}</span>
+                                    <span style="font-size: 10px;color:#37a1ff">)</span>
+                                </span>
+                            </span>
+                            </label>
+                        </div>
+                    </div>
+                    <p-listbox [options]="producedListFirst" [(ngModel)]="producedNode" optionLabel="nodeName">
+                        <ng-template let-produced pTemplate="item">
+                            <div [pTooltip]="produced.nodePath" tooltipPosition="top">
+                                {{ produced.nodeName }}
+                            </div>
+                        </ng-template>
+                    </p-listbox>
+                </div>
+
+                <div class="col-span-6 my-2 mx-1">
+                    <div class="grid grid-cols-12">
+                        <div class="col-span-7">
+                            <label class="normal-label">
+                            <span  dir="rtl">
+                                نود های مورد نیاز سرویس
+                                <span [pTooltip]="apiTitleRequired"
+                                      [tooltipDisabled]="apiTitleRequired?
+                                    apiTitleRequired.length < 14:false">
+                                    {{ apiTitleRequired|morChar13 }}
+                                </span>
+                            </span>
+                                :
+                            </label>
+                        </div>
+                        <div class="col-span-3" dir="ltr">
+                            <label class="normal-label">
+                          <span  dir="rtl">
+                                 <span style="font-size: 10px;">قابل انتخاب</span>
+                                <span style="font-size: 10px;color:#37a1ff">
+                                    <span style="font-size: 10px;color:#37a1ff">(</span>
+                                    <span style="font-size: 10px;color:#37a1ff">{{ countRequired }}</span>
+                                    <span style="font-size: 10px;color:#37a1ff">)</span>
+                                </span>
+                            </span>
+                            </label>
+                        </div>
+                    </div>
+                    <p-listbox [options]="requiredListFirst" [(ngModel)]="requiredNode" optionLabel="nodeName">
+                        <ng-template let-required pTemplate="item">
+                            <div [pTooltip]="required.nodePath" tooltipPosition="top">
+                                {{ required.nodeName }}
+                            </div>
+                        </ng-template>
+                    </p-listbox>
+                </div>
+                <div class="col-span-4"></div>
+                <div class="col-span-4 my-2">
+                    <button pButton label="{{'اتصال نود ها' | transloco}}" style="width: 100%;height: 30px;"
+                            icon="pi pi-link" (click)="matchingFirst()"></button>
+                </div>
+
+                <div class="col-span-4"></div>
+                <div class="col-span-12">
+                    <p-table [value]="matchListFirst" selectionMode="single"
+                             [paginator]="false" [rows]="rows" [showCurrentPageReport]="true"
+                             [(first)]="first"
+                             [currentPageReportTemplate]=paginationLabel
+                             [rowsPerPageOptions]="[5,10,25,50,100]">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="row">table.header.row</th>
+                                <th>نود مورد نیاز</th>
+                                <th>گروه بندی نود مورد نیاز</th>
+                                <th>مسیر نود مورد نیاز</th>
+                                <th>نود تولید شده</th>
+                                <th>گروه بندی نود تولید شده</th>
+                                <th>مسیر نود تولید شده</th>
+                                <th style="text-align: right !important;border-right: 1px solid #ebe8e8;">
+                                    operation
+                                </th>
+
+                            </tr>
+                        </ng-template>
+                        <ng-template let-i="rowIndex" pTemplate="body" let-api>
+                            <tr [pSelectableRow]="api">
+                                <td class="row">{{ i + 1 }}</td>
+                                <td
+                                    [pTooltip]="api.nodeNameRequired"
+                                    [tooltipDisabled]="api.nodeNameRequired?
+                                    api.nodeNameRequired.length < 20:false"
+                                >
+                                    {{ api.nodeNameRequired|moreChar19 }}
+                                </td>
+                                <td>
+                                    {{ api.nodePlaceRrequired|detailType }}
+                                </td>
+                                <td [pTooltip]="api.nodePathRrequired"
+                                    [tooltipDisabled]="api.nodePathRrequired?
+                                    api.nodePathRrequired.length < 33:false">
+                                    {{ api.nodePathRrequired|morChar32 }}
+                                </td>
+                                <td
+                                    [pTooltip]="api.nodeNameProduced"
+                                    [tooltipDisabled]="api.nodeNameProduced?
+                                    api.nodeNameProduced.length < 20:false"
+                                >
+                                    {{ api.nodeNameProduced|moreChar19 }}
+                                </td>
+                                <td>
+                                    {{ api.nodePlaceProduced|detailType }}
+                                </td>
+                                <td [pTooltip]="api.nodePathProduced"
+                                    [tooltipDisabled]="api.nodePathProduced?
+                                    api.nodePathProduced.length < 33:false">
+                                    {{ api.nodePathProduced|morChar32 }}
+                                </td>
+                                <td class="text-right border-r border-[#ebe8e8]" >
+                                    <button (click)="setRecordDialogFirst(api)" type="button"
+                                            class="p-button-rounded  " pButton
+                                            pRipple icon="pi pi-chevron-down"
+                                            (click)="menuDialog.toggle($event)"></button>&nbsp;
+                                    <p-tieredMenu appendTo="body" #menuDialog [popup]="true" [model]="itemsDialog">
+                                    </p-tieredMenu>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+                <div class="col-span-12" dir="ltr" style="margin-top: 15px">
+                    <button pButton label="{{'sequence.dialog.button.close' | transloco}}"
+                             severity="danger"  icon="pi pi-times"
+                            (click)="closeMatchNodesFirst()"></button>&nbsp;
+                </div>
+            </div>
+        </p-panel>
+    </p-dialog>
+    <p-dialog [style]="{'width':'60%'}" [(visible)]="dialogSecondMatchFlag"
+              [modal]="true" [draggable]="false" appendTo="body"
+              [resizable]="true">
+        <p-panel header="{{'اتصال نود های تولید شده و نود های مورد نیاز' | transloco}}">
+            <div class="grid grid-cols-12">
+                <div class="col-span-6">
+                    <div class="grid grid-cols-12">
+                        <div class="col-costume7-6">
+                            <label class="normal-label">
+                            <span transloco dir="rtl">
+                                نود های تولید شده سرویس
+                                <span [pTooltip]="apiTitleProduced"
+                                      [tooltipDisabled]="apiTitleProduced?
+                                    apiTitleProduced.length < 14:false">
+                                    {{ apiTitleProduced|morChar13 }}
+                                </span>
+                            </span>
+                                :
+                            </label>
+                        </div>
+                        <div class="col-costume3-6" dir="ltr">
+                            <label class="normal-label">
+                            <span transloco dir="rtl">
+                                قابل انتخاب
+                                <span>
+                                    <span>(</span>
+                                    {{ countProduced }}
+                                    <span>)</span>
+                                </span>
+                            </span>
+                            </label>
+                        </div>
+                    </div>
+                    <p-listbox [options]="producedListSecond" [(ngModel)]="producedNode" optionLabel="nodeName">
+                        <ng-template let-produced pTemplate="item">
+                            <div [pTooltip]="produced.nodePath" tooltipPosition="top">
+                                {{ produced.nodeName }}
+                            </div>
+                        </ng-template>
+                    </p-listbox>
+                </div>
+                <div class="col-span-6">
+                    <div class="grid grid-cols-12">
+                        <div class="col-costume7-6">
+                            <label class="normal-label">
+                            <span transloco dir="rtl">
+                                نود های مورد نیاز سرویس
+                                <span [pTooltip]="apiTitleRequired"
+                                      [tooltipDisabled]="apiTitleRequired?
+                                    apiTitleRequired.length < 14:false">
+                                    {{ apiTitleRequired|morChar13 }}
+                                </span>
+                            </span>
+                                :
+                            </label>
+                        </div>
+                        <div class="col-costume3-6" dir="ltr">
+                            <label class="normal-label">
+                            <span transloco dir="rtl">
+                                قابل انتخاب
+                                <span>
+                                    <span>(</span>
+                                    {{ countRequired }}
+                                    <span>)</span>
+                                </span>
+                            </span>
+                            </label>
+                        </div>
+                    </div>
+                    <p-listbox [options]="requiredListSecond" [(ngModel)]="requiredNode" optionLabel="nodeName">
+                        <ng-template let-required pTemplate="item">
+                            <div [pTooltip]="required.nodePath" tooltipPosition="top">
+                                {{ required.nodeName }}
+                            </div>
+                        </ng-template>
+                    </p-listbox>
+                </div>
+                <div class="col-span-4"></div>
+                <div class="col-span-4">
+                    <button pButton label="{{'اتصال نود ها' | transloco}}" style="width: 100%;height: 30px;"
+                            icon="pi pi-link " (click)="matchingSecond()"></button>
+                </div>
+
+                <div class="col-span-4"></div>
+                <div class="col-12">
+                    <p-table [value]="matchListSecond" selectionMode="single"
+                             [paginator]="false" [rows]="rows" [showCurrentPageReport]="true"
+                             [(first)]="first"
+                             [currentPageReportTemplate]=paginationLabel
+                             [rowsPerPageOptions]="[5,10,25,50,100]">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="row">table.header.row</th>
+                                <th>نود مورد نیاز</th>
+                                <th>گروه بندی نود مورد نیاز</th>
+                                <th>مسیر نود مورد نیاز</th>
+                                <th>نود تولید شده</th>
+                                <th>گروه بندی نود تولید شده</th>
+                                <th>مسیر نود تولید شده</th>
+                                <th style="text-align: right !important;border-right: 1px solid #ebe8e8;">
+                                    operation
+                                </th>
+
+                            </tr>
+                        </ng-template>
+                        <ng-template let-i="rowIndex" pTemplate="body" let-api>
+                            <tr [pSelectableRow]="api">
+                                <td class="row">{{ i + 1 }}</td>
+                                <td
+                                    [pTooltip]="api.nodeNameRequired"
+                                    [tooltipDisabled]="api.nodeNameRequired?
+                                    api.nodeNameRequired.length < 20:false"
+                                >
+                                    {{ api.nodeNameRequired|moreChar19 }}
+                                </td>
+                                <td>
+                                    {{ api.nodePlaceRrequired|detailType }}
+                                </td>
+                                <td [pTooltip]="api.nodePathRrequired"
+                                    [tooltipDisabled]="api.nodePathRrequired?
+                                    api.nodePathRrequired.length < 33:false">
+                                    {{ api.nodePathRrequired|morChar32 }}
+                                </td>
+                                <td
+                                    [pTooltip]="api.nodeNameProduced"
+                                    [tooltipDisabled]="api.nodeNameProduced?
+                                    api.nodeNameProduced.length < 20:false"
+                                >
+                                    {{ api.nodeNameProduced|moreChar19 }}
+                                </td>
+                                <td>
+                                    {{ api.nodePlaceProduced|detailType }}
+                                </td>
+                                <td [pTooltip]="api.nodePathProduced"
+                                    [tooltipDisabled]="api.nodePathProduced?
+                                    api.nodePathProduced.length < 33:false">
+                                    {{ api.nodePathProduced|morChar32 }}
+                                </td>
+                                <td class="text-right border-r border-[#ebe8e8]" >
+                                    <button (click)="setRecordDialogSecond(api)" type="button"
+                                            class="p-button-rounded  " pButton
+                                            pRipple icon="pi pi-chevron-down"
+                                            (click)="menuDialog.toggle($event)"></button>&nbsp;
+                                    <p-tieredMenu appendTo="body" #menuDialog [popup]="true" [model]="itemsDialog">
+                                    </p-tieredMenu>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+                <div class="col-8"></div>
+                <div class="col-span-4" dir="ltr" style="margin-top: 15px">
+                    <button pButton label="{{'بستن' | transloco}}"  [outlined]="true"
+                             severity="danger"  icon="pi pi-times" class="normal-button"
+                            (click)="closeMatchNodesSecond()"></button>&nbsp;
+                </div>
+            </div>
+        </p-panel>
+    </p-dialog>
+    <p-dialog [style]="{'width':'60%'}" [(visible)]="dialogThirdMatchFlag"
+              [modal]="true" [draggable]="false" appendTo="body"
+              [resizable]="true">
+        <p-panel header="{{'اتصال نود های تولید شده و نود های مورد نیاز' | transloco}}">
+            <div class="grid grid-cols-12">
+                <div class="col-span-6">
+                    <div class="grid grid-cols-12">
+                        <div class="col-costume7-6">
+                            <label class="normal-label">
+                            <span transloco dir="rtl">
+                                نود های تولید شده سرویس
+                                <span [pTooltip]="apiTitleProduced"
+                                      [tooltipDisabled]="apiTitleProduced?
+                                    apiTitleProduced.length < 14:false">
+                                    {{ apiTitleProduced|morChar13 }}
+                                </span>
+                            </span>
+                                :
+                            </label>
+                        </div>
+                        <div class="col-costume3-6" dir="ltr">
+                            <label class="normal-label">
+                            <span transloco dir="rtl">
+                                قابل انتخاب
+                                <span>
+                                    <span>(</span>
+                                    {{ countProduced }}
+                                    <span>)</span>
+                                </span>
+                            </span>
+                            </label>
+                        </div>
+                    </div>
+                    <p-listbox [options]="producedListThird" [(ngModel)]="producedNode" optionLabel="nodeName">
+                        <ng-template let-produced pTemplate="item">
+                            <div [pTooltip]="produced.nodePath" tooltipPosition="top">
+                                {{ produced.nodeName }}
+                            </div>
+                        </ng-template>
+                    </p-listbox>
+                </div>
+                <div class="col-span-6">
+                    <div class="grid grid-cols-12">
+                        <div class="col-costume7-6">
+                            <label class="normal-label">
+                            <span transloco dir="rtl">
+                                نود های مورد نیاز سرویس
+                                <span [pTooltip]="apiTitleRequired"
+                                      [tooltipDisabled]="apiTitleRequired?
+                                    apiTitleRequired.length < 14:false">
+                                    {{ apiTitleRequired|morChar13 }}
+                                </span>
+                            </span>
+                                :
+                            </label>
+                        </div>
+                        <div class="col-costume3-6" dir="ltr">
+                            <label class="normal-label">
+                            <span transloco dir="rtl">
+                                قابل انتخاب
+                                <span>
+                                    <span>(</span>
+                                    {{ countRequired }}
+                                    <span>)</span>
+                                </span>
+                            </span>
+                            </label>
+                        </div>
+                    </div>
+                    <p-listbox [options]="requiredListThird" [(ngModel)]="requiredNode" optionLabel="nodeName">
+                        <ng-template let-required pTemplate="item">
+                            <div [pTooltip]="required.nodePath" tooltipPosition="top">
+                                {{ required.nodeName }}
+                            </div>
+                        </ng-template>
+                    </p-listbox>
+                </div>
+                <div class="col-span-4"></div>
+                <div class="col-span-4">
+                    <button pButton label="{{'اتصال نود ها' | transloco}}" style="width: 100%;height: 30px;"
+                            icon="pi pi-link " (click)="matchingThird()"></button>
+                </div>
+
+                <div class="col-span-4"></div>
+                <div class="col-12">
+                    <p-table [value]="matchListThird" selectionMode="single"
+                             [paginator]="false" [rows]="rows" [showCurrentPageReport]="true"
+                             [(first)]="first"
+                             [currentPageReportTemplate]=paginationLabel
+                             [rowsPerPageOptions]="[5,10,25,50,100]">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="row">table.header.row</th>
+                                <th>نود مورد نیاز</th>
+                                <th>گروه بندی نود مورد نیاز</th>
+                                <th>مسیر نود مورد نیاز</th>
+                                <th>نود تولید شده</th>
+                                <th>گروه بندی نود تولید شده</th>
+                                <th>مسیر نود تولید شده</th>
+                                <th style="text-align: right !important;border-right: 1px solid #ebe8e8;">
+                                    operation
+                                </th>
+
+                            </tr>
+                        </ng-template>
+                        <ng-template let-i="rowIndex" pTemplate="body" let-api>
+                            <tr [pSelectableRow]="api">
+                                <td class="row">{{ i + 1 }}</td>
+                                <td
+                                    [pTooltip]="api.nodeNameRequired"
+                                    [tooltipDisabled]="api.nodeNameRequired?
+                                    api.nodeNameRequired.length < 20:false"
+                                >
+                                    {{ api.nodeNameRequired|moreChar19 }}
+                                </td>
+                                <td>
+                                    {{ api.nodePlaceRrequired|detailType }}
+                                </td>
+                                <td [pTooltip]="api.nodePathRrequired"
+                                    [tooltipDisabled]="api.nodePathRrequired?
+                                    api.nodePathRrequired.length < 33:false">
+                                    {{ api.nodePathRrequired|morChar32 }}
+                                </td>
+                                <td
+                                    [pTooltip]="api.nodeNameProduced"
+                                    [tooltipDisabled]="api.nodeNameProduced?
+                                    api.nodeNameProduced.length < 20:false"
+                                >
+                                    {{ api.nodeNameProduced|moreChar19 }}
+                                </td>
+                                <td>
+                                    {{ api.nodePlaceProduced|detailType }}
+                                </td>
+                                <td [pTooltip]="api.nodePathProduced"
+                                    [tooltipDisabled]="api.nodePathProduced?
+                                    api.nodePathProduced.length < 33:false">
+                                    {{ api.nodePathProduced|morChar32 }}
+                                </td>
+                                <td class="text-right border-r border-[#ebe8e8]" >
+                                    <button (click)="setRecordDialogThird(api)" type="button"
+                                            class="p-button-rounded  " pButton
+                                            pRipple icon="pi pi-chevron-down"
+                                            (click)="menuDialog.toggle($event)"></button>&nbsp;
+                                    <p-tieredMenu appendTo="body" #menuDialog [popup]="true" [model]="itemsDialog">
+                                    </p-tieredMenu>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+                <div class="col-8"></div>
+                <div class="col-span-4" dir="ltr" style="margin-top: 15px">
+                    <button pButton label="{{'بستن' | transloco}}"  [outlined]="true"
+                             severity="danger"  icon="pi pi-times" class="normal-button"
+                            (click)="closeMatchNodesThird()"></button>&nbsp;
+                </div>
+            </div>
+        </p-panel>
+    </p-dialog>
+
+    <p-dialog [style]="{'width':'50%'}" [(visible)]="helpFlag"
+              [modal]="true" [draggable]="false" appendTo="body" header="راهنمای جریان پردازشی"
+              [resizable]="true">
+        <div disabled class="red-color-text">
+        <span class="red-color-text">
+                - ترتیب سرویس ها حائز اهمیت بوده و در عملکرد درست سامانه تاثیر دارد!
+        </span>
+            <br>
+            <span class="red-color-text">
+                -سرویس های منتخب در صورت Befor حتماً باید دارای حداقل یک نود متصل (Matched) شده باشند!
+            </span>
+            <br>
+            <span class="red-color-text">
+                -زمانی که اولویت اجرا سرویس منتخب After باشد یا باید به سرویس اصلی متصل شود و یا به صورت Async باشد!
+        </span>
+            <br>
+            <span class="red-color-text">
+                -سرویس Async نمیتواند دارای نود های متصل شده (Matched) باشد!
+        </span>
+            <br>
+            <span class="red-color-text">
+                -سرویس After که Async نیستند حتما باید دارای نود های متصل (Matched) باشد!
+        </span>
+        </div>
+        <br>
+        <div class="col-span-12 p-2 mt-2" dir="ltr" >
+            <button type="button" pButton  severity="danger"  label="بستن"  [outlined]="true"
+                    class="normal-button" icon="pi pi-times" (click)="helpFlag=false"></button>
+        </div>
+    </p-dialog>
+
+    <p-dialog [style]="{'width':'60%'}" [(visible)]="message400Flag"
+              [modal]="true" [draggable]="false" appendTo="body"
+              [resizable]="true">
+        <div class="w-full mx-4 mt-4">
+            <p-panel header="{{'انتخاب پیام 400' | transloco}}">
+                <div class="grid grid-cols-12 w-full  mt-2">
+                    <div class="col-span-4">
+                        <label class="normal-label">
+                            <span class="red-color-text">* </span>
+                            <span>کد پیام :</span></label>
+                        <p-dropdown
+                            class="normal-dropdown"
+                            [options]="statusCodeOptions400"
+                            [(ngModel)]="codeMessage400"
+                            optionValue="code"
+                            optionLabel="name"
+                            (onChange)="messageSearch400(this.apiNumber400)"
+                            [disabled]="true"
+                        >
+                            <!--                        (onChange)="onchangeStatusCode()"-->
+                        </p-dropdown>
+                    </div>
+                    <div class="col-span-4">
+                        <label class="normal-label">
+                            <span class="red-color-text">* </span>
+                            <span>عنوان پیام :</span></label>
+                        <input [(ngModel)]="titleMessage400" (keydown.enter)="onKeydownSearch($event)"
+                               class="normal-input"    pInputText>
+                    </div>
+                    <div class="col-span-4">
+                        <label class="normal-label">
+                            <span class="red-color-text">* </span>
+                            <span>پیام(فارسی) :</span></label>
+                        <input [(ngModel)]="textMessage400" (keydown.enter)="onKeydownSearch($event)"
+                               class="normal-input"   pInputText>
+                    </div>
+                    <div class="col-span-4">
+                        <label class="normal-label"> <span>پیام(انگلیسی) :</span></label>
+                        <input [(ngModel)]="textENMessage400" (keydown.enter)="onKeydownSearch($event)"
+                               class="normal-input" pInputText>
+                    </div>
+                    <div class="col-span-4">
+                        <label class="normal-label">
+                            <span class="red-color-text">* </span>
+                            <span>بخش پیام ها :</span></label>
+                        <p-dropdown
+                            class="normal-dropdown"
+                            [options]="categoryMessages400"
+                            optionValue="code"
+                            optionLabel="name"
+                            [(ngModel)]="tableIdMessage400"
+                            (onChange)="messageSearch400(this.apiNumber400)">
+                        </p-dropdown>
+                    </div>
+                    <div class="col-span-4">
+                        <label class="normal-label">
+                            <span class="red-color-text">* </span>
+                            <span>نوع پیام ها :</span></label>
+                        <p-dropdown
+                            class="normal-dropdown"
+                            [options]="typeMessages400"
+                            optionValue="code"
+                            optionLabel="name"
+                            [(ngModel)]="typeMessage400"
+                            (onChange)="messageSearch400(this.apiNumber400)">
+                        </p-dropdown>
+                    </div>
+
+                    <div class="col-span-4">
+                        <button pButton style="margin: 6px"
+                                severity="success" dir="ltr"
+                                label="{{'ثبت اطلاعات و انتخاب پیام' | transloco}}"
+                                icon="pi pi-check"  class="normal-button"
+                                (click)="onRegisterMessage400(this.apiNumber400)"
+                        ></button>&nbsp;
+
+                    </div>
+                    <!--  (click)="onRegisterMessage()"-->
+               <!--     <div class="col-span-8" dir="ltr">
+
+                        <button pButton label="{{'button.search' | transloco}}"
+                                class="normal-button" icon="pi pi-search"
+                                (click)="messageSearch400(this.apiNumber400)"></button>&nbsp;&nbsp;
+                        <button pButton label="{{'button.clear'|transloco}}" [outlined]="true" class="normal-button"
+                                icon="pi pi-filter-slash"
+                                style="margin: 6px" (click)="messageClear400(this.apiNumber400)"></button>
+                    </div>-->
+                    <div class="col-span-4"></div>
+                    <div class="col-span-4  my-1 px-4 py-2 " dir="ltr">
+                        <button pButton label="{{'button.clear'|transloco}}" class="normal-button"
+                                icon="pi pi-filter-slash" [outlined]="true"
+                                style="margin: 6px" (click)="messageClear400(this.apiNumber400)"></button>&nbsp;&nbsp;
+                        <button pButton label="{{'button.search' | transloco}}" style="width: 110px;margin: 6px"
+                                class="normal-button"  icon="pi pi-search"
+                                (click)="messageSearch400(this.apiNumber400)"></button>
+
+                    </div>
+                    <div class="col-span-12">
+                        <!--
+                                                    <p-card>
+                        -->
+                        <p-table [value]="messagesList400Temp" selectionMode="single"
+                                 [paginator]="true" [rows]="rows400" [showCurrentPageReport]="true"
+                                 [(first)]="first400"
+                                 [currentPageReportTemplate]=paginationLabel
+                                 [rowsPerPageOptions]="[5,10,25,50,100]">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="row">شناسه واحد پیام</th>
+                                    <th>کد پیام</th>
+                                    <th>عنوان پیام</th>
+                                    <th>بخش پیام ها</th>
+                                    <th>پیام سیستمی</th>
+                                    <th class="text-right border-r border-[#ebe8e8]">عملیات</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template let-i="rowIndex" pTemplate="body" let-messages>
+                                <tr [pSelectableRow]="messages">
+                                    <td class="messageId">{{ messages.messageId }}</td>
+                                    <td class="code">{{ messages.code }}</td>
+                                    <td class="title"
+                                        [pTooltip]="messages.title"
+                                        [tooltipDisabled]="messages.title?messages.title.length < 20:false"
+                                    >
+                                        {{ messages.title|moreChar19 }}
+                                    </td>
+                                    <td class="tableId">{{ messages.tableId|messagesCategory }}</td>
+                                    <td class="isSystemMessage">
+                                        <img *ngIf="messages.isSystemMessage==1" class="w-6 h-6 object-contain block"
+                                             src="assets/icons/correct.jpeg">
+                                        <img *ngIf="messages.isSystemMessage==0" class="w-6 h-6 object-contain block"
+                                             src="assets/icons/cross.jpeg">
+                                    </td>
+                                    <td class="text-right border-r border-[#ebe8e8]">
+                                        <button pButton label="انتخاب پیام" icon="pi pi-check"  class="normal-button"
+                                                (click)="selectedMessage400(messages,this.apiNumber400)"></button>&nbsp;
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                        <!--
+                                                    </p-card>
+                        -->
+                    </div>
+                    <div class="col-span-12 p-2 mt-2" dir="ltr" >
+                        <button type="button" pButton  severity="danger"  label="بستن" class="normal-button" icon="pi pi-times"
+                                [outlined]="true" (click)="message400Flag=false"></button>
+                    </div>
+                </div>
+
+            </p-panel>
+        </div>
+
+    </p-dialog>
+    <p-dialog [style]="{'width':'60%'}" [(visible)]="message500Flag"
+              [modal]="true" [draggable]="false" appendTo="body"
+              [resizable]="true">
+        <div style="width: 100%;margin: 1rem 1rem 0 1rem">
+            <p-panel header="{{'انتخاب پیام 500' | transloco}}">
+                <div class="grid grid-cols-12">
+                    <div class="col-span-4">
+                        <label class="normal-label">
+                            <span class="red-color-text">* </span>
+                            <span>کد پیام :</span></label>
+                        <p-dropdown
+                           class="normal-dropdown"
+                            [options]="statusCodeOptions500"
+                            [(ngModel)]="codeMessage500"
+                            optionValue="code"
+                            optionLabel="name"
+                            [disabled]="true"
+                        >
+                            <!--                        (onChange)="onchangeStatusCode()"-->
+                        </p-dropdown>
+                    </div>
+                    <div class="col-span-4">
+                        <label class="normal-label">
+                            <span class="red-color-text">* </span>
+                            <span>عنوان پیام :</span></label>
+                        <input [(ngModel)]="titleMessage500" (keydown.enter)="onKeydownSearch($event)"
+                               class="normal-input" pInputText>
+                    </div>
+                    <div class="col-span-4">
+                        <label class="normal-label">
+                            <span class="red-color-text">* </span>
+                            <span>پیام(فارسی) :</span></label>
+                        <input [(ngModel)]="textMessage500" (keydown.enter)="onKeydownSearch($event)"
+                               class="normal-input"  pInputText>
+                    </div>
+                    <div class="col-span-4">
+                        <label class="normal-label"> <span>پیام(انگلیسی) :</span></label><br>
+                        <input [(ngModel)]="textENMessage500" (keydown.enter)="onKeydownSearch($event)"
+                               class="normal-input"  pInputText>
+                    </div>
+                    <div class="col-span-4">
+                        <label class="normal-label">
+                            <span class="red-color-text">* </span>
+                            <span>بخش پیام ها :</span></label>
+                        <p-dropdown
+                            class="normal-dropdown"
+                            [options]="categoryMessages500"
+                            optionValue="code"
+                            optionLabel="name"
+                            [(ngModel)]="tableIdMessage500"
+                            (onChange)="messageSearch500(this.apiNumber500)">
+                        </p-dropdown>
+                    </div>
+                    <div class="col-span-4">
+                        <label class="normal-label">
+                            <span class="red-color-text">* </span>
+                            <span>نوع پیام ها :</span></label>
+                        <p-dropdown
+                            class="normal-dropdown"
+                            [options]="typeMessages500"
+                            optionValue="code"
+                            optionLabel="name"
+                            [(ngModel)]="typeMessage500"
+                            (onChange)="messageSearch500(this.apiNumber500)">
+                        </p-dropdown>
+                    </div>
+                    <div class="col-span-4">
+                        <button pButton style="margin: 6px"
+                                severity="success" dir="ltr"
+                                label="{{'ثبت اطلاعات و انتخاب پیام' | transloco}}"
+                                icon="pi pi-check" class="normal-button"
+                                (click)="onRegisterMessage500(this.apiNumber500)"
+                        ></button>&nbsp;
+                        <!--  (click)="onRegisterMessage()"-->
+                    </div>
+                    <div class="col-span-4"></div>
+                    <div class="col-span-4  my-1 px-4 py-2 " dir="ltr">
+                        <button pButton label="{{'button.clear'|transloco}}" class="normal-button"
+                                icon="pi pi-filter-slash" [outlined]="true"
+                                style="margin: 6px" (click)="messageClear500(this.apiNumber500)"></button>&nbsp;&nbsp;
+                        <button pButton label="{{'button.search' | transloco}}" style="width: 110px;margin: 6px"
+                                class="normal-button"  icon="pi pi-search"
+                                (click)="messageSearch500(this.apiNumber500)"></button>
+
+                    </div>
+                    <div class="col-span-12">
+                        <!--
+                                                    <p-card>
+                        -->
+                        <p-table [value]="messagesList500Temp" selectionMode="single"
+                                 [paginator]="true" [rows]="rows500" [showCurrentPageReport]="true"
+                                 [(first)]="first500"
+                                 [currentPageReportTemplate]=paginationLabel
+                                 [rowsPerPageOptions]="[5,10,25,50,100]">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="row">شناسه واحد پیام</th>
+                                    <th>کد پیام</th>
+                                    <th>عنوان پیام</th>
+                                    <th>بخش پیام ها</th>
+                                    <th>پیام سیستمی</th>
+                                    <th>عملیات</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template let-i="rowIndex" pTemplate="body" let-messages>
+                                <tr [pSelectableRow]="messages">
+                                    <td class="messageId">{{ messages.messageId }}</td>
+                                    <td class="code">{{ messages.code }}</td>
+                                    <td class="title"
+                                        [pTooltip]="messages.title"
+                                        [tooltipDisabled]="messages.tableId?messages.title.length < 20:false"
+                                    >
+                                        {{ messages.title|moreChar19 }}
+                                    </td>
+                                    <td class="tableId">{{ messages.tableId|messagesCategory }}</td>
+                                    <td class="isSystemMessage">
+                                        <img *ngIf="messages.isSystemMessage==1" class="w-6 h-6 object-contain block"
+                                             src="assets/icons/correct.jpeg">
+                                        <img *ngIf="messages.isSystemMessage==0" class="w-6 h-6 object-contain block"
+                                             src="assets/icons/cross.jpeg">
+                                    </td>
+                                    <td class="text-right border-r border-[#ebe8e8]">
+                                        <button pButton label="انتخاب پیام" icon="pi pi-check" class="normal-button"
+                                                (click)="selectedMessage500(messages,this.apiNumber500)"></button>&nbsp;
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                        <!--
+                                                    </p-card>
+                        -->
+                    </div>
+                    <div class="col-span-12 p-2 mt-2" dir="ltr" >
+                        <button type="button" pButton   severity="danger"  label="بستن" class="normal-button" icon="pi pi-times"
+                             [outlined]="true"   (click)="message500Flag=false"></button>
+                    </div>
+                </div>
+
+            </p-panel>
+        </div>
+
+    </p-dialog>
+    <p-dialog [style]="{'width':'60%'}" [(visible)]="messageCusFlag"
+              [modal]="true" [draggable]="false" appendTo="body"
+              [resizable]="true">
+        <div style="width: 100%;margin: 1rem 1rem 0 1rem">
+            <p-panel header="{{'انتخاب پیام سفارشی' | transloco}}">
+                <div class="grid grid-cols-12">
+                    <div class="col-span-4">
+                        <label class="normal-label">
+                            <span class="red-color-text">* </span>
+                            <span>کد پیام :</span></label><br>
+                        <p-dropdown
+                           class="normal-dropdown"
+                            [options]="statusCodeOptionsCus"
+                            [(ngModel)]="codeMessageCus"
+                            optionValue="code"
+                            optionLabel="name"
+                            [disabled]="true"
+                        >
+                            <!--                        (onChange)="onchangeStatusCode()"-->
+                        </p-dropdown>
+                    </div>
+                    <div class="col-span-4">
+                        <label class="normal-label">
+                            <span class="red-color-text">* </span>
+                            <span>عنوان پیام :</span></label><br>
+                        <input [(ngModel)]="titleMessageCus" (keydown.enter)="onKeydownSearch($event)"
+                               class="normal-input" pInputText>
+                    </div>
+                    <div class="col-span-4">
+                        <label class="normal-label">
+                            <span class="red-color-text">* </span>
+                            <span>پیام(فارسی) :</span></label><br>
+                        <input [(ngModel)]="textMessageCus" (keydown.enter)="onKeydownSearch($event)"
+                               class="normal-input"   pInputText>
+                    </div>
+                    <div class="col-span-4">
+                        <label class="normal-label"> <span>پیام(انگلیسی) :</span></label><br>
+                        <input [(ngModel)]="textENMessageCus" (keydown.enter)="onKeydownSearch($event)"
+                               class="normal-input"  pInputText>
+                    </div>
+                    <div class="col-span-4">
+                        <label class="normal-label">
+                            <span class="red-color-text">* </span>
+                            <span>بخش پیام ها :</span></label><br>
+                        <p-dropdown
+                            class="normal-dropdown"
+                            [options]="categoryMessagesCus"
+                            optionValue="code"
+                            optionLabel="name"
+                            [(ngModel)]="tableIdMessageCus"
+                            (onChange)="messageSearchCus(this.apiNumberCus)">
+                        </p-dropdown>
+                    </div>
+                    <div class="col-span-4">
+                        <label class="normal-label">
+                            <span class="red-color-text">* </span>
+                            <span>نوع پیام ها :</span></label><br>
+                        <p-dropdown
+                            class="normal-dropdown"
+                            [options]="typeMessagesCus"
+                            optionValue="code"
+                            optionLabel="name"
+                            [(ngModel)]="typeMessageCus"
+                            (onChange)="messageSearchCus(this.apiNumberCus)">
+                        </p-dropdown>
+                    </div>
+                    <div class="col-span-4">
+                        <button pButton style="margin: 6px"
+                                severity="success" dir="ltr"
+                                label="{{'ثبت اطلاعات و انتخاب پیام' | transloco}}"
+                                icon="pi pi-check"  class="normal-button"
+                                (click)="onRegisterMessageCus(this.apiNumberCus)"
+                        ></button>&nbsp;
+                        <!--  (click)="onRegisterMessage()"-->
+                    </div>
+                    <div class="col-span-8" dir="ltr">
+
+                        <button pButton label="{{'button.search' | transloco}}" style="width: 110px;margin: 6px"
+                                class="normal-button" icon="pi pi-search"
+                                (click)="messageSearchCus(this.apiNumberCus)"></button>&nbsp;&nbsp;
+                        <button pButton label="{{'button.clear'|transloco}}" [outlined]="true"
+                                icon="pi pi-filter-slash"
+                                style="margin: 6px" (click)="messageClearCus(this.apiNumberCus)"></button>
+                    </div>
+
+                    <div class="col-span-12">
+                        <!--
+                                                    <p-card>
+                        -->
+                        <p-table [value]="messagesListCusTemp" selectionMode="single"
+                                 [paginator]="true" [rows]="rowsCus" [showCurrentPageReport]="true"
+                                 [(first)]="firstCus"
+                                 [currentPageReportTemplate]=paginationLabel
+                                 [rowsPerPageOptions]="[5,10,25,50,100]">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="row">شناسه واحد پیام</th>
+                                    <th>کد پیام</th>
+                                    <th>عنوان پیام</th>
+                                    <th>بخش پیام ها</th>
+                                    <th>پیام سیستمی</th>
+                                    <th>عملیات</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template let-i="rowIndex" pTemplate="body" let-messages>
+                                <tr [pSelectableRow]="messages">
+                                    <td class="row">{{ messages.messageId }}</td>
+                                    <td>{{ messages.code }}</td>
+                                    <td
+                                        [pTooltip]="messages.tableId"
+                                        [tooltipDisabled]="messages.tableId?messages.tableId.length < 20:false"
+                                    >
+                                        {{ messages.title|moreChar19 }}
+                                    </td>
+                                    <td>{{ messages.tableId|messagesCategory }}</td>
+                                    <td>
+                                        <img *ngIf="messages.isSystemMessage==1" class="w-6 h-6 object-contain block"
+                                             src="assets/icons/correct.jpeg">
+                                        <img *ngIf="messages.isSystemMessage==0" class="w-6 h-6 object-contain block"
+                                             src="assets/icons/cross.jpeg">
+                                    </td>
+                                    <td class="text-right border-r border-[#ebe8e8]">
+                                        <button pButton label="انتخاب پیام" icon="pi pi-check"  class="normal-button"
+                                                (click)="selectedMessageCus(messages,this.apiNumberCus)"></button>&nbsp;
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                        <!--
+                                                    </p-card>
+                        -->
+                    </div>
+                    <div class="col-span-12 p-2 mt-2" dir="ltr" >
+                        <button type="button" pButton  severity="danger"  label="بستن" [outlined]="true" class="normal-button p-4"
+                                icon="pi pi-times"  (click)="messageCusFlag=false"></button>
+                    </div>
+                </div>
+
+            </p-panel>
+        </div>
+
+    </p-dialog>

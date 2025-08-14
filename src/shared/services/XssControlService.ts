@@ -3,7 +3,11 @@ import { Injectable } from '@angular/core';
 export const whiteListChars: string = '\\p{L}\\p{N}\\s_\\-:,،=@?\\*.\\]\\[\u200C'
 export const whiteListDateChars: string = '\\p{L}\\p{N}\\s_\\-:,،=@?\\*.\\]\\[\u200C\\/'
 
-@Injectable()
+@Injectable(
+    {
+        providedIn: 'root'
+    }
+)
 export class XssControlService{
     constructor() {
 

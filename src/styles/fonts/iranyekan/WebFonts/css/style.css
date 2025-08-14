@@ -1,7 +1,7 @@
 ﻿@import url(fontiran.css); /* لینک فایلی که وظیفه بارگذاری فونت ها را برعهده دارد */
 body {
 	font-family: iranyekan  !important;
-	direction: rtl;
+    direction: rtl;unicode-bidi: isolate;
 	background-color: #cdcdcd;
 	margin: 0;
 }
@@ -141,6 +141,7 @@ blockquote {
 	width: 47%;
 	float: left;
 	direction:ltr;
+    unicode-bidi: isolate;
 	padding-left: 20px;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -155,6 +156,7 @@ blockquote {
 	width: 47%;
 	float: left;
 	direction:ltr;
+    unicode-bidi: isolate;
 	padding-left: 20px;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -207,7 +209,7 @@ blockquote {
 .alphabet2 {
 	width: 35%;
 	float: left;
-	direction: ltr;
+    direction: ltr;unicode-bidi: isolate;
 	font-size: 1.6em;
 	text-align: left;
 	font-weight: 500;
@@ -218,7 +220,16 @@ blockquote {
 	font-weight: 300;
 	font-size: 0.7em;
 	text-align: center;
-	direction: ltr;
+    direction: rtl;unicode-bidi: isolate;
 	margin-bottom: 0px;
 	padding-bottom: 0px;
 }
+
+html {
+    direction: rtl;unicode-bidi: isolate;
+}
+
+.blink {
+    animation: blinker 1s linear infinite;
+}
+

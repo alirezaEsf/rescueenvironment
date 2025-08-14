@@ -1,0 +1,115 @@
+:host {
+    width: 100%;
+}
+
+::ng-deep {
+    .p-tooltip {
+        width: 70px;
+        min-width: 70px;
+        font-size: 10px;
+        max-width: 250px;
+
+    }
+}
+
+:host ::ng-deep .tabview-custom {
+    i, span {
+
+        vertical-align: middle;
+    }
+
+    span {
+        margin: 0 .5rem;
+    }
+}
+
+::ng-deep.p-button.moreBtn {
+    .button {
+
+        background: #fafafa !important;
+        color: #110707 !important;
+        border-color: #c5c9ce !important;
+       /* box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 10px 0px rgba(0, 0, 0, 0.12);*/
+    }
+
+}
+
+
+:host ::ng-deep .p-tabview p {
+    line-height: 1.5;
+    margin: 0;
+}
+::ng-deep .mat-mdc-tab{
+    width: 2400px;
+    max-width: 330px;
+}
+
+.tab-label-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* فاصله بین متن و آیکون */
+}
+
+.tab-name {
+    flex: 1; /* متن را تا حد ممکن گسترش می‌دهد */
+    text-align: right; /* متن به سمت چپ قرار گیرد */
+    margin-right: 0;
+}
+
+.close-tab-icon {
+    margin-left: 0px; /* فاصله از متن */
+    cursor: pointer; /* نشانگر ماوس تغییر کند */
+    color: red; /* رنگ آیکون */
+    font-size: 18px;
+}
+
+.p-button.moreBtn{
+    background-color: #FFFFFF!important;
+    min-width: 25px!important;
+    min-height: 25px!important;
+    margin: 9px;
+    color: black;
+    border: #E0E0E0 solid 1px;
+    border-radius: 8px;
+  /*  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 10px 0px rgba(0, 0, 0, 0.12);*/
+}
+.p-button.moreBtn:hover{
+    background-color: #FFFFFF!important;
+    min-width: 25px!important;
+    min-height: 25px!important;
+    margin: 10px;
+    color: black;
+    border:#2f1b77 solid 1px;
+    border-radius: 8px;
+}
+.p-button.p-button-outlined.moreBtn:enabled:hover {
+    background: rgba(91, 87, 87, 0.7);
+    color: rgba(73, 71, 71, 0.75);
+    border:#2f1b77 solid 1px;
+    border-radius: 8px;
+}
+.cust-col-1 {
+    flex: 0 0 auto;
+    padding: 0.5rem;
+    width: 2.3333%;
+}
+
+.page-container {
+    padding: 10px;
+}
+.cust-col-11-97 {
+    flex: 0 0 auto;
+    padding: 0.5rem;
+    width: 97.6667%;
+}
+.cust-col-12 {
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+.mat-tab-labels {
+    display: flex;
+    flex-direction: row-reverse; /* نمایش تب‌ها به صورت معکوس */
+}

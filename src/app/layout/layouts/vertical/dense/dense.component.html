@@ -6,7 +6,7 @@
     class="dark bg-gray-900 print:hidden"
     [appearance]="navigationAppearance"
     [mode]="isScreenSmall ? 'over' : 'side'"
-    [name]="'mainNavigation'"
+    [name]="'mainNavigation'" *ngIf="navigation"
     [navigation]="navigation.default"
     [opened]="!isScreenSmall"
     [position]="AppSettings.NavigationPosition"

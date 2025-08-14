@@ -7,6 +7,8 @@
 /*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
 /* ----------------------------------------------------------------------------------------------------- */
 
+@import "tailwindcss/components.css";
+@import "tailwindcss/utilities.css";
 @import url(./_fonts.scss);
 @import url(./primeng-custom-styles.scss);
 @import "perfect-scrollbar/css/perfect-scrollbar.css";
@@ -156,6 +158,10 @@
     color: #fff !important;
     background-color: #17a2b8 !important;
     border-color: #17a2b8 !important;
+    &:hover {
+        background-color: #137587 !important;
+        color: #fff !important;
+    }
 }
 
 .btn-warning {
@@ -187,3 +193,9 @@
 }
 
 
+.material-icons.size {
+    font-size: 19px;
+    min-height: 18px;
+    height: 18px;
+    color:white;
+}

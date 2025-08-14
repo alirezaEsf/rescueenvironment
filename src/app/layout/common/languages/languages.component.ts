@@ -15,6 +15,7 @@ import {
 } from '@fuse/components/navigation';
 import { AvailableLangs, TranslocoService } from '@ngneat/transloco';
 import { take } from 'rxjs';
+import {DirectionService} from "../../../../shared/services/DirectionService";
 
 @Component({
     selector: 'languages',
@@ -36,6 +37,7 @@ export class LanguagesComponent implements OnInit, OnDestroy {
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseNavigationService: FuseNavigationService,
+        private _directionService: DirectionService,
         private _translocoService: TranslocoService
     ) {}
 
@@ -91,6 +93,12 @@ export class LanguagesComponent implements OnInit, OnDestroy {
     setActiveLang(lang: string): void {
         // Set the active lang
         this._translocoService.setActiveLang(lang);
+        console.log(lang);
+        if (lang === 'fa'){
+            this._directionService.ENLangFlag = false;
+        }else {
+            this._directionService.ENLangFlag = true;
+        }
     }
 
     /**

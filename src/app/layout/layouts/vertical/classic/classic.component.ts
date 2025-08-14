@@ -21,10 +21,13 @@ import { UserComponent } from 'app/layout/common/user/user.component';
 import { Subject, takeUntil } from 'rxjs';
 import { AppSettings } from '../../../../AppSetting';
 import { NgIf } from '@angular/common';
+import {ConnectionService} from "../../../../../shared/repositories/connection.service";
+import {MainComponent} from "../../../../modules/main/main.component";
 
 @Component({
     selector: 'classic-layout',
     templateUrl: './classic.component.html',
+    styleUrl: './classic.component.scss',
     encapsulation: ViewEncapsulation.None,
     standalone: true,
     imports: [
@@ -42,6 +45,7 @@ import { NgIf } from '@angular/common';
         RouterOutlet,
         QuickChatComponent,
         NgIf,
+        MainComponent,
     ],
 })
 export class ClassicLayoutComponent implements OnInit, OnDestroy {
@@ -57,6 +61,7 @@ export class ClassicLayoutComponent implements OnInit, OnDestroy {
         private _router: Router,
         private _navigationService: NavigationService,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
+        private connectionService: ConnectionService,
         private _fuseNavigationService: FuseNavigationService
     ) {}
 
@@ -93,6 +98,9 @@ export class ClassicLayoutComponent implements OnInit, OnDestroy {
                 // Check if the screen is small
                 this.isScreenSmall = !matchingAliases.includes('md');
             });
+        this.config().subscribe(response => {
+            this.companyName = response.companyName
+        })
     }
 
     /**
@@ -127,4 +135,10 @@ export class ClassicLayoutComponent implements OnInit, OnDestroy {
     }
 
     protected readonly AppSettings = AppSettings;
+    companyName: string;
+
+    config() {
+        return this.connectionService.getConnection('config',
+            '');
+    }
 }

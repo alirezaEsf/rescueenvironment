@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { ApiMockObjectsService } from '../mockObjects/api-mock-objects.service';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
@@ -159,5 +159,37 @@ export class ConnectionService {
         }
 
         return of({ blob: new Blob(), headers: new HttpHeaders() }); // بازگشت یک مقدار پیش‌فرض برای Mock
+    }
+
+    getDownloadConnection(
+        url: string,
+        mockObjectName?: string,
+        options?: any,
+        isMock?: boolean
+    ): Observable<{ blob: Blob; headers: HttpHeaders }> {
+        if (!this.isMockRequest(isMock)) {
+            // Set options correctly for blob response
+            const httpOptions = this.createHttpOptions(options, 'blob', 'response');
+
+            // Return the observable from the httpClient.get
+            return this.httpClient.get<Blob>(environment.serviceBaseUrl + url, httpOptions)
+                .pipe(
+                    map((response: HttpResponse<Blob>) => ({
+                        blob: response.body as Blob, // Get Blob from response body
+                        headers: response.headers // Get headers from response
+                    })),
+                    tap(() => {
+                        // Trigger download in the browser
+                        window.location.href = environment.serviceBaseUrl + url;
+                    })
+                );
+        } else {
+            // Handle mock requests properly
+            if (ApiMockObjectsService[mockObjectName]) {
+                return of({ blob: new Blob(), headers: new HttpHeaders() }); // Return a valid structure
+            } else {
+                return of({ blob: new Blob(), headers: new HttpHeaders() }); // Default case
+            }
+        }
     }
 }

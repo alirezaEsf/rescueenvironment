@@ -21,7 +21,7 @@
                 class="h-full w-full px-16 sm:px-18"
                 [formControl]="searchControl"
                 [matAutocomplete]="matAutocomplete"
-                [placeholder]="'Search...'"
+                [placeholder]="'Search...' | transloco"
                 (keydown)="onKeydown($event)"
                 #barSearchInput
             />
@@ -35,7 +35,7 @@
                     <mat-option
                         class="text-secondary pointer-events-none bg-transparent px-6 py-0 text-md"
                     >
-                        No results found!
+                        {{ "No results found!" | transloco}}
                     </mat-option>
                 }
                 @for (
@@ -111,7 +111,7 @@
                 matInput
                 [formControl]="searchControl"
                 [matAutocomplete]="matAutocomplete"
-                [placeholder]="'Search...'"
+                [placeholder]="'Search...' | transloco"
                 (keydown)="onKeydown($event)"
             />
         </mat-form-field>
@@ -125,7 +125,7 @@
                 <mat-option
                     class="text-secondary pointer-events-none bg-transparent px-6 py-0 text-md"
                 >
-                    No results found!
+                    {{ "No results found!" | transloco}}
                 </mat-option>
             }
             @for (resultSet of resultSets; track trackByFn($index, resultSet)) {

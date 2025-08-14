@@ -1,0 +1,63 @@
+:host{
+    width: 100%;
+
+}
+.outer-panel {
+    height: auto;
+}
+.inner-textarea {
+    max-height: 230px;
+    min-height: 20px;
+    height: 20px;
+}
+.horizontal-tree ::ng-deep .p-tree-container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+}
+::ng-deep .organizationchart-horizontal .p-organizationchart-node-content {
+    flex-direction: row;
+}
+.tree {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: Arial;
+    margin-top: 40px;
+}
+
+.node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.branch {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    margin-top: 40px;
+}
+
+.line {
+    height: 2px;
+    background: #ccc;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+}
+
+.connector {
+    width: 2px;
+    height: 20px;
+    background: #ccc;
+    position: absolute;
+    top: -20px;
+}

@@ -1,0 +1,92 @@
+<app-breadcrumbs id="section"  name="breadcrumbs" *ngIf="!serviceLog" (backClicked)="BeforeButton()"></app-breadcrumbs>
+<div class="grid flex-column" *ngIf="!serviceLog">
+    <p-panel header="کارتابل صورت حساب ">
+        <p-table [value]="billCartableList" name="billCartableTable" selectionMode="single">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="row" name="rowHeader" class="row" translate>
+                        table.header.row
+                        <p-sortIcon field="row"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="partyTitle" name="partyTitleHeader" class="partyTitle" translate>
+                        <p-sortIcon field="partyTitle"></p-sortIcon>
+                        نام کلاینت
+                    </th>
+                    <th pSortableColumn="apiCategoryTitle" name="apiCategoryTitleHeader" class="apiCategoryTitle" translate>
+                        نام بسته
+                        <p-sortIcon field="apiCategoryTitle"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="rdate" name="rdateHeader" class="rdate" translate>
+                        تاریخ ایجاد
+                        <p-sortIcon field="rdate"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="status" name="statusHeader" class="status" translate>
+                        وضعیت
+                        <p-sortIcon field="status"></p-sortIcon>
+                    </th>
+                    <th style="text-align: right !important; border-right: 1px solid #ebe8e8;" translate name="operationHeader">
+                        operation
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template let-i="rowIndex" pTemplate="body" let-billCartable>
+                <tr [pSelectableRow]="billCartable" name="moduleRow">
+                    <td class="row">{{ billCartable.row }}</td>
+                    <td class="partyTitle" [pTooltip]="billCartable.partyTitle"
+                        [tooltipDisabled]="billCartable.partyTitle ? billCartable.partyTitle.length < 20 : false">
+                        {{ billCartable.partyTitle | moreChar19 }}
+                    </td>
+                    <td class="apiCategoryTitle" [pTooltip]="billCartable.apiCategoryTitle"
+                        [tooltipDisabled]="billCartable.apiCategoryTitle ? billCartable.apiCategoryTitle.length < 20 : false">
+                        {{ billCartable.apiCategoryTitle | moreChar19 }}
+                    </td>
+                    <td class="rdate">{{ billCartable.rdate |timePipe }}</td>
+                    <td class="status" [ngStyle]="{'text-align': 'center !important'}">
+                        <div [ngStyle]="{
+                            'border-radius':'2.5px',
+                            'color': billCartable.status ? '#258F30' : '#962515',
+                            'background-color': billCartable.status ? '#85DC8F' : '#F18B7D',
+                            'width':'45px',
+                            'margin':'0 auto'
+                        }">
+                            {{ billCartable.status | statusPipe }}
+                        </div>
+                    </td>
+                    <td style="text-align: right !important; border-right: 1px solid #ebe8e8;">
+                        <button (click)="setRecord(billCartable)" type="button" class="p-button-rounded p-button-lightGreen" pButton pRipple
+                                icon="pi pi-chevron-down" (click)="menu.toggle($event)" name="operationButton"></button>&nbsp;
+                        <p-menu appendTo="body" #menu [popup]="true" [model]="items" name="operationMenu"></p-menu>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+        <br>
+        <div class="grid text-left" name="paginationControls">
+            <div class="col-4-5"></div>
+            <div class="col-1-8" style="margin-top: 5px">
+                <button pButton pRipple icon="pi pi-arrow-right" name="nextPageButton" pTooltip="{{ 'صفحه بعد' | transloco }}"
+                        [disabled]="billCartableList.length < pagesize" (click)="nextPageStatement()"></button>
+                <span>&nbsp;{{ pageDescription }}&nbsp;</span>
+                <button pButton pRipple icon="pi pi-arrow-left" name="previousPageButton" pTooltip="{{ 'صفحه قبل' | transloco }}"
+                        (click)="previousPageStatement()" [disabled]="pageno === 0"></button>
+            </div>
+            <div class="col-1-2"  >
+                <p-dropdown [options]="pagesizeOptions"
+                           class="normal-dropdown-pagination" optionValue="code" optionLabel="name"
+                            [(ngModel)]="pagesize" (onChange)="OnchangePageno($event)" [disabled]="nextBtnFlag">
+                </p-dropdown>
+            </div>
+            <div class="col-4-5"></div>
+        </div>
+
+        <div class="col-12" dir="ltr"  name="backButtonSection">
+            <button (click)="BeforeButton()" style="width: 30px!important;" pButton class="btnConfirm p-button-warning"
+                    icon="pi pi-arrow-right" matTooltip="{{ 'بازگشت' | transloco }}"></button>
+        </div>
+    </p-panel>
+</div>
+<!--<div class="col-12" *ngIf="serviceLog">
+    <app-log-reports [inputChartCallApiReport]="dataLog" (close)="onClose($event)"></app-log-reports>
+</div>-->
+

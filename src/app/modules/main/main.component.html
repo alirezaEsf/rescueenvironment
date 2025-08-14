@@ -1,0 +1,20 @@
+<div class="page-container" id="section" dir="rtl">
+    <div class="grid grid-cols-12">
+        <div class="col-span-12 flex items-start justify-between">
+            <mat-tab-group dynamicHeight [selectedIndex]="selectedTabIndex" (selectedIndexChange)="onTabChange($event)" style="max-width: 95% !important;">
+                <mat-tab *ngFor="let tab of tabs; let index = index">
+                    <ng-template mat-tab-label>
+                        <div class="tab-label-container flex items-center">
+                            <mat-icon class="close-tab-icon cursor-pointer hover:bg-gray-300 rounded" (click)="removeTab(index)">close</mat-icon>
+                            <span class="tab-name">{{ tab.name | transloco }}</span>
+                        </div>
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+            <button pButton id="more" label="" class="p-button-outlined moreBtn more mr-auto" (click)="menu.toggle($event)" *ngIf="tabs?.length > 3" [ngClass]="dynamicClasses">
+                <span class="pi pi-ellipsis-v"></span>
+            </button>
+            <p-menu appendTo="body" #menu [popup]="true" [model]="items"></p-menu>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,402 @@
+<!--
+<app-breadcrumbs id="section" *ngIf="!rulConditionFlag"></app-breadcrumbs>
+<div class="w-full">
+    <p-panel header="{{'rule.header.rule' | transloco}}" *ngIf="!rulConditionFlag&&!addFlag&&!updateFlag">
+
+        <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 my-10 mx-5">
+            <div class="">
+                <label class="normal-label"> <span >{{ 'rule.input.ruleApiName' | transloco}} :</span></label><br>
+                <input [(ngModel)]="name" pInputText (keydown.enter)="onKeydownSearch($event)" class="normal-input">
+            </div>
+            <div class="">
+                <label class="normal-label"> <span >{{ 'rule.dropdown.statusCode' | transloco}} :</span></label><br>
+                <p-dropdown
+                    class="normal-dropdown"
+                    [options]="statusCodeOptions"
+                    [(ngModel)]="statusCode"
+                    optionValue="code"
+                    optionLabel="name"
+                    (onChange)="search()"
+                >
+                </p-dropdown>
+            </div>
+            <div class="w-full mt-4 text-left">
+                <button
+                    pButton
+                    label="{{'button.search' | transloco}}"
+                    icon="pi pi-search"
+                    (click)="search()"
+                    class="w-[110px] my-1 px-4 py-2 text-white rounded "
+                ></button>
+                <button
+                    pButton
+                    label="{{'button.clear' | transloco}}"
+                    icon="pi pi-filter-slash"
+                    (click)="clear()"
+                    class="my-1 px-4 py-2 border border-gray-400 text-gray-700 rounded hover:bg-gray-100"
+                ></button>
+            </div>
+        </div>
+        <div class="col-12" *ngIf="!addFlag&&!updateFlag">
+            <button pButton label="{{'rule.button.registerRule' | transloco}}"
+                    icon="pi pi-plus" (click)="showAdd()"></button>
+        </div>
+        <p-table [value]="ruleList" *ngIf="!addFlag&&!updateFlag" selectionMode="single"
+                 [paginator]="true" [rows]="rows" [showCurrentPageReport]="true" [(first)]="first"
+                 [currentPageReportTemplate]="paginationLabel"
+                 [rowsPerPageOptions]="[5,10,25,50,100]">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="ruleId" class="ruleId" >
+                        rule.table.header.ruleId
+                        <p-sortIcon field="ruleId"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="name" class="name" >
+                        rule.table.header.ruleName
+                        <p-sortIcon field="name"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="httpsstatus" class="httpsstatus" >
+                        rule.table.header.httpsStatus
+                        <p-sortIcon field="httpsstatus"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="ruleTemplate" class="ruleTemplate" >
+                        rule.table.header.ruleTemplate
+                        <p-sortIcon field="ruleTemplate"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="messageTitle" class="messageTitle" >
+                        rule.table.header.messageTitle
+                        <p-sortIcon field="messageTitle"></p-sortIcon>
+                    </th>
+
+                    <th style="text-align: right !important;border-right: 1px solid #ebe8e8;" >
+                        rule.table.header.operation
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template let-i="rowIndex" pTemplate="body" let-roule>
+                <tr [pSelectableRow]="roule">
+                    <td class="ruleId"
+                        [pTooltip]="roule.ruleId"
+                        [tooltipDisabled]="roule.ruleId?roule.ruleId.toString().length < 20:false"
+                    >
+                        {{roule.ruleId|moreChar19}}
+                    </td>
+                    <td class="name"
+                        [pTooltip]="roule.name"
+                        [tooltipDisabled]="roule.name?roule.name.length < 20:false"
+                    >
+                        {{roule.name|moreChar19}}
+                    </td>
+                    <td class="httpsstatus">{{roule.httpsstatus}}</td>
+                    <td class="ruleTemplate">{{roule.ruleTemplate|formatRule}}</td>
+                    <td class="messageTitle"
+                        [pTooltip]="roule.messageTitle"
+                        [tooltipDisabled]="roule.messageTitle?roule.messageTitle.length < 20:false"
+                    >
+                        {{roule.messageTitle|moreChar19}}
+                    </td>
+
+                    <td  style="text-align: right !important;border-right: 1px solid #ebe8e8;">
+                        <button type="button" class="p-button-rounded  "
+                                pButton (click)="setRecord(roule)"
+                                pRipple icon="pi pi-chevron-down" (click)="menu.toggle($event)"></button>&nbsp;
+                        <p-menu appendTo="body" #menu [popup]="true" [model]="items"></p-menu>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-panel>
+    <div class="w-full" *ngIf="addFlag">
+        <app-api-rule-register (close)="onClose($event)"></app-api-rule-register>
+    </div>
+    <div class="w-full" *ngIf="updateFlag">
+        <app-api-rule-update [inputUpdate]="ruleDto" (close)="onClose($event)"></app-api-rule-update>
+    </div>
+    <div class="w-full" *ngIf="rulConditionFlag">
+        <app-api-rule-condition [inputCondition]="ruleDto" (close)="onClose($event)"></app-api-rule-condition>
+    </div>
+</div>
+
+<p-dialog [style]="{'width':'55%'}" [(visible)]="dialogMessageFlag"
+          [modal]="true" [draggable]="false"
+          [resizable]="true">
+    <p-panel header="{{'rule.dialog.header.chooseMessage' | transloco}}">
+        <div class="grid grid-cols-12">
+            <div class="grid grid-cols-12">
+                <div class="col-4">
+                    <label class="normal-label">
+<span class="red-color-text">* </span>
+<span >rule.dialog.input.codeMessage :</span></label><br>
+                    <input disabled [(ngModel)]="codeMessage" (keydown.enter)="onKeydownSearchMessage($event)" class="normal-input"
+                           pInputText>
+                </div>
+                <div class="col-4">
+                    <label class="normal-label">
+<span class="red-color-text">* </span>
+<span >rule.dialog.input.messageTitle :</span></label><br>
+                    <input [(ngModel)]="titleMessage" (keydown.enter)="onKeydownSearchMessage($event)" class="normal-input"
+                           pInputText>
+                </div>
+                <div class="col-4">
+                    <label class="normal-label">
+<span class="red-color-text">* </span>
+<span >rule.dialog.input.faMessage :</span></label><br>
+                    <input [(ngModel)]="textMessage" (keydown.enter)="onKeydownSearchMessage($event)" class="normal-input"
+                           pInputText>
+                </div>
+                <div class="col-4">
+                    <label class="normal-label"> <span >rule.dialog.input.enMessage :</span></label><br>
+                    <input [(ngModel)]="textENMessage" (keydown.enter)="onKeydownSearchMessage($event)"  class="normal-input"
+                           pInputText>
+                </div>
+                <div class="col-4">
+                    <label class="normal-label">
+<span class="red-color-text">* </span>
+<span >rule.dialog.dropdown.tableId :</span></label><br>
+                    <p-dropdown
+                        class="normal-dropdown"
+                        [options]="categoryMessages"
+                        optionValue="code"
+                        optionLabel="name"
+                        [(ngModel)]="tableIdMessage"
+                        (onChange)="messageSearch()">
+                    </p-dropdown>
+                </div>
+                <div class="col-4">
+                    <label class="normal-label">
+<span class="red-color-text">* </span>
+<span >rule.dialog.dropdown.typeMessages :</span></label><br>
+                    <p-dropdown
+                        class="normal-dropdown"
+                        [options]="typeMessages"
+                        optionValue="code"
+                        optionLabel="name"
+                        [(ngModel)]="typeMessage"
+                        (onChange)="messageSearch()">
+                    </p-dropdown>
+                </div>
+                <div class="col-4">
+                    <button pButton style="margin: 6px"
+                            severity="success" dir="ltr"
+                            label="{{'rule.dialog.button.registerChooseMessage' | transloco}}"
+                            icon="pi pi-check"
+                            (click)="onRegisterMessage()"></button>&nbsp;
+                </div>
+                <div class="col-8" dir="ltr">
+
+                    <button pButton label="{{'button.search' | transloco}}" style="width: 110px;margin: 6px"
+                            class="normal-button" icon="pi pi-search" (click)="messageSearch()"></button>&nbsp;&nbsp;
+                    <button pButton label="{{'button.clear'|transloco}}" [outlined]="true"
+                            icon="pi pi-filter-slash"
+                            style="margin: 6px" (click)="clear()"></button>
+                </div>
+            </div>
+            <div class="col-4"></div>
+            <div class="col-4"></div>
+            <div class="col-12">
+                <p-card>
+                    <p-table [value]="messagesList" selectionMode="single"
+                             [paginator]="true" [rows]="rows2" [showCurrentPageReport]="true" [(first)]="first2"
+                             [currentPageReportTemplate]="paginationLabel"
+                             [rowsPerPageOptions]="[5,10,25,50,100]">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="row" >table.header.dialog.messageUnitId</th>
+                                <th >table.detail.dialog.messageCode</th>
+                                <th >table.detail.dialog.messageTitle</th>
+                                <th >table.detail.dialog.messageTableId</th>
+                                <th >table.detail.dialog.isSystemMessage</th>
+                                <th >table.detail.dialog.operation</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template let-i="rowIndex" pTemplate="body" let-messages>
+                            <tr [pSelectableRow]="messages">
+                                <td class="row">{{messages.messageId}}</td>
+                                <td
+                                    [pTooltip]="messages.code"
+                                    [tooltipDisabled]="messages.code?messages.code.length < 20:false"
+                                >
+                                    {{messages.code|moreChar19}}
+                                </td>
+                                <td
+                                    [pTooltip]="messages.title"
+                                    [tooltipDisabled]="messages.title?messages.title.length < 20:false"
+                                >
+                                    {{messages.title|moreChar19}}
+                                </td>
+                                <td>{{messages.tableId|messagesCategory}}</td>
+                                <td>
+                                    <img *ngIf="messages.isSystemMessage==1"
+                                         src="assets/icons/correct.jpeg">
+                                    <img *ngIf="messages.isSystemMessage==0"
+                                         src="assets/icons/cross.jpeg">
+                                </td>
+                                <td dir="ltr">
+                                    <button pButton label="{{'button.selectedMessage'|transloco}}" icon="pi pi-check"
+                                            (click)="selectedMessage(messages)"></button>&nbsp;
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </p-card>
+            </div>
+        </div>
+    </p-panel>
+</p-dialog>
+-->
+<app-breadcrumbs id="section" *ngIf="!rulConditionFlag&&!addFlag&&!updateFlag" [showBackButton]="false" ></app-breadcrumbs>
+<p-toast />
+<div class="fle flex-col w-full px-5">
+
+        <div class="grid grid-cols-1 xl:grid-cols-12 2xl:grid-cols-12 md:grid-cols-12 gap-4 my-10 " *ngIf="!rulConditionFlag && !addFlag && !updateFlag">
+            <div class="col-span-3 flex text-left   h-12 gap-2 mt-5-5  sm:hidden ">
+                <button
+                    pButton
+                    label="{{'button.clear' | transloco}}"
+                    icon="pi pi-filter-slash"
+                    (click)="clear()"
+                    [outlined]="true"
+                    class="normal-button"
+                ></button>
+                <button
+                    pButton
+                    label="{{'button.search' | transloco}}"
+                    icon="pi pi-search"
+                    (click)="search()"
+                    class="normal-button"
+                ></button>
+            </div>
+            <div class="col-span-3">
+                <label class="normal-label">{{ 'rule.input.ruleApiName' | transloco }}:</label>
+                <input
+                    [(ngModel)]="name"
+                    pInputText
+                    (keydown.enter)="onKeydownSearch($event)"
+                    class=" border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 normal-input"
+                />
+            </div>
+            <div class="col-span-3">
+                <label class="normal-label">{{ 'rule.dropdown.statusCode' | transloco }}:</label>
+                <p-dropdown
+                    class="normal-dropdown"
+                    [options]="statusCodeOptions"
+                    [(ngModel)]="statusCode"
+                    optionValue="code"
+                    optionLabel="name"
+                    (onChange)="search()"
+                ></p-dropdown>
+            </div>
+            <div class="hidden sm:flex sm:col-span-6 justify-start items-center gap-2 h-12 mt-5-5 rtl:flex-row-reverse">
+                <button
+                    pButton
+                    label="{{'button.clear' | transloco}}"
+                    icon="pi pi-filter-slash"
+                    (click)="clear()"
+                    [outlined]="true"
+                    class="normal-button"
+                ></button>
+                <button
+                    pButton
+                    label="{{'button.search' | transloco}}"
+                    icon="pi pi-search"
+                    (click)="search()"
+                    class="normal-button"
+                ></button>
+            </div>
+        </div>
+        <div class="w-full flex justify-start mb-4" *ngIf="!rulConditionFlag && !addFlag && !updateFlag">
+            <button
+                pButton
+                label="{{ 'rule.button.registerRule' | transloco }}"
+                icon="pi pi-plus" class="normal-button "
+                (click)="showAdd()"
+            ></button>
+        </div>
+        <div class="w-full" *ngIf="!rulConditionFlag && !addFlag && !updateFlag">
+            <p-table
+                [value]="ruleList"
+                selectionMode="single"
+                [paginator]="true"
+                [rows]="rows"
+                [showCurrentPageReport]="true"
+                [(first)]="first"
+                [currentPageReportTemplate]="paginationLabel"
+                [rowsPerPageOptions]="[5,10,25,50,100]"
+                [responsiveLayout]="'scroll'"
+            >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="ruleId" pSortableColumn="ruleId">
+                            {{ 'rule.table.header.ruleId' | transloco }}
+                            <p-sortIcon field="ruleId"></p-sortIcon>
+                        </th>
+                        <th class="name" pSortableColumn="name">
+                            {{ 'rule.table.header.ruleName' | transloco }}
+                            <p-sortIcon field="name"></p-sortIcon>
+                        </th>
+                        <th class="httpsstatus" pSortableColumn="httpsstatus">
+                            {{ 'rule.table.header.httpsStatus' | transloco }}
+                            <p-sortIcon field="httpsstatus"></p-sortIcon>
+                        </th>
+                        <th class="messageTitle" pSortableColumn="messageTitle">
+                            {{ 'rule.table.header.messageTitle' | transloco }}
+                            <p-sortIcon field="messageTitle"></p-sortIcon>
+                        </th>
+                        <th class="ruleTemplate" pSortableColumn="ruleTemplate">
+                            {{ 'rule.table.header.ruleTemplate' | transloco }}
+                            <p-sortIcon field="ruleTemplate"></p-sortIcon>
+                        </th>
+                        <th class="text-right border-r border-[#ebe8e8]">
+                            {{ 'rule.table.header.operation' | transloco }}
+                        </th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-roule let-i="rowIndex">
+                    <tr [pSelectableRow]="roule">
+                        <td class="ruleId"
+                            [pTooltip]="roule.ruleId"
+                            [tooltipDisabled]="!roule.ruleId || roule.ruleId.toString().length < 20"
+                        >
+                            {{ roule.ruleId | moreChar19 }}
+                        </td>
+                        <td class="name"
+                            [pTooltip]="roule.name"
+                            [tooltipDisabled]="!roule.name || roule.name.length < 20"
+                        >
+                            {{ roule.name | moreChar19 }}
+                        </td>
+                        <td class="httpsstatus">{{ roule.httpsstatus }}</td>
+                        <td class="ruleTemplate">{{ roule.ruleTemplate | formatRule }}</td>
+                        <td class="messageTitle"
+                            [pTooltip]="roule.messageTitle"
+                            [tooltipDisabled]="!roule.messageTitle || roule.messageTitle.length < 20"
+                        >
+                            {{ roule.messageTitle | moreChar19 }}
+                        </td>
+                        <td class="text-right border-r border-[#ebe8e8]">
+                            <button
+                                type="button"
+                                class="p-button-rounded "
+                                pButton
+                                icon="pi pi-chevron-down"
+                                (click)="setRecord(roule); menu.toggle($event)"
+                            ></button>
+                            <p-menu appendTo="body" #menu [popup]="true" [model]="items"></p-menu>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+
+</div>
+<div class="w-full" *ngIf="addFlag">
+    <app-api-rule-register (close)="onClose($event)"></app-api-rule-register>
+</div>
+<div class="w-full" *ngIf="updateFlag">
+    <app-api-rule-update [inputUpdate]="ruleDto" (close)="onClose($event)"></app-api-rule-update>
+</div>
+<div class="w-full" *ngIf="rulConditionFlag">
+    <app-api-rule-condition [inputCondition]="ruleDto" (close)="onClose($event)"></app-api-rule-condition>
+</div>

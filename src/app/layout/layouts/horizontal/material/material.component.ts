@@ -19,6 +19,7 @@ import { SearchComponent } from 'app/layout/common/search/search.component';
 import { ShortcutsComponent } from 'app/layout/common/shortcuts/shortcuts.component';
 import { UserComponent } from 'app/layout/common/user/user.component';
 import { Subject, takeUntil } from 'rxjs';
+import {NgIf} from "@angular/common";
 
 @Component({
     selector: 'material-layout',
@@ -39,6 +40,7 @@ import { Subject, takeUntil } from 'rxjs';
         UserComponent,
         FuseHorizontalNavigationComponent,
         RouterOutlet,
+        NgIf,
     ],
 })
 export class MaterialLayoutComponent implements OnInit, OnDestroy {

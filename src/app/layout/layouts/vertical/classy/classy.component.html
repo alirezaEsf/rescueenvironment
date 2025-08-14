@@ -2,7 +2,7 @@
 <fuse-loading-bar></fuse-loading-bar>
 
 <!-- Navigation -->
-<fuse-vertical-navigation
+<fuse-vertical-navigation *ngIf="navigation"
     class="dark bg-gray-900 print:hidden"
     [mode]="isScreenSmall ? 'over' : 'side'"
     [name]="'mainNavigation'"
@@ -59,7 +59,7 @@
         <div
             class="mb-4 mt-2 flex h-16 flex-0 items-center justify-center pl-2 pr-6 opacity-12"
         >
-            <img class="max-w-36" src="images/logo/logo-text-on-dark.svg" />
+            <!--<img class="max-w-36" src="images/logo/logo-text-on-dark.svg" />-->
         </div>
     </ng-container>
 </fuse-vertical-navigation>
@@ -75,7 +75,7 @@
             <mat-icon [svgIcon]="'heroicons_outline:bars-3'"></mat-icon>
         </button>
         <!-- Components -->
-        <div class="ml-auto flex items-center space-x-0.5 pl-2 sm:space-x-2">
+        <div class="ml-auto flex items-center space-x-0.5 pl-2 sm:space-x-2 w-full flex-row-reverse">
             <languages></languages>
             <fuse-fullscreen class="hidden md:block"></fuse-fullscreen>
             <search [appearance]="'bar'"></search>

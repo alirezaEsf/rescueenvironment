@@ -35,6 +35,7 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations/public-api';
 import { Subject, debounceTime, filter, map, takeUntil } from 'rxjs';
+import {TranslocoPipe} from "@ngneat/transloco";
 
 @Component({
     selector: 'search',
@@ -55,6 +56,7 @@ import { Subject, debounceTime, filter, map, takeUntil } from 'rxjs';
         MatFormFieldModule,
         MatInputModule,
         NgClass,
+        TranslocoPipe,
     ],
     providers: [
         {

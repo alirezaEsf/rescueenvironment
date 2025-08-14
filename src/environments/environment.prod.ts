@@ -1,10 +1,10 @@
 export const environment = {
-    // serviceBaseUrl :'https://wallet-api.rqbank.ir/wallet/api/',
-    serviceBaseUrl : 'https://wallet-bff.rqb.ir/wallet/api/',
-    bffBaseUrl : 'https://wallet-bff.rqb.ir/sep/api/',
+   // serviceBaseUrl: 'https://service-api.rqbank.ir/',
+    serviceBaseUrl: 'http://172.24.161.106:8086/',
     version: '1.08.26',
     defaultLanguage: 'fa',
     supportedLanguages: ['fa-IR', 'en-US'],
     production: true,
-    hmr       : false
+    apiBaseUrl: '/gateway-ui/',
+    hmr: false
 };
