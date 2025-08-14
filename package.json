@@ -5,6 +5,7 @@
     "author": "https://themeforest.net/user/srcn",
     "license": "https://themeforest.net/licenses/standard",
     "private": true,
+    "homepage": "https://alirezaesf.github.io/rescueenvironment",
     "scripts": {
         "ng": "ng",
         "start": "ng serve --hmr --open --configuration development --live-reload=true",
