@@ -1,0 +1,15 @@
+<div *ngIf="message" [ngStyle]="{'background': message.background,'border-right':'6px solid ' + message.textColor}" style="height: 67px;display: flex;justify-content: center;align-items: center;margin: 0 0 1rem 0;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 6px;padding: 1rem;">
+  <div style="width: 100%;height: 100%;display: flex;justify-content:center;align-items: center;">
+    <mat-icon [ngStyle]="{'color': message.textColor}"
+      style="width: 2rem;height: 2rem;cursor: pointer;font-size: xx-large;">{{message.icon}}</mat-icon>
+    <div style="flex: 1;display: flex;flex-direction: column;margin: 0 1rem 0 0;">
+      <div [ngStyle]="{'color': message.textColor}" class="iransans" style="font-weight: 700;font-size: 14px;">{{message.title}}</div>
+      <div [ngStyle]="{'color': message.textColor}" class="iransans" style="font-weight: normal;font-size: 14px;min-width: 232px;">
+        {{message.message}}
+      </div>
+    </div>
+    <mat-icon [ngStyle]="{'color': message.textColor}" style="width: 2rem;height: 2rem;cursor: pointer;">close</mat-icon>
+  </div>
+</div>

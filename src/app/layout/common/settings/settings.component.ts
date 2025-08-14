@@ -14,6 +14,8 @@ import {
 } from '@fuse/services/config';
 
 import { Subject, takeUntil } from 'rxjs';
+import { AppSettings } from '../../../AppSetting';
+import { AppConfiguratorComponent } from '../primeng/configurator/app.configurator.component';
 
 @Component({
     selector: 'settings',
@@ -29,7 +31,7 @@ import { Subject, takeUntil } from 'rxjs';
 
             @media (screen and min-width: 1280px) {
                 empty-layout + settings .settings-cog {
-                    right: 0 !important;
+                    left: 0 !important;
                 }
             }
         `,
@@ -42,6 +44,7 @@ import { Subject, takeUntil } from 'rxjs';
         MatButtonModule,
         NgClass,
         MatTooltipModule,
+        AppConfiguratorComponent,
     ],
 })
 export class SettingsComponent implements OnInit, OnDestroy {
@@ -74,6 +77,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
             .subscribe((config: FuseConfig) => {
                 // Store the config
                 this.config = config;
+                if (config.scheme === 'dark'){
+                    document.documentElement.classList.add('p-dark');
+                }else {
+                    document.documentElement.classList.remove('p-dark');
+                }
             });
     }
 
@@ -116,6 +124,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
      * @param scheme
      */
     setScheme(scheme: Scheme): void {
+        if (scheme === 'dark'){
+            document.documentElement.classList.add('p-dark');
+        }else {
+            document.documentElement.classList.remove('p-dark');
+        }
         this._fuseConfigService.config = { scheme };
     }
 
@@ -127,4 +140,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
     setTheme(theme: Theme): void {
         this._fuseConfigService.config = { theme };
     }
+
+    protected readonly AppSettings = AppSettings;
 }

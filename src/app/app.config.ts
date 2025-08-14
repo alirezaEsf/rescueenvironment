@@ -17,9 +17,25 @@ import { provideIcons } from 'app/core/icons/icons.provider';
 import { mockApiServices } from 'app/mock-api';
 import { firstValueFrom } from 'rxjs';
 import { TranslocoHttpLoader } from './core/transloco/transloco.http-loader';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
+import Material from '@primeng/themes/material';
+import nora from '@primeng/themes/nora';
+import lara from '@primeng/themes/lara';
 
 export const appConfig: ApplicationConfig = {
     providers: [
+        providePrimeNG({
+            theme: {
+                preset: Aura,
+                options: {
+                    prefix: 'p',
+                    darkModeSelector: '.p-dark',
+                    inputStyle: 'outlined',
+                    cssLayer: false
+                }
+            }
+        }),
         provideAnimations(),
         provideHttpClient(),
         provideRouter(
@@ -60,9 +76,13 @@ export const appConfig: ApplicationConfig = {
                         id: 'tr',
                         label: 'Turkish',
                     },
+                    {
+                        id: 'fa',
+                        label: 'فارسی',
+                    }
                 ],
-                defaultLang: 'en',
-                fallbackLang: 'en',
+                defaultLang: 'fa',
+                fallbackLang: 'fa',
                 reRenderOnLangChange: true,
                 prodMode: true,
             },

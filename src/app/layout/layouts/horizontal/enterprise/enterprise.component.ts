@@ -20,6 +20,8 @@ import { SearchComponent } from 'app/layout/common/search/search.component';
 import { ShortcutsComponent } from 'app/layout/common/shortcuts/shortcuts.component';
 import { UserComponent } from 'app/layout/common/user/user.component';
 import { Subject, takeUntil } from 'rxjs';
+import { AppSettings } from '../../../../AppSetting';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'enterprise-layout',
@@ -41,6 +43,7 @@ import { Subject, takeUntil } from 'rxjs';
         FuseHorizontalNavigationComponent,
         RouterOutlet,
         QuickChatComponent,
+        NgIf,
     ],
 })
 export class EnterpriseLayoutComponent implements OnInit, OnDestroy {
@@ -124,4 +127,6 @@ export class EnterpriseLayoutComponent implements OnInit, OnDestroy {
             navigation.toggle();
         }
     }
+
+    protected readonly AppSettings = AppSettings;
 }

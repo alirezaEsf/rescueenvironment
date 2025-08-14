@@ -3,19 +3,20 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from 'app/core/auth/auth.service';
 import { Subject, finalize, takeUntil, takeWhile, tap, timer } from 'rxjs';
+import { TranslocoDirective, TranslocoService } from '@ngneat/transloco';
 
 @Component({
     selector: 'auth-sign-out',
     templateUrl: './sign-out.component.html',
     encapsulation: ViewEncapsulation.None,
     standalone: true,
-    imports: [RouterLink, I18nPluralPipe],
+    imports: [RouterLink, I18nPluralPipe, TranslocoDirective],
 })
 export class AuthSignOutComponent implements OnInit, OnDestroy {
     countdown: number = 5;
     countdownMapping: any = {
-        '=1': '# second',
-        other: '# seconds',
+        '=1': this._translocoService.translate('# second'),
+        other: this._translocoService.translate('# seconds'),
     };
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -24,6 +25,7 @@ export class AuthSignOutComponent implements OnInit, OnDestroy {
      */
     constructor(
         private _authService: AuthService,
+        private _translocoService: TranslocoService,
         private _router: Router
     ) {}
 

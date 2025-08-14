@@ -3,6 +3,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { AuthService } from 'app/core/auth/auth.service';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 @Component({
     selector: 'sign-out-modern',
@@ -10,7 +11,7 @@ import { AuthService } from 'app/core/auth/auth.service';
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations,
     standalone: true,
-    imports: [RouterLink, I18nPluralPipe],
+    imports: [RouterLink, I18nPluralPipe, TranslocoDirective],
 })
 export class SignOutModernComponent {
     countdown: number = 5;

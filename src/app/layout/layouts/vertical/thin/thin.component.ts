@@ -19,6 +19,8 @@ import { SearchComponent } from 'app/layout/common/search/search.component';
 import { ShortcutsComponent } from 'app/layout/common/shortcuts/shortcuts.component';
 import { UserComponent } from 'app/layout/common/user/user.component';
 import { Subject, takeUntil } from 'rxjs';
+import { NgIf } from '@angular/common';
+import { AppSettings } from '../../../../AppSetting';
 
 @Component({
     selector: 'thin-layout',
@@ -39,6 +41,7 @@ import { Subject, takeUntil } from 'rxjs';
         UserComponent,
         RouterOutlet,
         QuickChatComponent,
+        NgIf,
     ],
 })
 export class ThinLayoutComponent implements OnInit, OnDestroy {
@@ -122,4 +125,6 @@ export class ThinLayoutComponent implements OnInit, OnDestroy {
             navigation.toggle();
         }
     }
+
+    protected readonly AppSettings = AppSettings;
 }

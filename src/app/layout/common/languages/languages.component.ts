@@ -48,13 +48,20 @@ export class LanguagesComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
         // Get the available languages from transloco
-        this.availableLangs = this._translocoService.getAvailableLangs();
+        if (localStorage.getItem('activeLang')){
+            this.activeLang = localStorage.getItem('activeLang');
+            this._updateNavigation(this.activeLang);
+            this._translocoService.setActiveLang(this.activeLang);
 
+        }
+        this.availableLangs = this._translocoService.getAvailableLangs();
         // Subscribe to language changes
         this._translocoService.langChanges$.subscribe((activeLang) => {
+            console.log('************');
+            console.log(activeLang);
             // Get the active lang
             this.activeLang = activeLang;
-
+            localStorage.setItem('activeLang', activeLang);
             // Update the navigation
             this._updateNavigation(activeLang);
         });
@@ -63,6 +70,7 @@ export class LanguagesComponent implements OnInit, OnDestroy {
         this.flagCodes = {
             en: 'us',
             tr: 'tr',
+            fa: 'fa',
         };
     }
 
@@ -128,7 +136,7 @@ export class LanguagesComponent implements OnInit, OnDestroy {
         const navigation = navComponent.navigation;
 
         // Get the Project dashboard item and update its title
-        const projectDashboardItem = this._fuseNavigationService.getItem(
+       /* const projectDashboardItem = this._fuseNavigationService.getItem(
             'dashboards.project',
             navigation
         );
@@ -160,7 +168,7 @@ export class LanguagesComponent implements OnInit, OnDestroy {
 
                     // Refresh the navigation component
                     navComponent.refresh();
-                });
-        }
+                });*/
+        // }
     }
 }

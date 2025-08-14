@@ -1,0 +1,53 @@
+<div [formGroup]="formGroup" style="display: flex; justify-content: center; width: 100%; margin-top: 2rem;">
+  <fieldset style="height: 10rem;">
+    <legend>saffron-select</legend>
+    <div class="select-continer">
+      <saffron-select [formGroup]="formGroup" [controlName]="'degree'" [placeholder]="selectPlaceHolder" [list]="degree">
+      </saffron-select>
+    </div>
+  </fieldset>
+</div>
+
+<div [formGroup]="formGroup" style="display: flex; justify-content: center; width: 100%; margin-top: 2rem;">
+  <fieldset style="height: 10rem;">
+    <legend>saffron-select</legend>
+    <div class="select-continer">
+      <saffron-select [formGroup]="formGroup" [controlName]="'paperCount'" [tooltip]="'تست '" [placeholder]="paperCountPlaceHolder"
+        [list]="paperCountItems">
+      </saffron-select>
+    </div>
+  </fieldset>
+</div>
+
+<div [formGroup]="formGroup" style="display: flex; justify-content: center; width: 100%; margin-top: 2rem;">
+  <fieldset style="height: 10rem;">
+    <legend>saffron-select Multi select</legend>
+    <div class="select-continer">
+      <saffron-select [formGroup]="formGroup" [controlName]="'multiSheetNo'" [isMultiple]="true" [tooltip]="'تست '"
+        [placeholder]="paperCountPlaceHolder" [list]="paperCountItems">
+      </saffron-select>
+    </div>
+  </fieldset>
+</div>
+
+
+<div [formGroup]="formGroup" style="display: flex; justify-content: center; width: 100%; margin-top: 2rem;">
+  <fieldset style="height: 10rem;">
+    <legend>saffron-select(Touched)</legend>
+    <div class="select-continer">
+      <saffron-select [formGroup]="formGroup" [controlName]="'requiredDegree'" [placeholder]="selectPlaceHolder" [list]="degree">
+      </saffron-select>
+    </div>
+  </fieldset>
+</div>
+
+<div style="display: flex; justify-content: center; width: 100%; margin-top: 2rem;">
+  <fieldset style="height: 10rem;">
+    <legend>saffron-select(disbaled)</legend>
+
+    <div class="select-continer">
+      <saffron-select [formGroup]="formGroup" [controlName]="'disbaledSelect'" [placeholder]="selectPlaceHolder" [list]="degree">
+      </saffron-select>
+    </div>
+  </fieldset>
+</div>

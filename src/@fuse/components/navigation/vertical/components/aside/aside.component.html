@@ -24,14 +24,14 @@
         <!-- Title & Subtitle -->
         <div class="fuse-vertical-navigation-item-title-wrapper">
             <div class="fuse-vertical-navigation-item-title">
-                <span [ngClass]="item.classes?.title">
-                    {{ item.title }}
+                <span [ngClass]="item.classes?.title"  *transloco="let t">
+                    {{ t(item.title) }}
                 </span>
             </div>
             @if (item.subtitle) {
                 <div class="fuse-vertical-navigation-item-subtitle">
-                    <span [ngClass]="item.classes?.subtitle">
-                        {{ item.subtitle }}
+                    <span [ngClass]="item.classes?.subtitle"  *transloco="let t">
+                        {{ t(item.subtitle) }}
                     </span>
                 </div>
             }
@@ -42,9 +42,9 @@
             <div class="fuse-vertical-navigation-item-badge">
                 <div
                     class="fuse-vertical-navigation-item-badge-content"
-                    [ngClass]="item.badge.classes"
+                    [ngClass]="item.badge.classes"  *transloco="let t"
                 >
-                    {{ item.badge.title }}
+                    {{ t(item.badge.title) }}
                 </div>
             </div>
         }

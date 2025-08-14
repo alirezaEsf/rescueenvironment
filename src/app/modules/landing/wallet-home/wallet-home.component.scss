@@ -1,0 +1,12 @@
+.parent {
+    display: flex;
+    flex-wrap: wrap; /* اطمینان حاصل می‌کند که عناصر به سطر بعدی بروند */
+}
+
+.child {
+    width: 33.33%; /* هر عنصر یک‌سوم عرض کل را اشغال می‌کند */
+    box-sizing: border-box; /* برای جلوگیری از نشت عرض */
+}
+:host{
+    width: 100% !important;
+}

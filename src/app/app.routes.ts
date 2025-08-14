@@ -3,6 +3,9 @@ import { initialDataResolver } from 'app/app.resolvers';
 import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
+import {
+    DemoViewerComponent
+} from './modules/mat-wrapper-components/projects/components/src/lib/_02-saffron-demo/_01-demo-viewer/demo-viewer.component';
 
 // prettier-ignore
 /* eslint-disable max-len */
@@ -11,6 +14,21 @@ export const appRoutes: Route[] = [
 
     // Redirect empty path to '/dashboards/project'
     {path: '', pathMatch : 'full', redirectTo: 'dashboards/project'},
+    {
+        path: 'main',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        component: LayoutComponent,
+        resolve: {
+            initialData: initialDataResolver
+        },
+        children: [
+            {path: 'home', loadChildren: () => import('app/modules/main/main.routes')},
+        ]
+    },
+    {
+        path: 'demo', component: DemoViewerComponent,
+    },
 
     // Redirect signed-in user to the '/dashboards/project'
     //

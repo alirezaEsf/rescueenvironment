@@ -6,6 +6,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class FuseConfigService {
     private _config = new BehaviorSubject(inject(FUSE_CONFIG));
+    constructor() {
+        if (localStorage.getItem('FuseConfig')){
+            const config = JSON.parse(localStorage.getItem('FuseConfig'));
+            this._config.next(config);
+        }
+    }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Accessors
@@ -17,6 +23,8 @@ export class FuseConfigService {
     set config(value: any) {
         // Merge the new config over to the current config
         const config = merge({}, this._config.getValue(), value);
+        localStorage.setItem('FuseConfig', JSON.stringify(config));
+
 
         // Execute the observable
         this._config.next(config);

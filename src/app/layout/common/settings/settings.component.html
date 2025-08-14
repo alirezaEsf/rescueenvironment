@@ -1,11 +1,5 @@
 <div
-    class="settings-cog fixed right-0 z-90 flex h-10 w-10 cursor-pointer items-center justify-center rounded-l-lg bg-red-600 bg-opacity-90 shadow-lg print:hidden"
-    [class.lg:right-0]="
-        config.layout === 'centered' || config.layout === 'material'
-    "
-    [class.lg:right-16]="
-        config.layout !== 'centered' && config.layout !== 'material'
-    "
+    class="settings-cog z-90 flex h-10 w-10 cursor-pointer items-center justify-center rounded-l-lg bg-red-600 bg-opacity-90 shadow-lg print:hidden"
     style="top: 275px"
     (click)="settingsDrawer.toggle()"
 >
@@ -20,7 +14,7 @@
     fixed
     [mode]="'over'"
     [name]="'settingsDrawer'"
-    [position]="'right'"
+    [position]="AppSettings.ThemeDrawerPosition"
     #settingsDrawer
 >
     <div class="bg-card flex w-full flex-col overflow-auto">
@@ -44,10 +38,15 @@
                     [svgIcon]="'heroicons_outline:x-mark'"
                 ></mat-icon>
             </button>
+
         </div>
 
         <div class="flex flex-col p-6">
             <!-- Theme -->
+            <div class="text-secondary text-md font-semibold">PrimeNgTheme</div>
+            <div>
+                <app-configurator />
+            </div>
             <div class="text-secondary text-md font-semibold">THEME</div>
             <div class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
                 @for (theme of config.themes; track theme) {

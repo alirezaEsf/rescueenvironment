@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, NgIf } from '@angular/common';
 import {
     Component,
     Inject,
@@ -25,6 +25,7 @@ import { CompactLayoutComponent } from './layouts/vertical/compact/compact.compo
 import { DenseLayoutComponent } from './layouts/vertical/dense/dense.component';
 import { FuturisticLayoutComponent } from './layouts/vertical/futuristic/futuristic.component';
 import { ThinLayoutComponent } from './layouts/vertical/thin/thin.component';
+import { AppSettings } from '../AppSetting';
 
 @Component({
     selector: 'layout',
@@ -45,6 +46,7 @@ import { ThinLayoutComponent } from './layouts/vertical/thin/thin.component';
         FuturisticLayoutComponent,
         ThinLayoutComponent,
         SettingsComponent,
+        NgIf,
     ],
 })
 export class LayoutComponent implements OnInit, OnDestroy {
@@ -248,4 +250,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
         // Add class name for the currently selected theme
         this._document.body.classList.add(this.theme);
     }
+
+    protected readonly AppSettings = AppSettings;
 }

@@ -8,6 +8,7 @@
     [name]="'mainNavigation'"
     [navigation]="navigation.default"
     [opened]="!isScreenSmall"
+    [position]="AppSettings.NavigationPosition"
 >
     <!-- Navigation header hook -->
     <ng-container fuseVerticalNavigationContentHeader>
@@ -81,6 +82,7 @@
             <shortcuts></shortcuts>
             <messages></messages>
             <button
+                *ngIf="AppSettings.ShowChat"
                 class="lg:hidden"
                 mat-icon-button
                 (click)="quickChat.toggle()"
@@ -108,4 +110,4 @@
 </div>
 
 <!-- Quick chat -->
-<quick-chat #quickChat="quickChat"></quick-chat>
+<quick-chat #quickChat="quickChat" *ngIf="AppSettings.ShowChat"></quick-chat>

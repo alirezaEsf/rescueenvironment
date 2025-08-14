@@ -20,6 +20,7 @@ import { FuseNavigationItem } from '@fuse/components/navigation/navigation.types
 import { FuseVerticalNavigationComponent } from '@fuse/components/navigation/vertical/vertical.component';
 import { FuseUtilsService } from '@fuse/services/utils/utils.service';
 import { Subject, takeUntil } from 'rxjs';
+import { TranslocoDirective, TranslocoPipe } from '@ngneat/transloco';
 
 @Component({
     selector: 'fuse-vertical-navigation-basic-item',
@@ -33,6 +34,8 @@ import { Subject, takeUntil } from 'rxjs';
         MatTooltipModule,
         NgTemplateOutlet,
         MatIconModule,
+        TranslocoPipe,
+        TranslocoDirective,
     ],
 })
 export class FuseVerticalNavigationBasicItemComponent

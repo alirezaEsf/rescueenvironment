@@ -2,3 +2,188 @@
 /*  @ Import/write your custom styles here.
 /*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
 /* ----------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Import/write your custom styles here.
+/*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
+/* ----------------------------------------------------------------------------------------------------- */
+
+@import url(./_fonts.scss);
+@import url(./primeng-custom-styles.scss);
+@import "perfect-scrollbar/css/perfect-scrollbar.css";
+//@import url(../../app/modules/mat-wrapper-components/projects/components/saffron-styels.scss);
+@import url(app/modules/mat-wrapper-components/projects/components/saffron-styels.scss);
+
+.f1 {
+    font-family: "iranyekan";
+    font-size: medium;
+}
+
+[dir="rtl"] {
+    /*.mat-calendar-previous-button::after{
+        transform: translateX(2px) rotate(-227deg) !important;
+    }
+    .mat-calendar-next-button::after {
+        transform: translateX(-2px) rotate(-135deg) !important;
+    }*/
+    /* استایل‌های کلی برای تمام عناصر با دایرکشن راست به چپ */
+    pre {
+        direction: ltr !important;
+    }
+
+    .fuse-vertical-navigation-content {
+        direction: rtl;
+    }
+
+    .ps__rail-y {
+        right: 0 !important;
+    }
+
+    .page-arrows {
+        direction: ltr !important;
+    }
+
+    /* Collapsable */
+    fuse-vertical-navigation-collapsable-item {
+        > .fuse-vertical-navigation-item-wrapper {
+            .fuse-vertical-navigation-item {
+                .fuse-vertical-navigation-item-badge {
+                    .fuse-vertical-navigation-item-arrow {
+                        //margin-left: 30px;
+                    }
+                }
+
+                .fuse-vertical-navigation-item-arrow {
+                   /* height: 20px;
+                    line-height: 20px;
+                    margin-right: auto !important;
+                    transition: transform 300ms cubic-bezier(0.25, 0.8, 0.25, 1),
+                    color 375ms cubic-bezier(0.25, 0.8, 0.25, 1);*/
+                }
+            }
+        }
+
+        &.fuse-vertical-navigation-item-expanded {
+            > .fuse-vertical-navigation-item-wrapper {
+                .fuse-vertical-navigation-item {
+                    .fuse-vertical-navigation-item-arrow {
+                        transform: rotate(90deg);
+                    }
+                }
+            }
+        }
+
+        > .fuse-vertical-navigation-item-children {
+            > *:first-child {
+                margin-top: 6px;
+            }
+
+            > *:last-child {
+                padding-bottom: 6px;
+
+                > .fuse-vertical-navigation-item-children {
+                    > *:last-child {
+                        padding-bottom: 0;
+                    }
+                }
+            }
+
+            .fuse-vertical-navigation-item {
+                padding: 10px 16px;
+            }
+        }
+
+        /* 1st level */
+        .fuse-vertical-navigation-item-children {
+            overflow: hidden;
+
+            .fuse-vertical-navigation-item {
+                padding-right: 56px !important;
+            }
+
+            /* 2nd level */
+            .fuse-vertical-navigation-item-children {
+                .fuse-vertical-navigation-item {
+                    padding-right: 72px !important;
+                }
+
+                /* 3rd level */
+                .fuse-vertical-navigation-item-children {
+                    .fuse-vertical-navigation-item {
+                        padding-right: 88px !important;
+                    }
+
+                    /* 4th level */
+                    .fuse-vertical-navigation-item-children {
+                        .fuse-vertical-navigation-item {
+                            padding-right: 104px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .fuse-vertical-navigation-aside-wrapper {
+        right: 60%;
+    }
+   /* .mat-drawer-content{
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }*/
+    .settings-cog{
+        top: 275px;
+        left: 0;
+        position: absolute;
+    }
+}
+
+[dir="ltr"] {
+    .settings-cog{
+        top: 275px;
+        right: 0;
+        position: fixed;
+    }
+
+}
+
+.btn-success{
+    color: #fff !important;
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
+.btn-info {
+    color: #fff !important;
+    background-color: #17a2b8 !important;
+    border-color: #17a2b8 !important;
+}
+
+.btn-warning {
+    color: #212529 !important;
+    background-color: #f8aa19 !important;
+    border-color: #f8aa19 !important;
+}
+
+.btn-danger {
+    color: #fff !important;
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
+
+.btn {
+    &-advance-search {
+        float: left !important;
+        border: 1px solid #f15a28 !important;
+        color: #f15a28 !important;
+        font-size: 12px !important;
+        background-color: #ffffff !important;
+        box-shadow: none !important;
+
+        &:hover {
+            background-color: #f15a28 !important;
+            color: #ffffff !important;
+        }
+    }
+}
+
+

@@ -1,0 +1,16 @@
+export enum FieldErrorCode {
+  XSS_VALIDATION_ERROR = 'xssValidationError',
+  MAXLENGTH = 'maxlength',
+  MINLENGTH = 'minlength',
+  PATTERN = 'pattern',
+  DEPOSIT_PATTERN = 'deposit_pattern',
+  ONLY_NUMBER_IS_VALID = 'onlyNumberIsValid',
+  REQUIRED = 'required',
+  EQUAL_TO = 'equalTo',
+  PERIOD_RANGE_FROM_NUMBER = 'periodRange_fromNumber',
+  NATIONAL_CODE = 'nationalCode',
+  NEW_VALUE = "newValue",
+  EMAIL = 'email',
+  INVALID_NUMBER = 'invalidNumber',
+  INVALID_MULTIPLY_AMOUNT = 'invalidMultiplyAmount',
+}

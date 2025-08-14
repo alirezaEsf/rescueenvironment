@@ -69,6 +69,7 @@
                     <messages></messages>
                     <notifications></notifications>
                     <button
+                        *ngIf="AppSettings.ShowChat"
                         class="lg:hidden"
                         mat-icon-button
                         (click)="quickChat.toggle()"
@@ -125,4 +126,4 @@
 </div>
 
 <!-- Quick chat -->
-<quick-chat #quickChat="quickChat"></quick-chat>
+<quick-chat #quickChat="quickChat" *ngIf="AppSettings.ShowChat"></quick-chat>

@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'app/core/user/user.service';
 import { User } from 'app/core/user/user.types';
 import { Subject, takeUntil } from 'rxjs';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 @Component({
     selector: 'user',
@@ -31,6 +32,7 @@ import { Subject, takeUntil } from 'rxjs';
         MatIconModule,
         NgClass,
         MatDividerModule,
+        TranslocoDirective,
     ],
 })
 export class UserComponent implements OnInit, OnDestroy {

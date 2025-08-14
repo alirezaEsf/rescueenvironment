@@ -1,0 +1,14 @@
+<div [formGroup]="formGroup" style="display: flex; justify-content: center; width: 100%; margin-top: 2rem;">
+  <fieldset style="height: 10rem;">
+    <legend>saffron-auto-complete</legend>
+    <div style="display: flex; flex-direction: column;align-items: center;">
+      <div class="select-continer">
+        <saffron-auto-complete [options]="autoCompleteOptions" [placeHolder]="'کد شعبه'" [formGroup]="formGroup"
+          [controlName]="'autoComplete'"></saffron-auto-complete>
+      </div>
+      <div style="max-width: max-content;">{{autoCompleteSelectedItem}}</div>
+    </div>
+  </fieldset>
+</div>
+
+

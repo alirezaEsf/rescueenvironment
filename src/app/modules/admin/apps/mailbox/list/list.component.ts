@@ -18,6 +18,7 @@ import {
     MailCategory,
 } from 'app/modules/admin/apps/mailbox/mailbox.types';
 import { Subject, takeUntil } from 'rxjs';
+import { AppSettings } from '../../../../../AppSetting';
 
 @Component({
     selector: 'mailbox-list',
@@ -145,4 +146,6 @@ export class MailboxListComponent implements OnInit, OnDestroy {
     trackByFn(index: number, item: any): any {
         return item.id || index;
     }
+
+    protected readonly AppSettings = AppSettings;
 }
