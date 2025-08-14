@@ -1,0 +1,173 @@
+{
+    "data": [
+        {
+            "label": "PurchaseOrders",
+            "data": "PurchaseOrders",
+            "children": [
+                {
+                    "label": "PurchaseOrder",
+                    "data": "PurchaseOrder",
+                    "children": [
+                        {
+                            "label": "Address",
+                            "data": "Address",
+                            "children": [
+                                { "label": "Name", "data": "Name" },
+                                { "label": "Street", "data": "Street" },
+                                { "label": "City", "data": "City" },
+                                { "label": "State", "data": "State" },
+                                { "label": "Zip", "data": "Zip" },
+                                { "label": "Country", "data": "Country" }
+                            ]
+                        },
+                        {
+                            "label": "Address",
+                            "data": "Address",
+                            "children": [
+                                { "label": "Name", "data": "Name" },
+                                { "label": "Street", "data": "Street" },
+                                { "label": "City", "data": "City" },
+                                { "label": "State", "data": "State" },
+                                { "label": "Zip", "data": "Zip" },
+                                { "label": "Country", "data": "Country" }
+                            ]
+                        },
+                        { "label": "DeliveryNotes", "data": "DeliveryNotes" },
+                        {
+                            "label": "Items",
+                            "data": "Items",
+                            "children": [
+                                {
+                                    "label": "Item",
+                                    "data": "Item",
+                                    "children": [
+                                        { "label": "ProductName", "data": "ProductName" },
+                                        { "label": "Quantity", "data": "Quantity" },
+                                        { "label": "USPrice", "data": "USPrice" },
+                                        { "label": "Comment", "data": "Comment" }
+                                    ]
+                                },
+                                {
+                                    "label": "Item",
+                                    "data": "Item",
+                                    "children": [
+                                        { "label": "ProductName", "data": "ProductName" },
+                                        { "label": "Quantity", "data": "Quantity" },
+                                        { "label": "USPrice", "data": "USPrice" },
+                                        { "label": "ShipDate", "data": "ShipDate" }
+                                    ]
+                                },
+                                {
+                                    "label": "PurchaseOrder",
+                                    "data": "PurchaseOrder",
+                                    "children": [
+                                        {
+                                            "label": "Address",
+                                            "data": "Address",
+                                            "children": [
+                                                { "label": "Name", "data": "Name" },
+                                                { "label": "Street", "data": "Street" },
+                                                { "label": "City", "data": "City" },
+                                                { "label": "State", "data": "State" },
+                                                { "label": "Zip", "data": "Zip" },
+                                                { "label": "Country", "data": "Country" }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Address",
+                                            "data": "Address",
+                                            "children": [
+                                                { "label": "Name", "data": "Name" },
+                                                { "label": "Street", "data": "Street" },
+                                                { "label": "City", "data": "City" },
+                                                { "label": "State", "data": "State" },
+                                                { "label": "Zip", "data": "Zip" },
+                                                { "label": "Country", "data": "Country" }
+                                            ]
+                                        },
+                                        { "label": "DeliveryNotes", "data": "DeliveryNotes" },
+                                        {
+                                            "label": "Items",
+                                            "data": "Items",
+                                            "children": [
+                                                {
+                                                    "label": "Item",
+                                                    "data": "Item",
+                                                    "children": [
+                                                        { "label": "ProductName", "data": "ProductName" },
+                                                        { "label": "Quantity", "data": "Quantity" },
+                                                        { "label": "USPrice", "data": "USPrice" }
+                                                    ]
+                                                },
+                                                {
+                                                    "label": "PurchaseOrder",
+                                                    "data": "PurchaseOrder",
+                                                    "children": [
+                                                        {
+                                                            "label": "Address",
+                                                            "data": "Address",
+                                                            "children": [
+                                                                { "label": "Name", "data": "Name" },
+                                                                { "label": "Street", "data": "Street" },
+                                                                { "label": "City", "data": "City" },
+                                                                { "label": "State", "data": "State" },
+                                                                { "label": "Zip", "data": "Zip" },
+                                                                { "label": "Country", "data": "Country" }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "label": "Address",
+                                                            "data": "Address",
+                                                            "children": [
+                                                                { "label": "Name", "data": "Name" },
+                                                                { "label": "Street", "data": "Street" },
+                                                                { "label": "City", "data": "City" },
+                                                                { "label": "State", "data": "State" },
+                                                                { "label": "Zip", "data": "Zip" },
+                                                                { "label": "Country", "data": "Country" }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "label": "Items",
+                                                            "data": "Items",
+                                                            "children": [
+                                                                {
+                                                                    "label": "Item",
+                                                                    "data": "Item",
+                                                                    "children": [
+                                                                        {
+                                                                            "label": "ProductName",
+                                                                            "data": "ProductName"
+                                                                        },
+                                                                        { "label": "Quantity", "data": "Quantity" },
+                                                                        { "label": "USPrice", "data": "USPrice" }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "label": "Item",
+                                                                    "data": "Item",
+                                                                    "children": [
+                                                                        {
+                                                                            "label": "ProductName",
+                                                                            "data": "ProductName"
+                                                                        },
+                                                                        { "label": "Quantity", "data": "Quantity" },
+                                                                        { "label": "USPrice", "data": "USPrice" }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
