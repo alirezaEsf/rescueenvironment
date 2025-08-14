@@ -26,11 +26,8 @@ jobs:
             - name: Build Angular App
               run: npm run build:prod
 
-            - name: Postbuild step (copy extra config files)
-              run: |
-                  mkdir -p dist/rescueenvironment/WEB-INF
-                  cp -f deploy-configs/web.xml dist/rescueenvironment/WEB-INF/
-                  cp -f deploy-configs/rewrite.config dist/rescueenvironment/WEB-INF/
+            - name: Run custom postbuild script
+              run: bash ./deploy-script.sh
 
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3
