@@ -16,8 +16,8 @@ export const appRoutes: Route[] = [
     {path: '', pathMatch : 'full', redirectTo: 'main/home'},
     {
         path: 'main',
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
+        // canActivate: [AuthGuard],
+        // canActivateChild: [AuthGuard],
         component: LayoutComponent,
         resolve: {
             initialData: initialDataResolver
