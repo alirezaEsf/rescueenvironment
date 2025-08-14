@@ -1,3 +1,3 @@
-mkdir dist\gateway-ui\WEB-INF
-copy /Y deploy-configs\web.xml dist\gateway-ui\WEB-INF\
-copy /Y deploy-configs\rewrite.config dist\gateway-ui\WEB-INF\
+mkdir dist\rescueenvironment\WEB-INF
+copy /Y deploy-configs\web.xml dist\rescueenvironment\WEB-INF\
+copy /Y deploy-configs\rewrite.config dist\rescueenvironment\WEB-INF\
