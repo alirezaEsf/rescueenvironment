@@ -1,46 +1,46 @@
-<div class="home-container">
+<div class="home-container p-6 max-w-7xl mx-auto space-y-10">
+
     <!-- Header -->
-    <header class="home-header">
-        <img src="assets/images/logo/logo.svg" alt="Company Logo" class="logo">
-        <h1>هولدینگ انرژی نو</h1>
-        <p>پیشرو در انرژی خورشیدی، بادی و برقی و حفاظت از محیط زیست</p>
+    <header class="text-center">
+        <img src="assets/images/logo/logo.svg" alt="Company Logo" class="mx-auto w-28 h-28 mb-4" />
+        <h1 class="text-4xl font-bold text-green-700 mb-2">New Energy Holding</h1>
+        <p class="text-lg text-gray-600">Leading in solar, wind, and electric energy and environmental protection</p>
     </header>
 
     <!-- Slider Section -->
-    <section class="slider">
-        <button (click)="prevSlide()" class="arrow prev">&#10094;</button>
-        <div class="slide">
-            <div class="image-container">
-                <img [src]="slides[currentSlide].image" [alt]="slides[currentSlide].title">
-                <div class="energy-loop"></div>
+    <p-carousel [value]="slides" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="5000" [showIndicators]="true">
+        <ng-template pTemplate="item" let-slide>
+            <div class="flex flex-col items-center p-4">
+                <img [src]="slide.image" [alt]="slide.title" class="w-full h-56 object-cover rounded-lg shadow-lg" />
+                <h2 class="mt-4 text-xl font-semibold text-green-800">{{ slide.title }}</h2>
             </div>
-            <h2>{{ slides[currentSlide].title }}</h2>
-        </div>
-        <button (click)="nextSlide()" class="arrow next">&#10095;</button>
-    </section>
+        </ng-template>
+    </p-carousel>
 
     <!-- Holdings Section -->
     <section class="holdings">
-        <h2>سه هولدینگ ما</h2>
-        <div class="holding-cards">
-            <div class="card" *ngFor="let h of holdings">
-                <div class="icon">{{ h.icon }}</div>
-                <h3>{{ h.title }}</h3>
+        <h2 class="text-3xl font-semibold text-green-700 mb-6 text-center">Our Three Holdings</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <p-card *ngFor="let h of holdings" [header]="h.icon" class="shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <ng-template pTemplate="title">
+                    <h3 class="text-lg font-semibold">{{ h.title }}</h3>
+                </ng-template>
                 <p>{{ h.description }}</p>
-            </div>
+            </p-card>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="about">
-        <h2>درباره ما</h2>
-        <p>
-            ما یک هولدینگ پیشرو در حوزه انرژی‌های نو هستیم. هدف ما کاهش مصرف سوخت‌های فسیلی، حفظ محیط زیست و توسعه انرژی‌های پاک خورشیدی، بادی و برقی است.
+    <section class="about max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl font-semibold text-green-700 mb-4">About Us</h2>
+        <p class="text-gray-700 leading-relaxed">
+            We are a leading holding company in the field of new energies. Our goal is to reduce fossil fuel consumption,
+            protect the environment, and develop clean solar, wind, and electric energies.
         </p>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 هولدینگ انرژی نو</p>
+    <footer class="text-center text-gray-500 mt-16 border-t pt-4">
+        <p>&copy; 2025 New Energy Holding</p>
     </footer>
 </div>

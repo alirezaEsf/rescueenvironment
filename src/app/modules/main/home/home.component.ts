@@ -1,43 +1,37 @@
 import { Component } from '@angular/core';
+import { CarouselModule } from 'primeng/carousel';
+import { CardModule } from 'primeng/card';
+import { NgForOf } from '@angular/common';
 
 @Component({
     selector: 'app-home',
-    templateUrl: './home.component.html',
     standalone: true,
+    imports: [CarouselModule, CardModule, NgForOf],
+    templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
     slides = [
-        { title: 'پنل خورشیدی', image: 'assets/images/logo/solar-panel.jpg' },
-        { title: 'توربین بادی', image: 'assets/images/logo/wind-turbine.jpg' },
-        { title: 'انرژی برقی نو', image: 'assets/images/logo/electric-energy.jpg' }
+        { title: 'Solar Panel', image: 'assets/images/logo/solar-panel.svg' },
+        { title: 'Wind Turbine', image: 'assets/images/logo/wind-turbine.svg' },
+        { title: 'New Electric Energy', image: 'assets/images/logo/electric-energy.svg' }
     ];
-
-    currentSlide = 0;
 
     holdings = [
         {
-            title: 'هولدینگ انرژی خورشیدی',
-            description: 'تمرکز بر تولید و توسعه انرژی پاک خورشیدی برای کاهش کربن و حفظ محیط زیست.',
+            title: 'Solar Energy Holding',
+            description: 'Focused on production and development of clean solar energy to reduce carbon and protect the environment.',
             icon: '☀️'
         },
         {
-            title: 'هولدینگ انرژی بادی',
-            description: 'توسعه توربین‌های بادی و پروژه‌های انرژی باد برای نسل‌های آینده.',
+            title: 'Wind Energy Holding',
+            description: 'Development of wind turbines and wind energy projects for future generations.',
             icon: '🌬️'
         },
         {
-            title: 'هولدینگ انرژی برقی',
-            description: 'تمرکز بر سیستم‌های برق نو و هوشمند برای مصرف بهینه انرژی.',
+            title: 'Electric Energy Holding',
+            description: 'Focused on new and smart electric systems for optimized energy consumption.',
             icon: '⚡'
         }
     ];
-
-    nextSlide() {
-        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
-    }
-
-    prevSlide() {
-        this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
-    }
 }
