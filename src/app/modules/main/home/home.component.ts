@@ -8,9 +8,9 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
     slides = [
-        { title: 'پنل خورشیدی', image: 'assets/solar-panel.jpg' },
-        { title: 'توربین بادی', image: 'assets/wind-turbine.jpg' },
-        { title: 'انرژی برقی نو', image: 'assets/electric-energy.jpg' }
+        { title: 'پنل خورشیدی', image: 'assets/images/logo/solar-panel.jpg' },
+        { title: 'توربین بادی', image: 'assets/images/logo/wind-turbine.jpg' },
+        { title: 'انرژی برقی نو', image: 'assets/images/logo/electric-energy.jpg' }
     ];
 
     currentSlide = 0;
