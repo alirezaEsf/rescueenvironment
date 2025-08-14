@@ -12,7 +12,8 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v4
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
             - name: Setup Node
               uses: actions/setup-node@v3
@@ -22,12 +23,17 @@ jobs:
             - name: Install dependencies
               run: npm install
 
-            - name: Build
+            - name: Build Angular App
               run: npm run build:prod
 
-            - name: Deploy
+            - name: Postbuild step (copy extra config files)
+              run: |
+                  mkdir -p dist/rescueenvironment/WEB-INF
+                  cp -f deploy-configs/web.xml dist/rescueenvironment/WEB-INF/
+                  cp -f deploy-configs/rewrite.config dist/rescueenvironment/WEB-INF/
+
+            - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: ./dist/rescueenvironment
-                  # keep_files: false # بهتره این خط کامنت باشه یا false باشه
