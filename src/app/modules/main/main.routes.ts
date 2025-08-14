@@ -10,10 +10,6 @@ export default [
         path: 'home',
         component: HomeComponent,
     },
-    {
-        path: 'messages-management',
-        loadComponent: () => import('./components/messages-management/messages-management.component')
-            .then(c => c.MessagesManagementComponent)
-    },
+
 
 ] as Routes;

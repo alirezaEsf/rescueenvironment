@@ -56,7 +56,6 @@ import {
     takeUntil,
 } from 'rxjs';
 import {Dialog} from "primeng/dialog";
-import {ReleaseNoteComponent} from "../../../../app/modules/main/components/release-note/release-note.component";
 
 @Component({
     selector: 'fuse-vertical-navigation',
@@ -76,7 +75,6 @@ import {ReleaseNoteComponent} from "../../../../app/modules/main/components/rele
         FuseVerticalNavigationGroupItemComponent,
         FuseVerticalNavigationSpacerItemComponent,
         Dialog,
-        ReleaseNoteComponent,
     ],
 })
 export class FuseVerticalNavigationComponent
