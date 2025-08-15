@@ -1,4 +1,4 @@
-<div class="home-container bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+<div class="home-container bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100" *transloco="let t">
     <!-- Hero Section -->
     <section class="hero-section relative h-screen overflow-hidden bg-white dark:bg-gray-900">
         <div class="parallax-bg absolute inset-0 bg-black/30 z-0">
@@ -9,18 +9,24 @@
             <div class="container mx-auto">
                 <div class="max-w-2xl">
                     <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fadeInUp">
-                        <span class="text-green-400">Innovating</span> the Future of Energy
+                        <span class="text-green-400">{{ t('hero.title_part1') }}</span>
+                        {{ t('hero.title_part2') }}
                     </h1>
                     <p class="text-xl md:text-2xl mb-8 opacity-90 animate-fadeInUp delay-100">
-                        Leading the global transition to sustainable energy solutions
+                        {{ t('hero.subtitle') }}
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 animate-fadeInUp delay-200">
-                        <button class="btn-primary">Explore Solutions</button>
-                        <button class="btn-outline dark:border-gray-300 dark:text-gray-300">Contact Our Experts</button>
+                        <button class="btn-primary">
+                            {{ t('hero.btn_explore') }}
+                        </button>
+                        <button class="btn-outline dark:border-gray-300 dark:text-gray-300">
+                            {{ t('hero.btn_contact') }}
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <div class="absolute bottom-10 left-0 right-0 text-center animate-bounce">
             <i class="pi pi-chevron-down text-2xl text-white dark:text-gray-300"></i>

@@ -1,21 +1,9 @@
 {
-    "home": {
-        "heroTitle": "Innovating the Future of Energy",
-        "heroSubtitle": "Leading the global transition to sustainable energy solutions",
-        "exploreSolutions": "Explore Solutions",
-        "contactExperts": "Contact Our Experts",
-        "impactStats": "Impact Stats",
-        "ourHoldings": "Our Strategic Holdings",
-        "ourHoldingsDesc": "Three specialized divisions working together for a sustainable future",
-        "cuttingEdgeTech": "Cutting-Edge Technologies",
-        "cuttingEdgeTechDesc": "Pioneering innovations in renewable energy systems",
-        "globalImpact": "Global Impact",
-        "globalImpactDesc": "Transforming energy systems across 5 continents",
-        "learnMore": "Learn more",
-        "efficiency": "Efficiency",
-        "readyTransform": "Ready to Transform Your Energy Future?",
-        "readyTransformDesc": "Our team of experts is ready to design a custom renewable energy solution for your needs.",
-        "scheduleConsultation": "Schedule Consultation",
-        "downloadBrochure": "Download Brochure"
+    "hero": {
+        "title_part1": "Innovating",
+        "title_part2": "the Future of Energy",
+        "subtitle": "Leading the global transition to sustainable energy solutions",
+        "btn_explore": "Explore Solutions",
+        "btn_contact": "Contact Our Experts"
     }
 }

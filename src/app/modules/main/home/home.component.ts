@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { NgForOf, NgIf } from '@angular/common';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 @Component({
     selector: 'app-home',
@@ -18,6 +19,7 @@ import { NgForOf, NgIf } from '@angular/common';
     imports: [
         NgForOf,
         NgIf,
+        TranslocoDirective,
     ],
 })
 export class HomeComponent {

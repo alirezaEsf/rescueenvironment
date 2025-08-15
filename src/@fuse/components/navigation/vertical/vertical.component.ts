@@ -370,11 +370,9 @@ export class FuseVerticalNavigationComponent
                     this.closeAside();
                 }
             });
-        this.history =  'آخرین تغییرات : '+'1404/03/04'
-        this.appVersion =  'شماره نسخه : '+'v1.0.10'
-       this.typeVersion =  'نوع نسخه : '+' QC'
-        // this.typeVersion =  'نوع نسخه : '+'UAT'
-      //  this.typeVersion =  'نوع نسخه : '+'Production'
+        this.history =  'last change : '+'2025/08'
+        this.appVersion =  'version number : '+'v1.0.1'
+       this.typeVersion =  'version type : '+' QC'
     }
 
     /**
