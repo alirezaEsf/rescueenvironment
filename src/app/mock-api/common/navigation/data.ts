@@ -1,8 +1,6 @@
 /* eslint-disable */
 import { FuseNavigationItem } from '@fuse/components/navigation';
-
-export const defaultNavigation: FuseNavigationItem[] =
-    [
+let navigations:any=  [
     {
         "icon": "home",
         "menuId": 2,
@@ -14,7 +12,7 @@ export const defaultNavigation: FuseNavigationItem[] =
         "link": "/main/home",
         "children": [],
     },
-      {
+    {
         "icon": "feedback",
         "menuId": 3,
         "id": "about",
@@ -25,81 +23,19 @@ export const defaultNavigation: FuseNavigationItem[] =
         "link": "/main/about",
         "children": [],
     },
-
-
-    ];
-export const compactNavigation: FuseNavigationItem[] =
-    [
-        {
-            "icon": "home",
-            "menuId": 2,
-            "id": "home",
-            "title": "home",
-            "type": "basic",
-            "parentId": 1,
-            "translate": "home",
-            "link": "/main/home",
-            "children": [],
-        },
-        {
-            "icon": "feedback",
-            "menuId": 3,
-            "id": "about",
-            "title": "About Us",
-            "type": "basic",
-            "parentId": 1,
-            "translate": "About Us",
-            "link": "/main/about",
-            "children": [],
-        },
-    ];
-export const futuristicNavigation: FuseNavigationItem[] =
-    [
-        {
-            "icon": "home",
-            "menuId": 2,
-            "id": "home",
-            "title": "home",
-            "type": "basic",
-            "parentId": 1,
-            "translate": "home",
-            "link": "/main/home",
-            "children": [],
-        },
-        {
-            "icon": "feedback",
-            "menuId": 3,
-            "id": "about",
-            "title": "About Us",
-            "type": "basic",
-            "parentId": 1,
-            "translate": "About Us",
-            "link": "/main/about",
-            "children": [],
-        },
-    ];
-export const horizontalNavigation: FuseNavigationItem[] =
-    [
-        {
-            "icon": "home",
-            "menuId": 2,
-            "id": "home",
-            "title": "home",
-            "type": "basic",
-            "parentId": 1,
-            "translate": "home",
-            "link": "/main/home",
-            "children": [],
-        },
-        {
-            "icon": "feedback",
-            "menuId": 3,
-            "id": "about",
-            "title": "About Us",
-            "type": "basic",
-            "parentId": 1,
-            "translate": "About Us",
-            "link": "/main/about",
-            "children": [],
-        },
-    ];
+    {
+        "icon": "call",
+        "menuId": 4,
+        "id": "contact",
+        "title": "Contact Us",
+        "type": "basic",
+        "parentId": 1,
+        "translate": "Contact Us",
+        "link": "/main/contact",
+        "children": [],
+    }
+];
+export const defaultNavigation: FuseNavigationItem[] = navigations
+export const compactNavigation: FuseNavigationItem[] = navigations
+export const futuristicNavigation: FuseNavigationItem[] = navigations
+export const horizontalNavigation: FuseNavigationItem[] = navigations

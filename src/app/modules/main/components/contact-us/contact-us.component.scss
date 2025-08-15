@@ -1,0 +1,104 @@
+.contact-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px;
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    text-align: center;
+
+    h1 {
+        font-size: 2.5rem;
+        color: #228B22;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+        color: #666;
+        margin-bottom: 40px;
+    }
+
+    .contact-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+
+        .contact-info {
+            flex: 1;
+            min-width: 250px;
+            background: #f0f9f0;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: left;
+
+            .info-item {
+                display: flex;
+                align-items: center;
+                margin-bottom: 15px;
+                .icon {
+                    font-size: 24px;
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        .contact-form {
+            flex: 2;
+            min-width: 300px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+
+            .form-group {
+                margin-bottom: 20px;
+                input, textarea {
+                    width: 100%;
+                    padding: 12px;
+                    border: 1px solid #ccc;
+                    border-radius: 8px;
+                    font-size: 1rem;
+                    transition: border 0.3s;
+
+                    &:focus {
+                        border-color: #228B22;
+                        outline: none;
+                    }
+                }
+
+                textarea {
+                    min-height: 120px;
+                    resize: vertical;
+                }
+
+                .error {
+                    color: #ff4d4d;
+                    font-size: 0.9rem;
+                    margin-top: 5px;
+                }
+            }
+
+            button {
+                background: #228B22;
+                color: #fff;
+                border: none;
+                padding: 12px 25px;
+                font-size: 1rem;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background 0.3s;
+
+                &:hover {
+                    background: #1b701b;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .contact-content {
+            flex-direction: column;
+        }
+    }
+}

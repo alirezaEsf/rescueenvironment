@@ -1,0 +1,47 @@
+<div class="contact-container">
+    <h1>Contact Us</h1>
+    <p class="subtitle">We’d love to hear from you! Fill out the form and we’ll get back to you shortly.</p>
+
+    <div class="contact-content">
+        <!-- Contact Info -->
+        <div class="contact-info">
+            <div class="info-item">
+                <span class="icon">📍</span>
+                <p>123 Green Energy Street, Solar City</p>
+            </div>
+            <div class="info-item">
+                <span class="icon">📞</span>
+                <p>+1 234 567 890</p>
+            </div>
+            <div class="info-item">
+                <span class="icon">✉️</span>
+                <p>greenholding.com</p>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+            <div class="form-group">
+                <input type="text" formControlName="name" placeholder="Your Name" />
+                <div class="error" *ngIf="submitted && f.name.errors">Name is required</div>
+            </div>
+
+            <div class="form-group">
+                <input type="email" formControlName="email" placeholder="Your Email" />
+                <div class="error" *ngIf="submitted && f.email.errors">Valid email is required</div>
+            </div>
+
+            <div class="form-group">
+                <input type="text" formControlName="subject" placeholder="Subject" />
+                <div class="error" *ngIf="submitted && f.subject.errors">Subject is required</div>
+            </div>
+
+            <div class="form-group">
+                <textarea formControlName="message" placeholder="Your Message"></textarea>
+                <div class="error" *ngIf="submitted && f.message.errors">Message is required</div>
+            </div>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 import {Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
-import { AboutComponent } from './components/about.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 export default [
     {
@@ -15,6 +16,11 @@ export default [
         path: 'about',
         component: AboutComponent,
     },
+     {
+        path: 'contact',
+        component: ContactUsComponent,
+    },
+
 
 
 
