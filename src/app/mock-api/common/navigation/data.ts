@@ -14,6 +14,18 @@ export const defaultNavigation: FuseNavigationItem[] =
         "link": "/main/home",
         "children": [],
     },
+      {
+        "icon": "feedback",
+        "menuId": 3,
+        "id": "about",
+        "title": "About Us",
+        "type": "basic",
+        "parentId": 1,
+        "translate": "About Us",
+        "link": "/main/about",
+        "children": [],
+    },
+
 
     ];
 export const compactNavigation: FuseNavigationItem[] =
@@ -29,7 +41,17 @@ export const compactNavigation: FuseNavigationItem[] =
             "link": "/main/home",
             "children": [],
         },
-
+        {
+            "icon": "feedback",
+            "menuId": 3,
+            "id": "about",
+            "title": "About Us",
+            "type": "basic",
+            "parentId": 1,
+            "translate": "About Us",
+            "link": "/main/about",
+            "children": [],
+        },
     ];
 export const futuristicNavigation: FuseNavigationItem[] =
     [
@@ -44,7 +66,17 @@ export const futuristicNavigation: FuseNavigationItem[] =
             "link": "/main/home",
             "children": [],
         },
-
+        {
+            "icon": "feedback",
+            "menuId": 3,
+            "id": "about",
+            "title": "About Us",
+            "type": "basic",
+            "parentId": 1,
+            "translate": "About Us",
+            "link": "/main/about",
+            "children": [],
+        },
     ];
 export const horizontalNavigation: FuseNavigationItem[] =
     [
@@ -59,5 +91,15 @@ export const horizontalNavigation: FuseNavigationItem[] =
             "link": "/main/home",
             "children": [],
         },
-
+        {
+            "icon": "feedback",
+            "menuId": 3,
+            "id": "about",
+            "title": "About Us",
+            "type": "basic",
+            "parentId": 1,
+            "translate": "About Us",
+            "link": "/main/about",
+            "children": [],
+        },
     ];

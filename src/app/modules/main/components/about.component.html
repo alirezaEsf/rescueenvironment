@@ -1,0 +1,28 @@
+<div class="p-8 max-w-5xl mx-auto space-y-12">
+
+    <h1 class="text-4xl font-bold text-green-700 text-center mb-6">About Us</h1>
+
+    <p-panel header="Our History" class="mb-6">
+        <p>{{ history }}</p>
+    </p-panel>
+
+    <p-panel header="Mission" class="mb-6">
+        <p>{{ mission }}</p>
+    </p-panel>
+
+    <p-panel header="Vision" class="mb-12">
+        <p>{{ vision }}</p>
+    </p-panel>
+
+    <h2 class="text-3xl font-semibold text-green-700 mb-6 text-center">Meet Our Team</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div *ngFor="let member of teamMembers" class="text-center">
+            <p-avatar image="{{ member.photo }}" shape="circle" size="xlarge" styleClass="mx-auto mb-4 shadow-lg"></p-avatar>
+            <h3 class="text-xl font-bold">{{ member.name }}</h3>
+            <p class="text-green-600 italic">{{ member.role }}</p>
+            <p class="mt-2 text-gray-700">{{ member.bio }}</p>
+        </div>
+    </div>
+
+</div>
