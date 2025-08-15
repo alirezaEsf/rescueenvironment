@@ -160,7 +160,7 @@ export class AuthSignInComponent implements OnInit {
                 // Set the alert
                 this.alert = {
                     type: 'error',
-                    message: 'نام کاربری یا رمز عبور صحیح نمی باشد.',
+                    message: 'in valid username or password!',
                 };
 
                 // Show the alert
