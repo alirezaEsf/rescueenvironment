@@ -119,7 +119,7 @@ export class AppConfigService {
             darkTheme: false,
             menuActive: false,
             designerKey: 'primeng-designer-theme',
-            RTL: true
+            RTL: false
         };
     }
 

@@ -81,8 +81,8 @@ export const appConfig: ApplicationConfig = {
                         label: 'فارسی',
                     }
                 ],
-                defaultLang: 'fa',
-                fallbackLang: 'fa',
+                defaultLang: 'en',
+                fallbackLang: 'en',
                 reRenderOnLangChange: true,
                 prodMode: true,
             },
@@ -110,7 +110,7 @@ export const appConfig: ApplicationConfig = {
                 return () => lastValueFrom(
                     translocoService.load(defaultLang).pipe(
                         catchError((err) => {
-                            console.error('خطا در بارگیری ترجمه:', err);
+                            console.error('error loading:', err);
                             return of({}); // مقدار پیشفرض
                         }),
                         defaultIfEmpty({}) // جلوگیری از EmptyError
@@ -129,7 +129,7 @@ export const appConfig: ApplicationConfig = {
                 services: mockApiServices,
             },
             fuse: {
-                layout: 'classy',
+                layout: 'enterprise',
                 scheme: 'light',
                 screens: {
                     sm: '600px',

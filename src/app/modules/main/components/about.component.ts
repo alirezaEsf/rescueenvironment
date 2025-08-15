@@ -16,19 +16,19 @@ export class AboutComponent {
         {
             name: 'Alice Johnson',
             role: 'CEO',
-            photo: 'assets/images/team/alice.jpg',
+            photo: 'assets/images/logo/alice.jpg',
             bio: 'Passionate about renewable energy and innovation.'
         },
         {
             name: 'Bob Smith',
             role: 'CTO',
-            photo: 'assets/images/team/bob.jpg',
+            photo: 'assets/images/logo/bob.jpg',
             bio: 'Expert in solar and wind technologies.'
         },
         {
             name: 'Carla Gomez',
             role: 'Environmental Specialist',
-            photo: 'assets/images/team/carla.jpg',
+            photo: 'assets/images/logo/carla.jpg',
             bio: 'Committed to sustainable development and environment.'
         }
     ];
