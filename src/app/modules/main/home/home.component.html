@@ -1,11 +1,11 @@
-<div class="home-container bg-gray-50">
-    <!-- Hero Section با انیمیشن پارالاکس -->
-    <section class="hero-section relative h-screen overflow-hidden">
+<div class="home-container bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <!-- Hero Section -->
+    <section class="hero-section relative h-screen overflow-hidden bg-white dark:bg-gray-900">
         <div class="parallax-bg absolute inset-0 bg-black/30 z-0">
             <img src="assets/images/home/energy-background6.png" class="w-full h-full object-cover" alt="Energy Background">
         </div>
 
-        <div class="relative z-10 h-full flex flex-col justify-center px-6 text-white">
+        <div class="relative z-10 h-full flex flex-col justify-center px-6">
             <div class="container mx-auto">
                 <div class="max-w-2xl">
                     <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fadeInUp">
@@ -16,19 +16,19 @@
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 animate-fadeInUp delay-200">
                         <button class="btn-primary">Explore Solutions</button>
-                        <button class="btn-outline">Contact Our Experts</button>
+                        <button class="btn-outline dark:border-gray-300 dark:text-gray-300">Contact Our Experts</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="absolute bottom-10 left-0 right-0 text-center animate-bounce">
-            <i class="pi pi-chevron-down text-2xl text-white"></i>
+            <i class="pi pi-chevron-down text-2xl text-white dark:text-gray-300"></i>
         </div>
     </section>
 
-    <!-- آمارهای تاثیرگذار -->
-    <section class="py-20 bg-gradient-to-r from-green-800 to-green-600 text-white">
+    <!-- Impact Stats -->
+    <section class="py-20 bg-gradient-to-r from-green-800 to-green-600 text-white dark:from-green-900 dark:to-green-700 dark:text-gray-100">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div *ngFor="let stat of stats" class="stat-item">
@@ -39,21 +39,21 @@
         </div>
     </section>
 
-    <!-- معرفی هلدینگ‌ها با افکت hover پیشرفته -->
-    <section class="py-20 bg-white">
+    <!-- Holdings -->
+    <section class="py-20 bg-white dark:bg-gray-800">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Our Strategic Holdings</h2>
-            <p class="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-16">
+            <p class="text-xl text-gray-600 dark:text-gray-300 text-center max-w-3xl mx-auto mb-16">
                 Three specialized divisions working together for a sustainable future
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div *ngFor="let holding of holdings" class="holding-card">
-                    <div class="icon-box bg-green-100 text-green-600">
+                <div *ngFor="let holding of holdings" class="holding-card bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg">
+                    <div class="icon-box bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-300">
                         <i [class]="holding.icon" class="text-4xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mt-6 mb-3">{{holding.name}}</h3>
-                    <p class="text-gray-600 mb-4">{{holding.description}}</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">{{holding.description}}</p>
 
                     <ul class="space-y-2 mb-6">
                         <li *ngFor="let service of holding.services" class="flex items-start">
@@ -62,31 +62,31 @@
                         </li>
                     </ul>
 
-                    <button class="btn-text">Learn more <i class="pi pi-arrow-right ml-2"></i></button>
+                    <button class="btn-text dark:text-green-300">Learn more <i class="pi pi-arrow-right ml-2"></i></button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- تکنولوژی‌های پیشرفته -->
-    <section class="py-20 bg-gray-100">
+    <!-- Technologies -->
+    <section class="py-20 bg-gray-100 dark:bg-gray-900">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Cutting-Edge Technologies</h2>
-            <p class="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-16">
+            <p class="text-xl text-gray-600 dark:text-gray-300 text-center max-w-3xl mx-auto mb-16">
                 Pioneering innovations in renewable energy systems
             </p>
 
             <div class="tech-showcase">
-                <div class="tech-item" *ngFor="let tech of technologies">
-                    <div class="tech-image">
+                <div class="tech-item bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" *ngFor="let tech of technologies">
+                    <div class="tech-image relative">
                         <img [src]="tech.image" [alt]="tech.name" class="w-full h-full object-cover">
-                        <div class="tech-overlay">
+                        <div class="tech-overlay bg-black/60 dark:bg-black/70 text-white absolute inset-0 flex flex-col justify-center items-center">
                             <h3 class="text-2xl font-bold mb-2">{{tech.name}}</h3>
                             <p class="mb-4">{{tech.shortDesc}}</p>
-                            <button class="btn-outline-small">View Case Study</button>
+                            <button class="btn-outline-small dark:border-gray-300 dark:text-gray-300">View Case Study</button>
                         </div>
                     </div>
-                    <div class="tech-details">
+                    <div class="tech-details p-6">
                         <div class="flex items-center mb-4">
                             <div class="progress-circle" [style.--percentage]="tech.efficiency">
                                 <svg class="progress-ring" width="60" height="60">
@@ -95,22 +95,22 @@
                                 <span class="progress-text">{{tech.efficiency}}%</span>
                             </div>
                             <div class="ml-4">
-                                <div class="text-sm text-gray-500">Efficiency</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Efficiency</div>
                                 <div class="text-lg font-semibold">{{tech.efficiency}}%</div>
                             </div>
                         </div>
-                        <p class="text-gray-600">{{tech.description}}</p>
+                        <p class="text-gray-600 dark:text-gray-300">{{tech.description}}</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- پروژه‌های بین‌المللی -->
-    <section class="py-20 bg-white">
+    <!-- Global Impact -->
+    <section class="py-20 bg-white dark:bg-gray-800">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Global Impact</h2>
-            <p class="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-16">
+            <p class="text-xl text-gray-600 dark:text-gray-300 text-center max-w-3xl mx-auto mb-16">
                 Transforming energy systems across 5 continents
             </p>
 
@@ -127,22 +127,22 @@
                 </div>
             </div>
 
-            <div *ngIf="activeLocation" class="location-card mt-8">
+            <div *ngIf="activeLocation" class="location-card mt-8 bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg">
                 <h3 class="text-2xl font-bold mb-2">{{activeLocation.name}}</h3>
-                <div class="flex items-center text-gray-500 mb-4">
+                <div class="flex items-center text-gray-500 dark:text-gray-300 mb-4">
                     <i class="pi pi-map-marker mr-2"></i>
                     <span>{{activeLocation.country}}</span>
                 </div>
-                <p class="text-gray-600 mb-4">{{activeLocation.description}}</p>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">{{activeLocation.description}}</p>
                 <div class="flex flex-wrap gap-2">
-                    <span class="badge" *ngFor="let tech of activeLocation.technologies">{{tech}}</span>
+                    <span class="badge bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300" *ngFor="let tech of activeLocation.technologies">{{tech}}</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-br from-green-700 to-green-900 text-white">
+    <section class="py-20 bg-gradient-to-br from-green-700 to-green-900 text-white dark:from-green-800 dark:to-green-950 dark:text-gray-100">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Energy Future?</h2>
             <p class="text-xl max-w-3xl mx-auto mb-10">
@@ -150,7 +150,7 @@
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <button class="btn-primary-lg">Schedule Consultation</button>
-                <button class="btn-outline-white">Download Brochure</button>
+                <button class="btn-outline-white dark:border-gray-300 dark:text-gray-300">Download Brochure</button>
             </div>
         </div>
     </section>

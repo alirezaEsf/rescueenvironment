@@ -57,6 +57,7 @@ export class LanguagesComponent implements OnInit, OnDestroy {
 
         }
         this.availableLangs = this._translocoService.getAvailableLangs();
+        console.log(this.availableLangs);
         // Subscribe to language changes
         this._translocoService.langChanges$.subscribe((activeLang) => {
             console.log('************');
