@@ -2,6 +2,7 @@ import {Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { ProjectsComponent } from './components/projects/projects.component';
 
 export default [
     {
@@ -19,6 +20,10 @@ export default [
      {
         path: 'contact',
         component: ContactUsComponent,
+    },
+ {
+        path: 'projects',
+        component: ProjectsComponent,
     },
 
 

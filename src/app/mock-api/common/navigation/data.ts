@@ -33,7 +33,18 @@ let navigations:any=  [
         "translate": "Contact Us",
         "link": "/main/contact",
         "children": [],
-    }
+    },{
+        "icon": "business",
+        "menuId": 5,
+        "id": "projects",
+        "title": "Projects",
+        "type": "basic",
+        "parentId": 1,
+        "translate": "Projects",
+        "link": "/main/projects",
+        "children": [],
+    },
+
 ];
 export const defaultNavigation: FuseNavigationItem[] = navigations
 export const compactNavigation: FuseNavigationItem[] = navigations

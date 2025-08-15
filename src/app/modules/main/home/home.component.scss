@@ -1,110 +1,188 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 .home-container {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    color: #333;
+    overflow-x: hidden;
+}
 
-    .home-header {
-        background: #f0f9f0;
-        padding: 20px;
-        .logo {
-            width: 120px;
-            margin-bottom: 10px;
-        }
-        h1 { margin: 0; }
-        p { font-size: 1.1rem; margin: 5px 0 0 0; }
+.hero-section {
+    .parallax-bg {
+        transform: translate3d(0, 0, 0);
+        will-change: transform;
     }
 
-    .slider {
-        position: relative;
-        margin: 30px auto;
-        max-width: 700px;
+    h1 {
+        text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        line-height: 1.2;
+    }
 
-        .slide {
-            position: relative;
-            .image-container {
-                position: relative;
-                img {
-                    width: 100%;
-                    border-radius: 12px;
-                }
+    .animate-fadeInUp {
+        animation: fadeInUp 0.8s ease-out forwards;
 
-                .energy-loop {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    width: 100px;
-                    height: 100px;
-                    border: 5px solid rgba(255, 165, 0, 0.7);
-                    border-radius: 50%;
-                    transform: translate(-50%, -50%);
-                    animation: rotate 5s linear infinite;
-                }
+        &.delay-100 {
+            animation-delay: 0.2s;
+        }
+
+        &.delay-200 {
+            animation-delay: 0.4s;
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+.stat-item {
+    @apply p-6 rounded-lg bg-white/10 backdrop-blur-sm;
+    transition: all 0.3s ease;
+
+    &:hover {
+        @apply bg-white/20 transform scale-105;
+    }
+}
+
+.holding-card {
+    @apply p-8 rounded-xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300;
+    border-top: 4px solid theme('colors.green.500');
+
+    &:hover {
+        transform: translateY(-5px);
+
+        .icon-box {
+            @apply bg-green-500 text-white transform rotate-6 scale-110;
+        }
+    }
+
+    .icon-box {
+        @apply w-16 h-16 rounded-xl flex items-center justify-center transition-all duration-300;
+    }
+}
+
+.tech-showcase {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-8;
+}
+
+.tech-item {
+    @apply bg-white rounded-xl overflow-hidden shadow-lg flex flex-col lg:flex-row;
+
+    .tech-image {
+        @apply relative h-64 lg:h-auto lg:w-1/2 overflow-hidden;
+
+        img {
+            transition: transform 0.5s ease;
+        }
+
+        .tech-overlay {
+            @apply absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-6 flex flex-col justify-end opacity-0 transition-opacity duration-300;
+        }
+
+        &:hover {
+            img {
+                transform: scale(1.05);
             }
 
-            h2 { margin: 10px 0 0 0; }
-        }
-
-        .arrow {
-            position: absolute;
-            top: 50%;
-            background: rgba(0,0,0,0.3);
-            color: #fff;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 50%;
-            font-size: 24px;
-            transform: translateY(-50%);
-            &.prev { left: 10px; }
-            &.next { right: 10px; }
-        }
-    }
-
-    .holdings {
-        margin: 40px auto;
-        max-width: 900px;
-        h2 { margin-bottom: 20px; }
-
-        .holding-cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-
-            .card {
-                background: #e0f7e0;
-                padding: 20px;
-                border-radius: 12px;
-                width: 250px;
-                text-align: center;
-                transition: transform 0.3s;
-                cursor: pointer;
-
-                &:hover { transform: translateY(-10px); }
-
-                .icon { font-size: 40px; margin-bottom: 10px; }
-                h3 { margin-bottom: 10px; }
-                p { font-size: 0.95rem; line-height: 1.4; }
+            .tech-overlay {
+                opacity: 1;
             }
         }
     }
 
-    .about {
-        margin: 40px auto;
-        max-width: 800px;
-        text-align: justify;
-        h2 { margin-bottom: 15px; }
-        p { line-height: 1.6; }
+    .tech-details {
+        @apply p-6 lg:w-1/2;
+    }
+}
+
+.progress-circle {
+    @apply relative w-14 h-14;
+
+    .progress-ring {
+        transform: rotate(-90deg);
+
+        circle {
+            stroke: theme('colors.green.500');
+            stroke-dasharray: 163.4;
+            stroke-dashoffset: calc(163.4 - (163.4 * var(--percentage)) / 100);
+        }
     }
 
-    footer {
-        margin-top: 40px;
-        padding: 15px;
-        background: #f0f9f0;
+    .progress-text {
+        @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-sm font-bold;
+    }
+}
+
+.world-map {
+    @apply relative;
+
+    .location-marker {
+        @apply absolute w-4 h-4 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer;
+
+        .marker-dot {
+            @apply w-full h-full rounded-full bg-green-500 border-2 border-white shadow-lg;
+        }
+
+        .marker-pulse {
+            @apply absolute inset-0 rounded-full bg-green-500 opacity-40 animate-ping;
+        }
     }
 
-    @keyframes rotate {
-        from { transform: translate(-50%, -50%) rotate(0deg); }
-        to { transform: translate(-50%, -50%) rotate(360deg); }
+    &:hover {
+        img {
+            filter: grayscale(30%);
+        }
+    }
+}
+
+.location-card {
+    @apply bg-white p-6 rounded-xl shadow-lg border-l-4 border-green-500;
+}
+
+/* Buttons */
+.btn-primary {
+    @apply px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg;
+}
+
+.btn-outline {
+    @apply px-6 py-3 border-2 border-white text-white font-semibold rounded-lg transition-all duration-300 hover:bg-white/10;
+}
+
+.btn-text {
+    @apply text-green-600 hover:text-green-700 font-medium flex items-center transition-colors duration-300;
+}
+
+.btn-primary-lg {
+    @apply px-8 py-4 bg-white text-green-700 hover:bg-gray-100 font-bold rounded-lg transition-colors duration-300 text-lg shadow-lg hover:shadow-xl;
+}
+
+.btn-outline-white {
+    @apply px-8 py-4 border-2 border-white text-white hover:bg-white/10 font-bold rounded-lg transition-colors duration-300 text-lg;
+}
+
+.badge {
+    @apply px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        h1 {
+            font-size: 2.5rem;
+        }
+    }
+
+    .tech-item {
+        flex-direction: column;
+
+        .tech-image, .tech-details {
+            width: 100%;
+        }
     }
 }
