@@ -1,19 +1,9 @@
 {
-    "home": {
-        "innovating": "Innoveren",
-        "future_of_energy": "de toekomst van energie",
-        "leading_transition": "Het leiden van de wereldwijde overgang naar duurzame energieoplossingen",
-        "explore_solutions": "Ontdek oplossingen",
-        "contact_experts": "Neem contact op met onze experts",
-        "our_holdings": "Onze strategische holdings",
-        "three_divisions": "Drie gespecialiseerde afdelingen werken samen voor een duurzame toekomst",
-        "cutting_edge": "Geavanceerde technologieën",
-        "pioneering_innovations": "Baanbrekende innovaties in hernieuwbare energiesystemen",
-        "global_impact": "Wereldwijde impact",
-        "transforming_across": "Energiesystemen transformeren over 5 continenten",
-        "ready_transform": "Klaar om uw energietoekomst te transformeren?",
-        "custom_solution": "Ons team van experts staat klaar om een op maat gemaakte hernieuwbare energieoplossing voor uw behoeften te ontwerpen.",
-        "schedule_consultation": "Afspraak maken",
-        "download_brochure": "Brochure downloaden"
+    "hero": {
+        "title_part1": "Innoveren",
+        "title_part2": "de toekomst van energie",
+        "subtitle": "Het leiden van de wereldwijde overgang naar duurzame energieoplossingen",
+        "btn_explore": "Ontdek oplossingen",
+        "btn_contact": "Neem contact op met onze experts"
     }
 }
