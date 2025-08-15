@@ -70,10 +70,12 @@ export class LanguagesComponent implements OnInit, OnDestroy {
 
         // Set the country iso codes for languages for flags
         this.flagCodes = {
-            en: 'us',
-            tr: 'tr',
-            fa: 'fa',
+            en: 'gb', // یا 'us' بسته به اینکه پرچم بریتانیا یا آمریکا میخوای
+            fr: 'fr', // فرانسه
+            de: 'de', // آلمان
+            nl: 'nl', // هلند
         };
+
     }
 
     /**

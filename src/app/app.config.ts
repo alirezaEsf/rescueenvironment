@@ -73,14 +73,19 @@ export const appConfig: ApplicationConfig = {
                         label: 'English',
                     },
                     {
-                        id: 'tr',
-                        label: 'Turkish',
+                        id: 'fr',
+                        label: 'Français',
                     },
                     {
-                        id: 'fa',
-                        label: 'فارسی',
+                        id: 'de',
+                        label: 'Deutsch',
+                    },
+                    {
+                        id: 'nl',
+                        label: 'Nederlands',
                     }
                 ],
+
                 defaultLang: 'en',
                 fallbackLang: 'en',
                 reRenderOnLangChange: true,
