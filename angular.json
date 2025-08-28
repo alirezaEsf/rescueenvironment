@@ -20,7 +20,7 @@
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "baseHref": "/rescueenvironment/",
-                        "deployUrl": "/rescueenvironment/",
+                        "deployUrl": "",
                         "outputPath": "dist/rescueenvironment",
                         "polyfills": [
                             "zone.js"
@@ -40,25 +40,11 @@
                             "qrcode"
                         ],
                         "assets": [
-                            "src/index.html",
-                            "src/assets",
                             "src/favicon.ico",
-                            {
-                                "glob": "**/*",
-                                "input": "src/assets",
-                                "output": "/assets/"
-                            },
-                            {
-                                "glob": "**/*",
-                                "input": "public"
-                            },
+                            "src/assets",
+                            "src/manifest.webmanifest",
                             {
                                 "glob": "_redirects",
-                                "input": "src",
-                                "output": "/"
-                            },
-                            {
-                                "glob": "manifest.webmanifest",
                                 "input": "src",
                                 "output": "/"
                             }
@@ -84,11 +70,18 @@
                     },
                     "configurations": {
                         "production": {
-                            "baseHref": "/",
+                            "baseHref": "/rescueenvironment/",
+                            "deployUrl": "",
                             "assets": [
-                                { "input": "src", "glob": "manifest.webmanifest", "output": "/" }
+                                "src/favicon.ico",
+                                "src/assets",
+                                "src/manifest.webmanifest",
+                                {
+                                    "glob": "_redirects",
+                                    "input": "src",
+                                    "output": "/"
+                                }
                             ],
-                            "deployUrl": "/rescueenvironment/",
                             "fileReplacements": [
                                 {
                                     "replace": "src/environments/environment.ts",
@@ -118,7 +111,7 @@
                         },
                         "development": {
                             "baseHref": "/",
-                            "deployUrl": "/",
+                            "deployUrl": "",
                             "optimization": false,
                             "extractLicenses": false,
                             "sourceMap": true,
@@ -219,6 +212,6 @@
         }
     },
     "cli": {
-      "analytics": false
+        "analytics": false
     }
 }
