@@ -1,3 +1,4 @@
+/*
 // ngsw-worker.js
 const CACHE_VERSION = 'v1';
 const APP_CACHE = `app-cache-${CACHE_VERSION}`;
@@ -95,3 +96,4 @@ self.addEventListener('message', (event) => {
         self.skipWaiting();
     }
 });
+*/
