@@ -88,7 +88,7 @@
                             "assets": [
                                 { "input": "src", "glob": "manifest.webmanifest", "output": "/" }
                             ],
-                            "deployUrl": "/rescueenvironment/",
+                            "deployUrl": "/",
                             "fileReplacements": [
                                 {
                                     "replace": "src/environments/environment.ts",
