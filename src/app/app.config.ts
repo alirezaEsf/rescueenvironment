@@ -1,5 +1,5 @@
 import { provideHttpClient } from '@angular/common/http';
-import { APP_INITIALIZER, ApplicationConfig, inject } from '@angular/core';
+import { APP_INITIALIZER, ApplicationConfig, inject, isDevMode } from '@angular/core';
 import { LuxonDateAdapter } from '@angular/material-luxon-adapter';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -22,9 +22,14 @@ import Aura from '@primeng/themes/aura';
 import Material from '@primeng/themes/material';
 import nora from '@primeng/themes/nora';
 import lara from '@primeng/themes/lara';
+import { provideServiceWorker } from '@angular/service-worker';
 
 export const appConfig: ApplicationConfig = {
     providers: [
+        provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+        }),
         providePrimeNG({
             theme: {
                 preset: Aura,

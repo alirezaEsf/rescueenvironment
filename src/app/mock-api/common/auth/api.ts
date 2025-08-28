@@ -53,8 +53,8 @@ export class AuthMockApi {
             .reply(({ request }) => {
                 // Sign in successful
                 if (
-                    request.body.username === '1' &&
-                    request.body.password === '1'
+                    request.body.username &&
+                    request.body.password
                 ) {
                     return [
                         200,

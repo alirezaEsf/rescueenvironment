@@ -94,6 +94,18 @@
     "@angular-devkit/architect" "0.1902.3"
     rxjs "7.8.1"
 
+"@angular-devkit/core@19.2.15":
+  version "19.2.15"
+  resolved "https://registry.npmmirror.com/@angular-devkit/core/-/core-19.2.15.tgz"
+  integrity sha512-pU2RZYX6vhd7uLSdLwPnuBcr0mXJSjp3EgOXKsrlQFQZevc+Qs+2JdXgIElnOT/aDqtRtriDmLlSbtdE8n3ZbA==
+  dependencies:
+    ajv "8.17.1"
+    ajv-formats "3.0.1"
+    jsonc-parser "3.3.1"
+    picomatch "4.0.2"
+    rxjs "7.8.1"
+    source-map "0.7.4"
+
 "@angular-devkit/core@19.2.3":
   version "19.2.3"
   resolved "https://registry.npmjs.org/@angular-devkit/core/-/core-19.2.3.tgz"
@@ -105,6 +117,17 @@
     picomatch "4.0.2"
     rxjs "7.8.1"
     source-map "0.7.4"
+
+"@angular-devkit/schematics@19.2.15":
+  version "19.2.15"
+  resolved "https://registry.npmmirror.com/@angular-devkit/schematics/-/schematics-19.2.15.tgz"
+  integrity sha512-kNOJ+3vekJJCQKWihNmxBkarJzNW09kP5a9E1SRNiQVNOUEeSwcRR0qYotM65nx821gNzjjhJXnAZ8OazWldrg==
+  dependencies:
+    "@angular-devkit/core" "19.2.15"
+    jsonc-parser "3.3.1"
+    magic-string "0.30.17"
+    ora "5.4.1"
+    rxjs "7.8.1"
 
 "@angular-devkit/schematics@19.2.3":
   version "19.2.3"
@@ -260,10 +283,26 @@
   dependencies:
     tslib "^2.3.0"
 
+"@angular/pwa@^19.1.6":
+  version "19.2.15"
+  resolved "https://registry.npmmirror.com/@angular/pwa/-/pwa-19.2.15.tgz"
+  integrity sha512-Kcn8KyD+arSLSUBllIMiIXOWqT6MIxyUFo3Dap6pQymxnni/8WrHY4hvbnAcT9+qT0chMTEeTw9/EXOXg48gZg==
+  dependencies:
+    "@angular-devkit/schematics" "19.2.15"
+    "@schematics/angular" "19.2.15"
+    parse5-html-rewriting-stream "7.0.0"
+
 "@angular/router@^19.1.6":
   version "19.2.2"
   resolved "https://registry.npmjs.org/@angular/router/-/router-19.2.2.tgz"
   integrity sha512-H0JEN1cs7uX++piCyT2gfhgqONceCKbRRZq+zr1T61c5heAi2pBGHuuZnU0D1d0sgA82CGcWFrTduUJg5wWamw==
+  dependencies:
+    tslib "^2.3.0"
+
+"@angular/service-worker@^19.2.14":
+  version "19.2.14"
+  resolved "https://registry.npmmirror.com/@angular/service-worker/-/service-worker-19.2.14.tgz"
+  integrity sha512-ajH4kjsuzDvJNxnG18y8N47R0avXFKwOeLszoiirlr5160C+k4HmQvIbzcCjD5liW0OkmxJN1cMW6KdilP8/2w==
   dependencies:
     tslib "^2.3.0"
 
@@ -1559,6 +1598,15 @@
   version "4.34.8"
   resolved "https://registry.npmjs.org/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.34.8.tgz"
   integrity sha512-U0FaE5O1BCpZSeE6gBl3c5ObhePQSfk9vDRToMmTkbhCOgW4jqvtS5LGyQ76L1fH8sM0keRp4uDTsbjiUyjk0g==
+
+"@schematics/angular@19.2.15":
+  version "19.2.15"
+  resolved "https://registry.npmmirror.com/@schematics/angular/-/angular-19.2.15.tgz"
+  integrity sha512-dz/eoFQKG09POSygpEDdlCehFIMo35HUM2rVV8lx9PfQEibpbGwl1NNQYEbqwVjTyCyD/ILyIXCWPE+EfTnG4g==
+  dependencies:
+    "@angular-devkit/core" "19.2.15"
+    "@angular-devkit/schematics" "19.2.15"
+    jsonc-parser "3.3.1"
 
 "@schematics/angular@19.2.3":
   version "19.2.3"
@@ -5848,7 +5896,7 @@ rxjs@^7.5.5, rxjs@^7.8.1:
 
 rxjs@7.8.1:
   version "7.8.1"
-  resolved "https://registry.npmjs.org/rxjs/-/rxjs-7.8.1.tgz"
+  resolved "https://registry.npmmirror.com/rxjs/-/rxjs-7.8.1.tgz"
   integrity sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==
   dependencies:
     tslib "^2.1.0"

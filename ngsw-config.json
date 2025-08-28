@@ -1,0 +1,59 @@
+{
+    "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+    "index": "/rescueenvironment/index.html",
+    "assetGroups": [
+        {
+            "name": "app-shell",
+            "installMode": "prefetch",
+            "updateMode": "prefetch",
+            "resources": {
+                "files": [
+                    "/rescueenvironment/favicon.ico",
+                    "/rescueenvironment/index.html",
+                    "/rescueenvironment/manifest.webmanifest",
+                    "/rescueenvironment/*.css",
+                    "/rescueenvironment/*.js",
+                    "/rescueenvironment/assets/icons/*.png"
+                ],
+                "urls": [
+                    "/rescueenvironment/"
+                ]
+            }
+        },
+        {
+            "name": "assets",
+            "installMode": "lazy",
+            "updateMode": "prefetch",
+            "resources": {
+                "files": [
+                    "/rescueenvironment/assets/**",
+                    "!(*.map|*.json|*.txt)"
+                ],
+                "urls": [
+                    "https://fonts.googleapis.com/**",
+                    "https://fonts.gstatic.com/**"
+                ]
+            }
+        }
+    ],
+    "dataGroups": [
+        {
+            "name": "api-requests",
+            "urls": [
+                "/rescueenvironment/api/**"
+            ],
+            "cacheConfig": {
+                "maxSize": 100,
+                "maxAge": "3d",
+                "strategy": "freshness"
+            }
+        }
+    ],
+    "navigationUrls": [
+        "/rescueenvironment/**",
+        "!/rescueenvironment/**/*.*",
+        "!/rescueenvironment/**/*__*",
+        "!/rescueenvironment/**/*__*/**"
+    ],
+    "navigationRequestStrategy": "freshness"
+}

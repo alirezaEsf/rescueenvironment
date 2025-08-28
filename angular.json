@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "fuse": {
+        "rescue-environment": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
@@ -56,6 +56,11 @@
                                 "glob": "_redirects",
                                 "input": "src",
                                 "output": "/"
+                            },
+                            {
+                                "glob": "manifest.webmanifest",
+                                "input": "src",
+                                "output": "/"
                             }
                         ],
                         "stylePreprocessorOptions": {
@@ -80,6 +85,9 @@
                     "configurations": {
                         "production": {
                             "baseHref": "/",
+                            "assets": [
+                                { "input": "src", "glob": "manifest.webmanifest", "output": "/" }
+                            ],
                             "deployUrl": "/rescueenvironment/",
                             "fileReplacements": [
                                 {
@@ -104,7 +112,9 @@
                             "aot": true,
                             "extractLicenses": true,
                             "vendorChunk": false,
-                            "buildOptimizer": true
+                            "buildOptimizer": true,
+                            "serviceWorker": true,
+                            "ngswConfigPath": "ngsw-config.json"
                         },
                         "development": {
                             "baseHref": "/",
@@ -136,7 +146,9 @@
                                     "type": "anyComponentStyle",
                                     "maximumWarning": "3mb"
                                 }
-                            ]
+                            ],
+                            "serviceWorker": true,
+                            "ngswConfigPath": "ngsw-config.json"
                         },
                         "uat": {
                             "fileReplacements": [
@@ -160,7 +172,9 @@
                                     "type": "anyComponentStyle",
                                     "maximumWarning": "3mb"
                                 }
-                            ]
+                            ],
+                            "serviceWorker": true,
+                            "ngswConfigPath": "ngsw-config.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -169,10 +183,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "buildTarget": "fuse:build:production"
+                            "buildTarget": "rescue-environment:build:production"
                         },
                         "development": {
-                            "buildTarget": "fuse:build:development"
+                            "buildTarget": "rescue-environment:build:development"
                         }
                     },
                     "defaultConfiguration": "development"

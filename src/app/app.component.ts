@@ -13,6 +13,7 @@ import { ToastService } from './modules/shared/services/ToastService';
 import {MainComponent} from "./modules/main/main.component";
 import { environment } from '../environments/environment';
 import { APP_BASE_HREF } from '@angular/common';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
     selector: 'app-root',
@@ -39,7 +40,9 @@ export class AppComponent implements OnInit{
                 private renderer: Renderer2,
                 private service: AppComponentService,
                 private loaderService: SaffronLoaderService,
-                private saffronMessageService: SaffronMessageService) {
+                private saffronMessageService: SaffronMessageService,
+                private swUpdate: SwUpdate
+                ) {
         this.service.registerViewContainerRef(viewContainerRef);
 
         this.loaderService.setRootViewContainerRef(viewContainerRef);
@@ -48,6 +51,15 @@ export class AppComponent implements OnInit{
 
     ngOnInit(): void {
         // this.setBodyDirection(this.appSettings.AppDirection);
+        this.swUpdate.versionUpdates.subscribe(event => {
+            console.log('Version versionUpdates event:>>>>>>>>>>>>>>>>>', event);
+            if (event.type === 'VERSION_READY') {
+                // به‌روزرسانی جدید آماده است
+                if (confirm('نسخه جدید برنامه آماده است. می‌خواهید صفحه را رفرش کنید؟')) {
+                    window.location.reload();
+                }
+            }
+        });
     }
 
     // Method to set the body direction
