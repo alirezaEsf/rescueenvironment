@@ -1,0 +1,30 @@
+{
+    "data": [
+        {"name": "Accept", "code": "Accept"},
+        {"name": "Accept-Charset", "code": "Accept-Charset"},
+        {"name": "Accept-Encoding", "code": "Accept-Encoding"},
+        {"name": "Accept-Language", "code": "Accept-Language"},
+        {"name": "Access-Control-Request-Headers", "code": "Access-Control-Request-Headers"},
+        {"name": "Access-Control-Request-Method", "code": "Access-Control-Request-Method"},
+        {"name": "Authorization", "code": "Authorization"},
+        {"name": "Cache-Control", "code": "Cache-Control"},
+        {"name": "Content-Transfer-Encoding", "code": "9"},
+        {"name": "Date", "code": "Date"},
+        {"name": "If-Match", "code": "If-Match"},
+        {"name": "If-None-Match", "code": "If-None-Match"},
+        {"name": "If-Range", "code": "If-Range"},
+        {"name": "Keep-Alive", "code": "Keep-Alive"},
+        {"name": "Max-Forwards", "code": "Max-Forwards"},
+        {"name": "Pragma", "code": "Pragma"},
+        {"name": "Proxy-Authorization", "code": "Proxy-Authorization"},
+        {"name": "Range", "code": "Range"},
+        {"name": "Trailer", "code": "Trailer"},
+        {"name": "Transfer-Encoding", "code": "Transfer-Encoding"},
+        {"name": "Upgrade", "code": "Upgrade"},
+        {"name": "User-Agent", "code": "User-Agent"},
+        {"name": "Via", "code": "Via"},
+        {"name": "Warning", "code": "Warning"},
+        {"name": "X-Do-Not-Track", "code": "X-Do-Not-Track"},
+        {"name": "x-api-key", "code": "x-api-key"}
+    ]
+}

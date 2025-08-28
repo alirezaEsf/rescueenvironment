@@ -1,0 +1,45 @@
+<svg width="500" height="140" viewBox="0 0 500 140" xmlns="http://www.w3.org/2000/svg">
+  <!-- خورشید -->
+  <circle cx="70" cy="70" r="40" fill="url(#sunGradient)"></circle>
+  <g stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="70" y1="20" x2="70" y2="10"></line>
+    <line x1="70" y1="120" x2="70" y2="130"></line>
+    <line x1="30" y1="70" x2="20" y2="70"></line>
+    <line x1="110" y1="70" x2="120" y2="70"></line>
+    <line x1="40" y1="40" x2="30" y2="30"></line>
+    <line x1="110" y1="100" x2="120" y2="110"></line>
+    <line x1="40" y1="100" x2="30" y2="110"></line>
+    <line x1="110" y1="40" x2="120" y2="30"></line>
+  </g>
+
+  <!-- برگ سبز -->
+  <path d="M130 110 C160 50, 210 50, 240 110 S280 160, 220 150 Q190 140, 170 130 Z" fill="#4CAF50"></path>
+  <path d="M160 110 C190 80, 230 80, 260 120 Q250 140, 220 150 Z" fill="#2E7D32"></path>
+
+  <!-- پنل خورشیدی -->
+  <rect x="310" y="50" width="70" height="60" rx="8" ry="8" fill="#4CAF50" stroke="#2E7D32" stroke-width="3"></rect>
+  <line x1="330" y1="50" x2="330" y2="110" stroke="#81C784" stroke-width="3"></line>
+  <line x1="355" y1="50" x2="355" y2="110" stroke="#81C784" stroke-width="3"></line>
+  <line x1="380" y1="50" x2="380" y2="110" stroke="#81C784" stroke-width="3"></line>
+  <line x1="310" y1="75" x2="380" y2="75" stroke="#81C784" stroke-width="3"></line>
+  <line x1="310" y1="95" x2="380" y2="95" stroke="#81C784" stroke-width="3"></line>
+
+  <!-- توربین بادی -->
+  <rect x="430" y="70" width="10" height="50" fill="#81D4FA"></rect>
+  <circle cx="435" cy="70" r="20" fill="#0288D1"></circle>
+  <line x1="435" y1="70" x2="470" y2="50" stroke="#01579B" stroke-width="5"></line>
+  <line x1="435" y1="70" x2="415" y2="110" stroke="#01579B" stroke-width="5"></line>
+  <line x1="435" y1="70" x2="455" y2="110" stroke="#01579B" stroke-width="5"></line>
+
+  <!-- متن -->
+  <text x="70" y="135" font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif" font-weight="700" font-size="28" fill="#2E7D32" letter-spacing="1">
+    New Energy Holding
+  </text>
+
+  <defs>
+    <linearGradient id="sunGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD54F"></stop>
+      <stop offset="100%" stop-color="#FFA000"></stop>
+    </linearGradient>
+  </defs>
+</svg>

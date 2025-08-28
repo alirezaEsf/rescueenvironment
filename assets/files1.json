@@ -1,0 +1,72 @@
+{
+    "data":
+    [
+        {
+            "label": "name",
+            "children": [
+                {
+                    "label": "firtsname",
+                    "data": "علی"
+                },
+                {
+                    "label": "family",
+                    "data": "محمدی"
+                }
+            ]
+        },
+        {
+            "label": "contactdetails",
+            "children": [
+                {
+                    "label": "deskNumber",
+                    "data": "00-428507"
+                },
+                {
+                    "label": "mobileNumber",
+                    "data": "+917823561231"
+                },
+                {
+                    "label": "emergencyDetails",
+                    "children": [
+                        {
+                            "label": "emergency_no1",
+                            "data": "+91 1212898920"
+                        },
+                        {
+                            "label": "emergency_no2",
+                            "data": "+91 9997722123"
+                        },
+                        {
+                            "label": "emergency_no3",
+                            "data": "+91 8023881245"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "age",
+            "data": "30"
+        },
+        {
+            "label": "salary",
+            "data": "75000.0"
+        },
+        {
+            "label": "designation",
+            "data": "Manager"
+        },
+        {
+            "label": "emailId",
+            "data": "abc@test.com"
+        },
+        {
+            "label": "gender",
+            "data": "male"
+        },
+        {
+            "label": "maritalStatus",
+            "data": "married"
+        }
+    ]
+}
