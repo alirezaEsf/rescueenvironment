@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "rescue-environment": {
+        "fuse": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
@@ -88,7 +88,7 @@
                             "assets": [
                                 { "input": "src", "glob": "manifest.webmanifest", "output": "/" }
                             ],
-                            "deployUrl": "/",
+                            "deployUrl": "/rescueenvironment/",
                             "fileReplacements": [
                                 {
                                     "replace": "src/environments/environment.ts",
@@ -183,10 +183,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "buildTarget": "rescue-environment:build:production"
+                            "buildTarget": "fuse:build:production"
                         },
                         "development": {
-                            "buildTarget": "rescue-environment:build:development"
+                            "buildTarget": "fuse:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
