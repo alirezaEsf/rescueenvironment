@@ -84,7 +84,7 @@
                     },
                     "configurations": {
                         "production": {
-                            "baseHref": "/rescueenvironment",
+                            "baseHref": "/",
                             "assets": [
                                 { "input": "src", "glob": "manifest.webmanifest", "output": "/" }
                             ],
