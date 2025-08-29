@@ -14,9 +14,6 @@
                     "/*.css",
                     "/*.js",
                     "/assets/icons/*.png"
-                ],
-                "urls": [
-                    "/"
                 ]
             }
         },
@@ -36,24 +33,12 @@
             }
         }
     ],
-    "dataGroups": [
-        {
-            "name": "api-requests",
-            "urls": [
-                "/api/**"
-            ],
-            "cacheConfig": {
-                "maxSize": 100,
-                "maxAge": "3d",
-                "strategy": "freshness"
-            }
-        }
-    ],
+    "dataGroups": [],
     "navigationUrls": [
-        "/**",
-        "!/**/*.*",
-        "!/**/*__*",
-        "!/**/*__*/**"
+        {
+            "positive": true,
+            "regex": "^(?!.*\\.(?:ico|js|css|png|jpg|jpeg|svg|webp|json|txt)$).*$"
+        }
     ],
     "navigationRequestStrategy": "freshness"
 }

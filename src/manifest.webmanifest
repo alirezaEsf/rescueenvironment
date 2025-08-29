@@ -1,12 +1,12 @@
 {
-  "id": "/",
+  "id": "/rescueenvironment/",
   "name": "fuse-angular",
   "short_name": "rescue",
   "theme_color": "#1976d2",
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "/rescueenvironment/",
-  "start_url": "/",
+  "start_url": "/rescueenvironment/",
   "icons": [
     {
       "src": "assets/icons/pwa/icon-72x72.png",
