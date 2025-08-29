@@ -1,12 +1,12 @@
 {
-  "id": "/",
+  "id": "/rescueenvironment/",
   "name": "fuse-angular",
   "short_name": "rescue",
   "theme_color": "#1976d2",
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "/rescueenvironment/",
-  "start_url": "/",
+  "start_url": "/rescueenvironment/",
   "icons": [
     {
       "src": "assets/icons/pwa/icon-72x72.png",
@@ -22,20 +22,6 @@
       "src": "assets/icons/pwa/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "assets/icons/pwa/wide-screenshot-pwa1.png",
-      "sizes": "1280x640",
-      "type": "image/png",
-      "form_factor": "wide"
-    },
-    {
-      "src": "assets/icons/pwa/wide-screenshot-pwa-mobile.png",
-      "sizes": "540x720",
-      "type": "image/png",
-      "form_factor": "narrow"
     }
   ]
 }
