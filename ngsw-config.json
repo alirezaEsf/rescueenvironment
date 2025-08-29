@@ -1,6 +1,6 @@
 {
     "$schema": "./node_modules/@angular/service-worker/config/schema.json",
-    "index": "/rescueenvironment/index.html",
+    "index": "/index.html",
     "assetGroups": [
         {
             "name": "app-shell",
@@ -8,15 +8,15 @@
             "updateMode": "prefetch",
             "resources": {
                 "files": [
-                    "/rescueenvironment/favicon.ico",
-                    "/rescueenvironment/index.html",
-                    "/rescueenvironment/manifest.webmanifest",
-                    "/rescueenvironment/*.css",
-                    "/rescueenvironment/*.js",
-                    "/rescueenvironment/assets/icons/*.png"
+                    "/favicon.ico",
+                    "/index.html",
+                    "/manifest.webmanifest",
+                    "/*.css",
+                    "/*.js",
+                    "/assets/icons/*.png"
                 ],
                 "urls": [
-                    "/rescueenvironment/"
+                    "/"
                 ]
             }
         },
@@ -26,7 +26,7 @@
             "updateMode": "prefetch",
             "resources": {
                 "files": [
-                    "/rescueenvironment/assets/**",
+                    "/assets/**",
                     "!(*.map|*.json|*.txt)"
                 ],
                 "urls": [
@@ -40,7 +40,7 @@
         {
             "name": "api-requests",
             "urls": [
-                "/rescueenvironment/api/**"
+                "/api/**"
             ],
             "cacheConfig": {
                 "maxSize": 100,
@@ -50,10 +50,10 @@
         }
     ],
     "navigationUrls": [
-        "/rescueenvironment/**",
-        "!/rescueenvironment/**/*.*",
-        "!/rescueenvironment/**/*__*",
-        "!/rescueenvironment/**/*__*/**"
+        "/**",
+        "!/**/*.*",
+        "!/**/*__*",
+        "!/**/*__*/**"
     ],
     "navigationRequestStrategy": "freshness"
 }
