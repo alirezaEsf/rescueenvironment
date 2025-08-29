@@ -13,7 +13,7 @@
                     "/manifest.webmanifest",
                     "/*.css",
                     "/*.js",
-                    "/assets/icons/*.png"
+                    "assets/icons/*.png"
                 ]
             }
         },
@@ -23,8 +23,8 @@
             "updateMode": "prefetch",
             "resources": {
                 "files": [
-                    "/assets/**",
-                    "!(*.map|*.json|*.txt)"
+                    "assets/**",
+                    "!(*.map)"
                 ],
                 "urls": [
                     "https://fonts.googleapis.com/**",
@@ -33,12 +33,24 @@
             }
         }
     ],
-    "dataGroups": [],
-    "navigationUrls": [
+    "dataGroups": [
         {
-            "positive": true,
-            "regex": "^(?!.*\\.(?:ico|js|css|png|jpg|jpeg|svg|webp|json|txt)$).*$"
+            "name": "api-requests",
+            "urls": [
+                "/api/**"
+            ],
+            "cacheConfig": {
+                "maxSize": 100,
+                "maxAge": "3d",
+                "strategy": "freshness"
+            }
         }
+    ],
+    "navigationUrls": [
+        "/**",
+        "!/**/*.*",
+        "!/**/*__*",
+        "!/**/*__*/**"
     ],
     "navigationRequestStrategy": "freshness"
 }
