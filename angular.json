@@ -20,7 +20,7 @@
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "baseHref": "/rescueenvironment/",
-                        "deployUrl": "",
+                        "deployUrl": "/rescueenvironment/",
                         "outputPath": "dist/rescueenvironment",
                         "polyfills": [
                             "zone.js"
@@ -42,7 +42,17 @@
                         "assets": [
                             "src/favicon.ico",
                             "src/assets",
+                            "src/favicon.ico",
                             "src/manifest.webmanifest",
+                            {
+                                "glob": "**/*",
+                                "input": "src/assets",
+                                "output": "/assets/"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "public"
+                            },
                             {
                                 "glob": "_redirects",
                                 "input": "src",
@@ -70,18 +80,8 @@
                     },
                     "configurations": {
                         "production": {
-                            "baseHref": "/rescueenvironment/",
-                            "deployUrl": "",
-                            "assets": [
-                                "src/favicon.ico",
-                                "src/assets",
-                                "src/manifest.webmanifest",
-                                {
-                                    "glob": "_redirects",
-                                    "input": "src",
-                                    "output": "/"
-                                }
-                            ],
+                            "baseHref": "/",
+                            "deployUrl": "/rescueenvironment/",
                             "fileReplacements": [
                                 {
                                     "replace": "src/environments/environment.ts",
@@ -111,7 +111,7 @@
                         },
                         "development": {
                             "baseHref": "/",
-                            "deployUrl": "",
+                            "deployUrl": "/",
                             "optimization": false,
                             "extractLicenses": false,
                             "sourceMap": true,
@@ -139,9 +139,7 @@
                                     "type": "anyComponentStyle",
                                     "maximumWarning": "3mb"
                                 }
-                            ],
-                            "serviceWorker": true,
-                            "ngswConfigPath": "ngsw-config.json"
+                            ]
                         },
                         "uat": {
                             "fileReplacements": [
@@ -165,9 +163,7 @@
                                     "type": "anyComponentStyle",
                                     "maximumWarning": "3mb"
                                 }
-                            ],
-                            "serviceWorker": true,
-                            "ngswConfigPath": "ngsw-config.json"
+                            ]
                         }
                     },
                     "defaultConfiguration": "production"
@@ -212,6 +208,6 @@
         }
     },
     "cli": {
-        "analytics": false
+      "analytics": false
     }
 }
