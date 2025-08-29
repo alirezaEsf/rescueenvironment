@@ -1,41 +1,56 @@
 {
-  "id": "/rescueenvironment/",
-  "name": "fuse-angular",
-  "short_name": "rescue",
-  "theme_color": "#1976d2",
-  "background_color": "#ffffff",
-  "display": "standalone",
-  "scope": "/rescueenvironment/",
-  "start_url": "/rescueenvironment/",
-  "icons": [
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
     {
-      "src": "assets/icons/pwa/icon-72x72.png",
-      "sizes": "72x72",
-      "type": "image/png"
+      "name": "app-shell",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.html",
+          "/manifest.webmanifest",
+          "/*.css",
+          "/*.js",
+          "assets/icons/*.png"
+        ]
+      }
     },
     {
-      "src": "assets/icons/pwa/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "assets/icons/pwa/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "assets/**",
+          "!(*.map|*.json|*.txt)"
+        ],
+        "urls": [
+          "https://fonts.googleapis.com/**",
+          "https://fonts.gstatic.com/**"
+        ]
+      }
     }
   ],
-  "screenshots": [
+  "dataGroups": [
     {
-      "src": "assets/icons/pwa/wide-screenshot-pwa1.png",
-      "sizes": "1280x640",
-      "type": "image/png",
-      "form_factor": "wide"
-    },
-    {
-      "src": "assets/icons/pwa/wide-screenshot-pwa-mobile.png",
-      "sizes": "540x720",
-      "type": "image/png",
-      "form_factor": "narrow"
+      "name": "api-requests",
+      "urls": [
+        "api/**"
+      ],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "3d",
+        "strategy": "freshness"
+      }
     }
-  ]
+  ],
+  "navigationUrls": [
+    "/**",
+    "!/**/*.*",
+    "!/**/*__*",
+    "!/**/*__*/**"
+  ],
+  "navigationRequestStrategy": "freshness"
 }
